@@ -1,62 +1,42 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## IMDB KLON U05 CHAS ACADEMY GRUPP 9
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Projekt
 
-## About Laravel
+Den här uppgiften går ut på att i grupp implementera en fullständig webbplats som nyttjar en databas genom PHP. Temat för uppgiften är filmer och den resulterande webbplatsen ska fungera likt den populära siten IMDb (International Movie Database).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Mål
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+En webbplats skriven med PHP för backend, JS, HTML och CSS för front-end samt en databas i MySQL
+Ska använda sig av PHP-ramverket Laravel
+En MySQL databas med tabeller och data som är skapade via Laravel migrations
+Webbplatsen ska ha tre olika typer av åtkomster (tänk RBAC, role-based access control)
+En publik del ska kunna besökas utan inloggning för vanliga besökare
+En inloggad del som då kräver registrering där man som användare:
+Ska kunna recensera filmer
+Se, skapa och ändra i listor med filmer som man vill se (se IMDb:s watchlist)
+En skyddad del, där endast en administratör kan logga in för att göra följande:
+Hantera recensioner och kommentarer (godkänna, ta bort)
+CRUD-operationer för filmer
+CRUD-operationer för användare
+Design är också en del av uppgiften och skall skapas av teamet. Det är tillåtet att nyttja CSS-ramverk såsom Bootstrap eller dylikt. 
+Det är rekommenderat att teamet använder sig av GitHub Flow när ni versionshanterar
+Det är rekommenderat att deploya ofta. Tänk igen på att dela upp er leverabel i så små delar som möjligt - Release often, deploy a lot
+Övriga krav på arbetet
+I ert team ska ni arbeta agilt och dela upp arbetet i iterationer. Det är rekommenderat att att ni använder er av minst en-veckas "sprintar/cykler/iterationer"
+Strukturera ert arbete i små leverabler som ni i teamet är bekväma med att leverera
+Illustrera ert planerade, pågående och avslutade arbete med Kanban (digitalt eller fysiskt)
+Ni ska i teamet komma överens om kodingstandard och se till att samtliga i teamet följer den
+Ackompanjerande kravspecifikation
+I dokumentet nedan finns det en lös kravspecifikation som ni i grupp ska nyttja under arbetets gång. Lägg märke till att där finns ytterligare icke-funktionella krav i denna specifikation (se sista sidan). I dokumentetet är där även specifierat vilka routes som förväntas vara tillgängliga, för att ge en uppfattning om hur allt ska struktureras.
+Där är även sektioner för personas och user stories som ni i gruppen måste utöka.
+Slutligen innehåller det även avsnitt för wireframes och en sitemap (se dokumentet för exempel på hur det kan se ut)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+### Kravspec
+https://docs.google.com/document/d/1kY206U6sYIu63MptUtyID6kKLp5pSk-tK75Nn5Tii2c/edit?usp=sharing 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+ 
+### Inlämning
+Den färdiga inlämningen ska deployas så att den finns tillgänglig på webben (vi återkommer med förslag på ställen)
+Källkoden med versionshistorik ska finns länkad  
