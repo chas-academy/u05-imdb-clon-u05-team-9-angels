@@ -13,4 +13,10 @@ class MovieController extends Controller
         dd($movies);
         return view('movie', $movies);
     }
+
+    public function getAll()
+    {
+        $movies = Movie::all();
+        return view('movie', ['movies' => $movies]);
+    }
 }
