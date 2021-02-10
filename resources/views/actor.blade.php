@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    @foreach ($movies as $movie)
-    <p>{{$movie}}</p>
+    @foreach ($actors as $actor)
+    <p>{{$actor}}</p>
     @endforeach
 </body>
 
