@@ -14,7 +14,7 @@ class ActorController extends Controller
     }
     public function index($id)
     {
-        $actors = Actor::where('id', $id);
+        $actors = Actor::where('id', $id)->first();
         return view('actor', [
             'actor' => $actors,
         ]);

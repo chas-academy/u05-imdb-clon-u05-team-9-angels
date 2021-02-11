@@ -10,8 +10,8 @@
 
 <body>
     <h1>Actor page</h1>
-    @foreach ($actors as $actor)
-    <p>{{$actor}}</p>
+    @foreach ($actor as $key)
+    <p>{{$actor->name}}</p>
     @endforeach
 </body>
 

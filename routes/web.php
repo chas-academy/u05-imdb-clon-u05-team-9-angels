@@ -15,9 +15,12 @@ use App\Http\Controllers\ActorController;
 |
 */
 
-Route::get('/movie', [MovieController::class, 'index']);
+// Route::get('/movie', [MovieController::class, 'index']);
+Route::get('/movie', [MovieController::class, 'getAll']);
 
-// Route::get('/actor/{id}', [ActorController::class, 'index']);
+// get specific
+Route::get('/movie/{id}', [MovieController::class, 'getMovie']);
+Route::get('/actor/{id}', [ActorController::class, 'index']);
 
 Route::get('/actor', [ActorController::class, 'getAll']);
 
