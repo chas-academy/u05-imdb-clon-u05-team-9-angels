@@ -10,9 +10,10 @@
 
 <body>
     <h1>Actor page</h1>
-    @foreach ($actor as $key)
-    <p>{{$actor->name}}</p>
-    @endforeach
+    <h2>{{$actor->name}}</h2>
+
+    <p>Age: {{$actor->age}}</p>
+    <p>About: {{$actor->description}}</p>
 </body>
 
 </html>
