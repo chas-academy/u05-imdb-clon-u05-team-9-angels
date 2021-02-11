@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <h1>Actor page</h1>
     @foreach ($actors as $actor)
     <p>{{$actor}}</p>
     @endforeach

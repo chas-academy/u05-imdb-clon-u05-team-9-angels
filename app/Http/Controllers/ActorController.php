@@ -12,4 +12,11 @@ class ActorController extends Controller
         $actors = Actor::all();
         return view('actor', ['actors' => $actors]);
     }
+    public function index($id)
+    {
+        $actors = Actor::where('id', $id);
+        return view('actor', [
+            'actor' => $actors,
+        ]);
+    }
 }
