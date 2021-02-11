@@ -9,9 +9,12 @@
 </head>
 
 <body>
+    <h1>Movie page</h1>
     @foreach ($movies as $movie)
     <p>{{$movie}}</p>
     @endforeach
+
+    
 </body>
 
 </html>
