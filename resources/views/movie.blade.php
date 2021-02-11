@@ -10,9 +10,11 @@
 
 <body>
     <h1>Movie page</h1>
-    <h2>{{$movies->title}}</h2>
-    <p>Plot: {{$movies->description}}</p>
-    <p>{{$movies->year}}</p>
+    <h2>Title: {{$movies->title}}</h2>
+    @foreach ($movies as $movie)
+    <p>{{$movie}}</p>
+    @endforeach
+
     
 </body>
 

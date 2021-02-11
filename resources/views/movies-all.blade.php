@@ -9,10 +9,12 @@
 </head>
 
 <body>
-    <h1>Movies page</h1>
+    <h1>Movie page</h1>
+    {{-- <h2>Title: {{$movies->title}}</h2> --}}
     @foreach ($movies as $movie)
-        <p>{{$movie}}</p>
+    <p>{{$movie}}</p>
     @endforeach
+
     
 </body>
 

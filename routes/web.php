@@ -14,13 +14,13 @@ use App\Http\Controllers\ActorController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 // get all
 // Route::get('/movie', [MovieController::class, 'index']);
+// Route::get('/movie', [MovieController::class, 'getAll']);
 Route::get('/movies/all', [MovieController::class, 'getAll']);
 
 // get specific
-Route::get('/movie/{id}', [MovieController::class, 'getMovie']);
+Route::get('/movies/{id}', [MovieController::class, 'getMovie']);
 Route::get('/actor/{id}', [ActorController::class, 'index']);
 
 Route::get('/actor', [ActorController::class, 'getAll']);

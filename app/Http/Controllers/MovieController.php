@@ -19,7 +19,8 @@ class MovieController extends Controller
     //     $movies = Movie::all();
     //     return view('movie', ['movies' => $movies]);
     // }
-    public function getAll()
+
+    public function getAll() // new get all movies
     {
         $movies = Movie::all();
         return view('movies-all', ['movies' => $movies]);
