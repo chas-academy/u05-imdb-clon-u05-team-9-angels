@@ -20,9 +20,8 @@ Route::get('/movie', [MovieController::class, 'getAll']);
 
 // get specific
 Route::get('/movie/{id}', [MovieController::class, 'getMovie']);
-Route::get('/actor/{id}', [ActorController::class, 'index']);
 
-Route::get('/actor', [ActorController::class, 'getAll']);
+Route::resource('actors', ActorController::class);
 
 Route::get('/', function () {
     return view('welcome');
