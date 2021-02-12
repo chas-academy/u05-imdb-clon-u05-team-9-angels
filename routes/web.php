@@ -21,7 +21,7 @@ Route::get('/movies/all', [MovieController::class, 'getAll']);
 
 // get specific
 Route::get('/movies/{id}', [MovieController::class, 'getMovie']);
-Route::get('/actor/{id}', [ActorController::class, 'index']);
+Route::get('/actor/{id}', [ActorController::class, 'getActor']);
 
 Route::get('/actor', [ActorController::class, 'getAll']);
 
