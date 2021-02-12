@@ -31,21 +31,21 @@ class MovieController extends Controller
 
     public function getMovie($id)
     {
-        $cast = Cast::where('movies_id', $id)->get();   
+        $cast = Cast::where('movies_id', $id)->get();
         foreach ($cast as $actor => $value) {
-            $actorId = $value->actors_id;
-            $cast = Actor::where('id', $actorId)->get();
-            dd($cast);
-            array_push($actor, $cast);   
-            // echo $value->actors_id;
-
-
-        }        
-        
+            $result[] = Actor::where('id', $value->actors_id)->get();
+            // dd($cast);
+            // array_push($actor, $cast);
+            // echo "actor id:" . $value->actors_id . "\n";
+            echo $result[$actor] . "<br>";
+            // var_dump($castlol);
+            // echo $actor . "<br>";
+            
+        }
 
         // $cast = getCast($id);
         $movies = Movie::where('id', $id)->first();
-        return view('movie', ['movies' => $movies, 'cast'=> $cast, 'actor' => $actor]);
+        return view('movie', ['movies' => $movies, 'result'=> $result, 'actor' => $actor]);
     }
 
     // public function getCast($id)
