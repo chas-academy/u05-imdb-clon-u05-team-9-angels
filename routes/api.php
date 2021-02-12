@@ -19,7 +19,3 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::get('/actors', [ActorController::class, 'getAll']);
-
-Route::get('/movies', [MovieController::class, 'getAll']);
