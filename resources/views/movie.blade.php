@@ -16,13 +16,16 @@
     
     <p>Description: {{$movies->description}}</p>
     <p>Cast: </p>
-    {{-- @foreach ($castlol as $actorName) --}}
+
+    {{-- commented out below because not working --}}
+    {{-- @foreach ($result as $actorName) --}}
     {{-- {{$actorName->name}} --}}
         {{-- <p>{{$key->name}} --}}
     
     {{-- @endforeach --}}
     {{-- {{var_dump($actor)}} --}}
-{{-- {{dd($castlol)}} --}}
+    
+{{dd($result)}}
     
 </body>
 
