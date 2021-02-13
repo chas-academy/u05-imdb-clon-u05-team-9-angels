@@ -25,8 +25,17 @@
     {{-- @endforeach --}}
     {{-- {{var_dump($actor)}} --}}
     
-{{dd($result)}}
-    
+{{-- {{dd($result)}} --}}
+    <ul>
+        @foreach($result as $actor_var)
+            @foreach ($actor_var as $print)
+                <li>
+                    <h4>Name: {{$print->name}}</h4>
+                    <p>Role: We need to connect the actor to his/her role in the movie</p>
+                </li>
+            @endforeach
+    </ul>
+@endforeach
 </body>
 
 </html>

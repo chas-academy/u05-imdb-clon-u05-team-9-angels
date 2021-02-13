@@ -37,15 +37,15 @@ class MovieController extends Controller
             // dd($cast);
             // array_push($actor, $cast);
             // echo "actor id:" . $value->actors_id . "\n";
-            echo $result[$actor] . "<br>";
+            // echo $result[$actor] . "<br>"; //prints some backend data
             // var_dump($castlol);
             // echo $actor . "<br>";
-            
+
         }
 
         // $cast = getCast($id);
         $movies = Movie::where('id', $id)->first();
-        return view('movie', ['movies' => $movies, 'result'=> $result, 'actor' => $actor]);
+        return view('movie', ['movies' => $movies, 'result' => $result, 'actor' => $actor]);
     }
 
     // public function getCast($id)
