@@ -31,11 +31,12 @@
             @foreach ($actor_var as $print)
                 <li>
                     <h4>Name: {{$print->name}}</h4>
-                    <p>Role: We need to connect the actor to his/her role in the movie</p>
+                    <p>For later: Role</p>
+                    <img alt="actor-portrait">
                 </li>
             @endforeach
+        @endforeach
     </ul>
-@endforeach
 </body>
 
 </html>
