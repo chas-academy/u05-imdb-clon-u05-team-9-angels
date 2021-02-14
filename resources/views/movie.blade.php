@@ -25,8 +25,18 @@
     {{-- @endforeach --}}
     {{-- {{var_dump($actor)}} --}}
     
-{{dd($result)}}
-    
+{{-- {{dd($result)}} --}}
+    <ul>
+        @foreach($result as $actor_var)
+            @foreach ($actor_var as $print)
+                <li>
+                    <h4>Name: {{$print->name}}</h4>
+                    <p>For later: Role</p>
+                    <img alt="actor-portrait">
+                </li>
+            @endforeach
+        @endforeach
+    </ul>
 </body>
 
 </html>
