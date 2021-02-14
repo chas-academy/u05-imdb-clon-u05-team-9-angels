@@ -12,4 +12,11 @@ class ActorController extends Controller
         $actors = Actor::all();
         return view('actor', ['actors' => $actors]);
     }
+    public function getActor($id)
+    {
+        $actors = Actor::where('id', $id)->first();
+        return view('actor', [
+            'actor' => $actors,
+        ]);
+    }
 }
