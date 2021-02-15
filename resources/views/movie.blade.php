@@ -9,9 +9,34 @@
 </head>
 
 <body>
-    @foreach ($movies as $movie)
-    <p>{{$movie}}</p>
-    @endforeach
+    <h1>Movie page</h1>
+    <h2>Title: {{$movies->title}} ({{$movies->year}})</h2>
+    {{-- <p>{{$movie}}</p> --}}
+    {{-- <p>{{$cast}}</p> --}}
+    
+    <p>Description: {{$movies->description}}</p>
+    <p>Cast: </p>
+
+    {{-- commented out below because not working --}}
+    {{-- @foreach ($result as $actorName) --}}
+    {{-- {{$actorName->name}} --}}
+        {{-- <p>{{$key->name}} --}}
+    
+    {{-- @endforeach --}}
+    {{-- {{var_dump($actor)}} --}}
+    
+{{-- {{dd($result)}} --}}
+    <ul>
+        @foreach($result as $actor_var)
+            @foreach ($actor_var as $print)
+                <li>
+                    <h4>Name: {{$print->name}}</h4>
+                    <p>For later: Role</p>
+                    <img alt="actor-portrait">
+                </li>
+            @endforeach
+        @endforeach
+    </ul>
 </body>
 
 </html>

@@ -9,11 +9,13 @@
 </head>
 
 <body>
-    <h1>Actor page</h1>
-    <h2>{{$actor->name}}</h2>
+    <h1>Movie page</h1>
+    {{-- <h2>Title: {{$movies->title}}</h2> --}}
+    @foreach ($movies as $movie)
+    <p>{{$movie}}</p>
+    @endforeach
 
-    <p>Age: {{$actor->age}}</p>
-    <p>About: {{$actor->description}}</p>
+    
 </body>
 
 </html>
