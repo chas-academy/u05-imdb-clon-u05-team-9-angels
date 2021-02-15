@@ -7,14 +7,20 @@ use App\Models\Movie;
 use App\Models\Cast;
 use App\Models\Actor;
 use App\Http\Controllers\CastController;
+use Illuminate\Support\Facades\DB;
 
 class MovieController extends Controller
 {
     public function index()
     {
         $movies = Movie::all();
-        dd($movies);
+        // dd($movies);
+        // $cast = 'SELECT DISTINCT actors.name, movies.title from actors, cast, movies WHERE actors.id = 1 AND cast.actors_id = actors.id AND movies.id = movies.id';
+        $cast = 'SELECT * FROM movies';
+        $newVar = DB::SELECT($cast);
+        dd($newVar);  
         return view('movie', $movies);
+
     }
 
     // public function getAll()
@@ -32,28 +38,33 @@ class MovieController extends Controller
     public function getMovie($id)
     {
         $cast = Cast::where('movies_id', $id)->get();
-        foreach ($cast as $actor => $value) {
+        foreach ($cast as $actor => $value) 
             $result[] = Actor::where('id', $value->actors_id)->get();
-            // dd($cast);
-            // array_push($actor, $cast);
-            // echo "actor id:" . $value->actors_id . "\n";
-            // echo $result[$actor] . "<br>"; //prints some backend data
-            // var_dump($castlol);
-            // echo $actor . "<br>";
+            $movies = Movie::where('id', $id)->first();
+            return view('movie', ['movies' => $movies, 'result' => $result, 'actor' => $actor]);
+            
 
-        }
+        // }
 
         // $cast = getCast($id);
-        $movies = Movie::where('id', $id)->first();
-        return view('movie', ['movies' => $movies, 'result' => $result, 'actor' => $actor]);
     }
+
+    public function store(Request $request)  // take request data from form in blade
+    {
+        $movie = Movie::find($request->all('id')['id']); // new var saves info from movie db, uses find to locate movie according to id and request
+        $movie->title = $request->all('movie')['movie']; // gets movie parameter from request
+        $movie->save();
+        return redirect()->back(); // returns us to same page that post was made from, no new page
+
+    }
+
 
 
     // public function getCast($id)
     // {
     //     // $cast = Actor::where('id', $id)->first();
     //     // return view('cast', ['cast' => $cast]);
-    //     $cast = 'SELECT DISTINCT actor.name FROM movie,cast,actor WHERE cast.actor_id = actor.actor_id AND cast.movie_id = {$id}';
-    //     return $cast;
+          
+    // return $cast;
     // }
 }

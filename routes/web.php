@@ -17,9 +17,10 @@ use App\Http\Controllers\UserController;
 |
 */
 // get all
-// Route::get('/movie', [MovieController::class, 'index']);
+Route::get('/movie', [MovieController::class, 'index']);
 // Route::get('/movie', [MovieController::class, 'getAll']);
 Route::get('/movies/all', [MovieController::class, 'getAll']);
+Route::post('/movies/edit/{id}', [MovieController::class, 'store']); // creates post route, sending request to moviecontroller class and runs store fx
 
 // get specific
 Route::get('/movies/{id}', [MovieController::class, 'getMovie']);

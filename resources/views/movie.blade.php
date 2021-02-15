@@ -11,21 +11,9 @@
 <body>
     <h1>Movie page</h1>
     <h2>Title: {{$movies->title}} ({{$movies->year}})</h2>
-    {{-- <p>{{$movie}}</p> --}}
-    {{-- <p>{{$cast}}</p> --}}
-    
     <p>Description: {{$movies->description}}</p>
     <p>Cast: </p>
 
-    {{-- commented out below because not working --}}
-    {{-- @foreach ($result as $actorName) --}}
-    {{-- {{$actorName->name}} --}}
-        {{-- <p>{{$key->name}} --}}
-    
-    {{-- @endforeach --}}
-    {{-- {{var_dump($actor)}} --}}
-    
-{{-- {{dd($result)}} --}}
     <ul>
         @foreach($result as $actor_var)
             @foreach ($actor_var as $print)
@@ -37,6 +25,16 @@
             @endforeach
         @endforeach
     </ul>
+
+{{-- set form as hidden, show with JS and pen icon --}}
+
+    <form method="POST" action="/movies/edit/{{$movies->id}}">
+            @csrf
+            <input type="text" id="fname" name="movie"><br>
+            <input type="hidden" id="fname" name="id" value="{{$movies->id}}"><br> 
+            <button type="submit">Edit</button>
+        </form>
+
 </body>
 
 </html>
