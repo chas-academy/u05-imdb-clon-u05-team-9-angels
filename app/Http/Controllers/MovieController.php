@@ -48,6 +48,7 @@ class MovieController extends Controller
         return view('movie', ['movies' => $movies, 'result' => $result, 'actor' => $actor]);
     }
 
+
     // public function getCast($id)
     // {
     //     // $cast = Actor::where('id', $id)->first();

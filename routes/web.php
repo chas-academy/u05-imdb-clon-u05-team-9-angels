@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ActorController;
 
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +26,8 @@ Route::get('/movies/{id}', [MovieController::class, 'getMovie']);
 Route::get('/actor/{id}', [ActorController::class, 'getActor']);
 
 Route::get('/actor', [ActorController::class, 'getAll']);
+
+Route::get('/user/{id}', [UserController::class, 'index']);
 
 Route::get('/', function () {
     return view('welcome');
