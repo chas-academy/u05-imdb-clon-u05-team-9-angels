@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Actor')
+@section('title', $actor->name)
 
 @section('content')
     <div>
@@ -8,6 +8,9 @@
         <p>Name: {{ $actor->name }}</p>
         <p>Age: {{ $actor->age }}</p>
         <p>Description: {{ $actor->description }}</p>
-        <x-actor.credits-movie :creditsMovie="$creditsMovie" />
+        <div>
+            <p>Credits</p>
+            <x-actor.credits :movies="$actorInMovies" />
+        </div>
     </div>
 @endsection
