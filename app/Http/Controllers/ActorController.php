@@ -59,11 +59,8 @@ class ActorController extends Controller
      */
     public function show(Actor $actor)
     {
-        $dummyCreditsMovie = [
-            'title' => 'Movie Title',
-            'character' => 'Character/Role',
-        ];
-        return view('actor.show')->with('actor', $actor)->with('creditsMovie', $dummyCreditsMovie);
+        $actorInMovies = $actor->movies()->orderBy('title')->get();
+        return view('actor.show')->with('actor', $actor)->with('actorInMovies', $actorInMovies);
     }
 
     /**
