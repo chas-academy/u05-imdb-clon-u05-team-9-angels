@@ -1,71 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
+<head>
+  <title>{{$movies->title}} ({{$movies->year}})</title>
+</head>
+<div class="hero-img bg-gray-400" style="height:510px">
+</div>
 <main class="container mx-auto px-4 pt-16">
-    @if ($movies)
+  @if ($movies)
 
-    <head>
-    <title>{{$movies->title}} ({{$movies->year}})</title>
-    </head>
-
-    <body>
-        <h1 class="text-xl font-bold">{{$movies->title}} ({{$movies->year}})</h1>
-        <br>
-    {{-- card for movie --}}
-
-    <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-    
-    <div class="border-t border-gray-200">
-      <dl>
-       <img src= "https://m.media-amazon.com/images/M/MV5BMTU4NjY3NzgyM15BMl5BanBnXkFtZTcwODI4OTEzNA@@._V1_UY317_CR18,0,214,317_AL_.jpg" alt="Poster">
-        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-8 sm:gap-4 sm:px-6">
-          <dt class="text-sm font-medium text-gray-500 font-bold">
-            Director
-          </dt>
-          Samwise Gamgee // needs to be dynamic
-          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          </dd>
-        </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-8 sm:gap-4 sm:px-6">
-          <dt class="text-sm font-medium text-gray-500 font-bold">
-            Writers
-          </dt>
-          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            Frankie Hugo // needs to be dynamic
-          </dd>
-        </div>
-        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-8 sm:gap-4 sm:px-6">
-          <dt class="text-sm font-medium text-gray-500 font-bold">
-            Runtime
-          </dt>
-          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            3hrs // needs to be dynamic
-          </dd>
-        </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-8 sm:gap-4 sm:px-6">
-          <dt class="text-sm font-medium text-gray-500 font-bold">
-            Year
-          </dt>
-          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            {{$movies->year}}
-          </dd>
-        </div>
-        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-8 sm:gap-4 sm:px-6">
-          <dt class="text-sm font-medium text-gray-500 font-bold">
-            Genre
-          </dt>
-          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            Some genre // needs to be dynamic
-          </dd>
-        </div>
-      </dl>
-    </div>
+    {{-- start combo card --}}
+<div class="grid grid-cols-3 gap-8">
+  {{-- card for movie --}}
+  <div class="container mx-auto px-4 pt-16 mb-10" style="margin-top:-300px">
+    <img class="mb-10" src= "https://m.media-amazon.com/images/M/MV5BMTU4NjY3NzgyM15BMl5BanBnXkFtZTcwODI4OTEzNA@@._V1_UY317_CR18,0,214,317_AL_.jpg" alt="Poster">
+    <p><span class="font-bold">Director:</span> Samwise</p>
+    <p><span class="font-bold">Writer:</span> Frodo</p>
+    <p><span class="font-bold">Released:</span> Year</p>
+    <p><span class="font-bold">Runtime:</span> 1000hrs</p>
+    <p><span class="font-bold">Genre:</span> Adventure</p>
   </div>
+  <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    {{-- end movie card --}}
 
-  {{-- end movie card --}}
+{{-- start title and desc card --}}
+<div >
+  <h1 class="text-xl font-bold" style="font-size:32px">{{$movies->title}} ({{$movies->year}})</h1>
+  <div class="flex">
+    <p>4.5/10 *</p>
+    <p>+ Add to list</p>
+  </div>
+  <h2 class="text-2xl mt-10 mb-10"><span class="font-bold">Description:</span> {{$movies->description}}</h2>
+</div>
+{{-- end title desc card --}}
+{{-- end combo card --}}
+</div>
 
-        <h2 class="text-2xl mt-10 mb-10"><span class="font-bold">Description:</span> {{$movies->description}}</h2>
-        <h3 class="text-2xl  font-bold mb-5">Cast: </h3>
+
+    {{-- start cast card --}}
+    <h3 class="text-2xl  font-bold mb-5">Cast: </h3>
           <div class="container mx-auto px-4 pt-16">
             <div class="cast-list">
               <div class="grid grid-cols-2 gap-8">
@@ -73,7 +46,6 @@
                   @foreach($actor_list as $actor_var)
                       @foreach ($actor_var as $print)
                       {{-- start cast card --}}
-                      {{-- <div class="mt-8 text-center max-w-xs bg-gray-500" style="max-height:250px">  --}}
                         <div class="bg-gray-300 p-2 sm:rounded-lg" style="max-width:250px">
                         <a href="#">
                           <img class="sm:rounded-lg w-full" src= "https://m.media-amazon.com/images/M/MV5BMTU4NjY3NzgyM15BMl5BanBnXkFtZTcwODI4OTEzNA@@._V1_UY317_CR18,0,214,317_AL_.jpg" alt="Poster">
@@ -102,6 +74,9 @@
 
 
   {{-- end of cast container --}}
+
+  
+        
   
 
        
