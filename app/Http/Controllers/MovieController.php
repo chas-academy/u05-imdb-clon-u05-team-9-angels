@@ -9,6 +9,8 @@ use App\Models\Actor;
 use App\Http\Controllers\CastController;
 use Illuminate\Support\Facades\DB;
 
+use function PHPUnit\Framework\isEmpty;
+
 class MovieController extends Controller
 {
     public function index()
@@ -18,9 +20,8 @@ class MovieController extends Controller
         // $cast = 'SELECT DISTINCT actors.name, movies.title from actors, cast, movies WHERE actors.id = 1 AND cast.actors_id = actors.id AND movies.id = movies.id';
         $cast = 'SELECT * FROM movies';
         $newVar = DB::SELECT($cast);
-        dd($newVar);  
+        dd($newVar);
         return view('movie', $movies);
-
     }
 
     // public function getAll()
@@ -38,15 +39,15 @@ class MovieController extends Controller
     public function getMovie($id)
     {
         $cast = Cast::where('movies_id', $id)->get();
-        foreach ($cast as $actor => $value) 
-            $result[] = Actor::where('id', $value->actors_id)->get();
-            $movies = Movie::where('id', $id)->first();
-            return view('movie', ['movies' => $movies, 'result' => $result, 'actor' => $actor]);
-            
 
-        // }
+        $actor_list = null;
 
-        // $cast = getCast($id);
+        foreach ($cast as $actor => $value)
+            $actor_list[] = Actor::where('id', $value->actors_id)->get();
+        $movies = Movie::where('id', $id)->first();
+        // return view('movie', ['movies' => $movies]);
+        // return view('movie', ['movies' => $movies, 'result' => $result, 'actor' => $actor]);
+        return view('movie', ['movies' => $movies, 'actor_list' => $actor_list]);
     }
 
     public function store(Request $request)  // take request data from form in blade
@@ -64,7 +65,7 @@ class MovieController extends Controller
     // {
     //     // $cast = Actor::where('id', $id)->first();
     //     // return view('cast', ['cast' => $cast]);
-          
+
     // return $cast;
     // }
 }
