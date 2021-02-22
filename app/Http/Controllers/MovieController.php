@@ -68,9 +68,15 @@ class MovieController extends Controller
 
     public function store(Request $request)  // take request data from form in blade
     {
-        $movie = Movie::find($request->all('id')['id']); // new var saves info from movie db, uses find to locate movie according to id and request
-        $movie->title = $request->all('movie')['movie']; // gets movie parameter from request
-        $movie->save();
+        $userType = auth()->user()->type;
+        $edit_privelages = intval($userType) > 1 ? true : false;
+
+        if ($edit_privelages) {
+            $movie = Movie::find($request->all('id')['id']); // new var saves info from movie db, uses find to locate movie according to id and request
+            $movie->title = $request->all('movie')['movie']; // gets movie parameter from request
+            $movie->save();
+        }
+      
         return redirect()->back(); // returns us to same page that post was made from, no new page
 
     }
