@@ -45,16 +45,38 @@ class MovieController extends Controller
         foreach ($cast as $actor => $value)
             $actor_list[] = Actor::where('id', $value->actors_id)->get();
         $movies = Movie::where('id', $id)->first();
+   
+
+
+        //Get the user type
+        $userType = auth()->user()->type;
+
+        
+        //If the user type is above signed in user (1) -> User has edit privelages.
+        $edit_privelages = intval($userType) > 1 ? true : false;
+
+
         // return view('movie', ['movies' => $movies]);
         // return view('movie', ['movies' => $movies, 'result' => $result, 'actor' => $actor]);
-        return view('movie', ['movies' => $movies, 'actor_list' => $actor_list]);
+        return view('movie',
+        [
+             'movies' => $movies,
+             'actor_list' => $actor_list,
+             'can_edit' => $edit_privelages
+        ]);
     }
 
     public function store(Request $request)  // take request data from form in blade
     {
-        $movie = Movie::find($request->all('id')['id']); // new var saves info from movie db, uses find to locate movie according to id and request
-        $movie->title = $request->all('movie')['movie']; // gets movie parameter from request
-        $movie->save();
+        $userType = auth()->user()->type;
+        $edit_privelages = intval($userType) > 1 ? true : false;
+
+        if ($edit_privelages) {
+            $movie = Movie::find($request->all('id')['id']); // new var saves info from movie db, uses find to locate movie according to id and request
+            $movie->title = $request->all('movie')['movie']; // gets movie parameter from request
+            $movie->save();
+        }
+      
         return redirect()->back(); // returns us to same page that post was made from, no new page
 
     }
