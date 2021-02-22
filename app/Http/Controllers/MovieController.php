@@ -47,13 +47,19 @@ class MovieController extends Controller
         $movies = Movie::where('id', $id)->first();
    
 
-
+        $user =auth()->user();
+        
         //Get the user type
-        $userType = auth()->user()->type;
-
+        $userType = -1; 
+        $edit_privelages = false;
+        if ($user != null) {
+            $userType = $user->type;
+            $edit_privelages = intval($userType) > 1 ? true : false;
+       
+        }
         
         //If the user type is above signed in user (1) -> User has edit privelages.
-        $edit_privelages = intval($userType) > 1 ? true : false;
+       
 
 
         // return view('movie', ['movies' => $movies]);
