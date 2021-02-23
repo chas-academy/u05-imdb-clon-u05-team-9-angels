@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>@yield('title', 'Page Title') - {{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -18,7 +18,7 @@
     </head>
     <body class="font-sans antialiased">
         <nav class="border-b border-gray-800">
-            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between px-4 py-6">
+            <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-6">
                 <ul class="flex flex-col md:flex-row items-center">
                     <li class="md:ml-16">
                         <a href="#" class="hover:text-gray-300">Movies</a>
@@ -32,6 +32,12 @@
                 </ul>
             </div>
         </nav>
-        @yield('content')
+
+        <div class="min-h-screen bg-gray-100">
+            <!-- Page Content -->
+            <main>
+                @yield('content')
+            </main>
+        </div>
     </body>
 </html>
