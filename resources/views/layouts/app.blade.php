@@ -17,16 +17,23 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
+        <nav class="border-b border-gray-800">
+            <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-6">
+                <ul class="flex flex-col md:flex-row items-center">
+                    <li class="md:ml-16">
+                        <a href="#" class="hover:text-gray-300">Movies</a>
+                    </li>
+                    <li class="md:ml-6">
+                        <a href="#" class="hover:text-gray-300">TV Shows</a>
+                    </li>
+                    <li class="md:ml-6">
+                        <a href="#" class="hover:text-gray-300">Actors</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
         <div class="min-h-screen bg-gray-100">
-            {{-- @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header> --}}
-
             <!-- Page Content -->
             <main>
                 @yield('content')

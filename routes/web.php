@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ActorController;
 
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,14 +16,17 @@ use App\Http\Controllers\ActorController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/movie', [MovieController::class, 'index']);
-Route::get('/movie', [MovieController::class, 'getAll']);
+// get all
+Route::get('/movie', [MovieController::class, 'index']);
+Route::get('/movies/all', [MovieController::class, 'getAll']);
+Route::post('/movies/edit/{id}', [MovieController::class, 'store']); // creates post route, sending request to moviecontroller class and runs store fx
 
 // get specific
-Route::get('/movie/{id}', [MovieController::class, 'getMovie']);
+Route::get('/movies/{id}', [MovieController::class, 'getMovie']);
 
 Route::resource('actors', ActorController::class);
+
+Route::get('/user/{id}', [UserController::class, 'index']);
 
 Route::get('/', function () {
     return view('welcome');
