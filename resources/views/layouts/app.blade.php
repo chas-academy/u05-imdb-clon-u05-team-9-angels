@@ -21,13 +21,13 @@
             <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-6">
                 <ul class="flex flex-col md:flex-row items-center">
                     <li class="md:ml-16">
-                        <a href="#" class="hover:text-gray-300">Movies</a>
+                        <a href="/movies/all" class="hover:text-gray-300">Movies</a>
                     </li>
                     <li class="md:ml-6">
                         <a href="#" class="hover:text-gray-300">TV Shows</a>
                     </li>
                     <li class="md:ml-6">
-                        <a href="#" class="hover:text-gray-300">Actors</a>
+                        <a href="/actors" class="hover:text-gray-300">Actors</a>
                     </li>
                 </ul>
             </div>
