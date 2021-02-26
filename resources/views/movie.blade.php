@@ -19,7 +19,7 @@
                         alt="Poster">
                     <p><span class="font-bold">Director:</span> Samwise</p>
                     <p><span class="font-bold">Writer:</span> Frodo</p>
-                    <p><span class="font-bold">Released:</span> Year</p>
+                    <p><span class="font-bold">Released:</span> {{$movies->year}}</p>
                     <p><span class="font-bold">Runtime:</span> 1000hrs</p>
                     <p><span class="font-bold">Genre:</span> Adventure</p>
                 </div>
