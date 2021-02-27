@@ -19,7 +19,7 @@
                         alt="Poster">
                     <p><span class="font-bold">Director:</span> Samwise</p>
                     <p><span class="font-bold">Writer:</span> Frodo</p>
-                    <p><span class="font-bold">Released:</span> {{$movies->year}}</p>
+                    <p><span class="font-bold">Released:</span> {{ $movies->year }}</p>
                     <p><span class="font-bold">Runtime:</span> 1000hrs</p>
                     <p><span class="font-bold">Genre:</span> Adventure</p>
                 </div>
@@ -79,15 +79,21 @@
 
     @if ($can_edit)
         <!-- component -->
-        Edit the title of this movie:
         <form method="POST" action="/movies/edit/{{ $movies->id }}">
             @csrf
-            <input type="text" id="fname" name="movie" required><br>
-            <input type="hidden" id="fname" name="id" value="{{ $movies->id }}"><br>
+            <h3 class="font-bold">Edit movie:</h3>
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="movie" required><br>
+            <input type="hidden" id="title" name="id" value="{{ $movies->id }}">
+            <br>
+            <label for="year">Year:</label><br>
+            <input type="number" id="year" name="year" required><br>
+            <input type="hidden" id="year" name="id" value="{{ $movies->id }}">
+            <br>
+            {{-- add more fälten after discussion over database with group --}}
+
             <button type="submit"
-                class="border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 mt-2 transition 
-                                  duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
-                Edit
+                class="border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 mt-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Edit
             </button>
         </form>
     @endif
