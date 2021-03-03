@@ -47,8 +47,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return view(RouteServiceProvider::HOME, [
-            'user' => $user,
-        ]);
+        return redirect(RouteServiceProvider::HOME);
     }
 }
