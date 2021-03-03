@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<main class="container mx-auto px-4 pt-16">
-    <h1 class="text-lg font-bold">Welcome back {{ $user->name }}!</h1>
+<div class="container mx-auto px-4 pt-16">
+    <h1 class="text-lg font-bold">Welcome back {{ Auth::user()->name }}!</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-8">
         {{-- Profile info section, just a random picture atm --}}
         <div class="mt-8 mb-12">
-            <img src="https://m.media-amazon.com/images/M/MV5BMTU4NjY3NzgyM15BMl5BanBnXkFtZTcwODI4OTEzNA@@._V1_UY317_CR18,0,214,317_AL_.jpg" alt="Poster">
+            <img src="https://m.media-amazon.com/images/M/MV5BMTU4NjY3NzgyM15BMl5BanBnXkFtZTcwODI4OTEzNA@@._V1_UY317_CR18,0,214,317_AL_.jpg"
+                alt="Poster">
             <button type="button" class="border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 mt-2 transition 
                     duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
                 Change Image
@@ -81,5 +82,5 @@
         </div>
     </section>
     {{-- Recently reviewed section ends--}}
-</main>
+</div>
 @endsection
