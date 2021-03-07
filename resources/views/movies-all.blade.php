@@ -23,7 +23,7 @@
                                 data-name="star"></path>
                         </g>
                     </svg>
-                    <span class="ml-1">10</span>
+                    <span class="ml-1">{{$movie->rating}}</span>
                     <span class="mx-2">|</span>
                     <span>Released: </span> {{$movie->year}}
                 </div>
