@@ -19,7 +19,7 @@ class MovieSeeder extends Seeder
         for ($x = 1; $x <= 80; $x++){
         $data = Http::get("https://api.themoviedb.org/3/movie/{$x}?api_key=df7b9ec54824bdaded1b2ad9585f13a4")->json();
        
-     if(isset($data['title']) && isset($data['overview']) && isset($data['release_date'])){
+     if(isset($data['title']) && isset($data['overview']) && isset($data['release_date']) && isset($data['poster_path'])){
 
         Movie::factory()
         ->count(1)
@@ -29,6 +29,7 @@ class MovieSeeder extends Seeder
             'year' => $data['release_date'],
             'runtime' => $data['runtime'],
             'rating' => $data['vote_average'],
+            'poster' => $data['poster_path'],
             
             
         ]);

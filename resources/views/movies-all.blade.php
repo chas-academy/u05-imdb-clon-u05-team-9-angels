@@ -8,7 +8,7 @@
         @foreach ($movies as $movie)
         <div class="mt-8">
             <a href="{{ url('movies/'.$movie->id) }}">
-                <img src="https://image.tmdb.org/t/p/w500//k68nPLbIST6NP96JmTxmZijEvCA.jpg" alt="Poster" class="hover:opacity-75 transition
+                <img src="https://image.tmdb.org/t/p/w500/{{$movie->poster}}" alt="Poster" class="hover:opacity-75 transition
                         ease-in-out duration-150">
             </a>
             <div class="mt-2">

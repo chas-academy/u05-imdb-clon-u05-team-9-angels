@@ -18,7 +18,7 @@
                     <div class="container w-max-50 pl-16 pt-16 mb-10 flex" style="margin-top:-300px">
                         <div>
                             <img class="mb-3"
-                                src="https://m.media-amazon.com/images/M/MV5BMTU4NjY3NzgyM15BMl5BanBnXkFtZTcwODI4OTEzNA@@._V1_UY317_CR18,0,214,317_AL_.jpg"
+                                src="https://image.tmdb.org/t/p/w500/{{$movies->poster}}"
                                 alt="Poster">
                             <div class="rating-container justify-left flex mb-2">
                                 <a
