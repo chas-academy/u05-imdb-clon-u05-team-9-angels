@@ -22,9 +22,14 @@ class MovieFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->text(25),
+            'title' => $this->faker->text(20),
             'description' => $this->faker->text(100),
             'year' => $this->faker->year,
+            'director' => $this->faker->name,
+            'writer' => $this->faker->name,
+            'runtime' => $this->faker->numberBetween(60, 420),
+            'genre' => $this->faker->word,
+            'rating' => $this->faker->numberBetween(0, 10)
         ];
     }
 }

@@ -18,6 +18,11 @@ class CreateMoviesTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->date('year');
+            $table->text('director');
+            $table->string('writer');
+            $table->integer('runtime');
+            $table->string('genre');
+            $table->integer('rating');
             $table->timestamps();
         });
     }
