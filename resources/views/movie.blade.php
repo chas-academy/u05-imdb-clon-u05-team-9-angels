@@ -1,11 +1,9 @@
 @extends('layouts.app')
-
+@section('title', $movies->title)
 @section('content')
     @if ($movies)
 
-        {{-- <head>
-            <title>{{ $movies->title }} ({{ $movies->year }})</title>
-        </head> --}}
+   
         <div class="hero-img bg-gray-400" style="height:510px">
         </div>
         <main class="container mx-auto px-4 pt-16">
