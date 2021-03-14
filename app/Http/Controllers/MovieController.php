@@ -33,9 +33,8 @@ class MovieController extends Controller
     public function getAll() // new get all movies
     {
         $movies = Movie::all();
-     
+
         return view('movies-all', ['movies' => $movies]);
-        
     }
 
     public function getMovie($id)
@@ -82,8 +81,14 @@ class MovieController extends Controller
 
         if ($edit_privelages) {
             $movie = Movie::find($request->all('id')['id']); // new var saves info from movie db, uses find to locate movie according to id and request
-            $movie->title = $request->all('movie')['movie']; // gets movie parameter from request
-            $movie->year = $request->all('year')['year']; // gets year parameter from request
+            $movie->title = $request->all('title')['title']; // gets movie parameter from request
+            $movie->description = $request->all('description')['description']; // gets  parameter from request
+            $movie->rating = $request->all('rating')['rating']; // gets  parameter from request
+            $movie->director = $request->all('director')['director']; // gets  parameter from request
+            $movie->writer = $request->all('writer')['writer']; // gets  parameter from request
+            $movie->year = $request->all('year')['year']; // gets  parameter from request
+            $movie->runtime = $request->all('runtime')['runtime']; // gets  parameter from request
+            $movie->genre = $request->all('genre')['genre']; // gets  parameter from request
             $movie->save();
         }
 
