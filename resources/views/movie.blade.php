@@ -25,8 +25,8 @@
                                     <g data-name="Layer 2">
                                         <path
                                             d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                                                                                                                                                                                                                                                                                                                                                        1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                                                                                                                                                                                                                                                                                                                                                        01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                                                                                                                                                                                                                                                                                                                                                                                                        1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
+                                                                                                                                                                                                                                                                                                                                                                                                                        01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
                                             data-name="star"></path>
                                     </g>
                                 </svg>
@@ -89,7 +89,7 @@
     @if ($can_edit)
         <div class="form-container mx-14">
             <!-- EDIT MODAL -->
-            <style>
+            {{-- <style>
                 .modal {
                     transition: opacity 0.25s ease;
                 }
@@ -99,8 +99,8 @@
                     overflow-y: visible !important;
                 }
 
-            </style>
-            </head>
+            </style> --}}
+            {{-- <link rel="stylesheet" href="{{ asset('css/modal.css') }}"> --}}
 
             <body class="bg-gray-200 flex items-center justify-center h-screen">
 
@@ -205,59 +205,6 @@
                 <script src="{{ asset('js/modal.js') }}"></script>
 
                 {{-- END OF EDIT-MODAL --}}
-
-                {{-- <form method="POST" action="/movies/edit/{{ $movies->id }}">
-                    @csrf
-                    <h3 class="font-bold">Edit movie:</h3>
-
-                    <label for="title">Title:</label><br>
-                    <input type="text" id="title" name="title" value="{{ $movies->title }}" required><br>
-                    <input type="hidden" id="title" name="id" value="{{ $movies->id }}">
-                    <br>
-
-                    <label for="description">Description:</label><br>
-                    <input type="text" id="description" name="description" value="{{ $movies->description }}"
-                        required><br>
-                    <input type="hidden" id="description" name="id" value="{{ $movies->id }}">
-                    <br>
-
-                    <label for="rating">Rating:</label><br>
-                    <input type="number" id="rating" name="rating" value="{{ $movies->rating }}" required><br>
-                    <input type="hidden" id="rating" name="id" value="{{ $movies->id }}">
-                    <br>
-
-                    <label for="director">Director:</label><br>
-                    <input type="text" id="director" name="director" value="{{ $movies->director }}" required><br>
-                    <input type="hidden" id="director" name="id" value="{{ $movies->id }}">
-                    <br>
-
-                    <label for="writer">Writer:</label><br>
-                    <input type="text" id="writer" name="writer" value="{{ $movies->writer }}" required><br>
-                    <input type="hidden" id="writer" name="id" value="{{ $movies->id }}">
-                    <br>
-
-                    <label for="year">Released:</label><br>
-                    <input type="date" id="year" name="year" value="{{ $movies->year }}" required><br>
-                    <input type="hidden" id="year" name="id" value="{{ $movies->id }}">
-                    <br>
-
-                    <label for="genre">Genre:</label><br>
-                    <input type="text" id="genre" name="genre" value="{{ $movies->genre }}" required><br>
-                    <input type="hidden" id="genre" name="id" value="{{ $movies->id }}">
-                    <br>
-
-                    <label for="runtime">Runtime (minutes):</label><br>
-                    <input type="number" id="runtime" name="runtime" value="{{ $movies->runtime }}" required><br>
-                    <input type="hidden" id="runtime" name="id" value="{{ $movies->id }}">
-                    <br>
-
-
-
-                    <button type="submit"
-                        class="mb-5 border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 mt-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Submit
-                        changes
-                    </button>
-                </form> --}}
         </div>
     @endif
 @else
