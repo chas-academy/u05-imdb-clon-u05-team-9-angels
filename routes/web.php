@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ActorController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +29,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Auth stuff
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard.dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/dashboard/users', [UserController::class, 'getUsersForAdmin'])->middleware(['auth'])->name('users');
+Route::get('/dashboard/users/edit/{id}', [UserController::class, 'editUser'])->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
