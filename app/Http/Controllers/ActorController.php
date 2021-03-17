@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class ActorController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -83,17 +93,27 @@ class ActorController extends Controller
      */
     public function update(Request $request, Actor $actor)
     {
+        if ($request->user()->cannot('update', $actor)) {
+            abort(403);
+        }
+
         $validated = $request->validate([
             'name' => 'bail|required|string|max:255',
             'age' => 'bail|required|numeric|between:0,150',
             'description' => 'bail|required|string|max:255'
         ]);
 
-        return $actor->update([
+        $isUpdated = $actor->update([
             'name' => $request->input('name'),
             'age' => $request->input('age'),
             'description' => $request->input('description'),
         ]);
+
+        if ($isUpdated) {
+            return redirect()->back()->with('message', 'Actor was successfully updated.');
+        } else {
+            return redirect()->back()->with('message', 'Actor could not be updated.');
+        }
     }
 
     /**
