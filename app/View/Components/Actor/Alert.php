@@ -4,22 +4,16 @@ namespace App\View\Components\Actor;
 
 use Illuminate\View\Component;
 
-class MovieThumbnail extends Component
+class Alert extends Component
 {
-    public $imageUrl;
-    public $title;
-    public $year;
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($imageUrl, $title, $year)
+    public function __construct()
     {
-        $this->imageUrl = $imageUrl;
-        $this->title = $title;
-        $this->year = $year;
+        //
     }
 
     /**
@@ -29,6 +23,6 @@ class MovieThumbnail extends Component
      */
     public function render()
     {
-        return view('components.actor.movie-thumbnail');
+        return view('components.actor.alert');
     }
 }

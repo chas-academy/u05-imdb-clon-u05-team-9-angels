@@ -53,7 +53,7 @@
                     <a href="/actors" class="text-lg hover:text-gray-400">Actors</a>
                 </li>
             </ul>
-            <div class="flex flex-col items-center md:flex-row items-center">
+            <div class="flex flex-col items-center md:flex-row">
                 @if (Auth::check())
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
@@ -111,7 +111,7 @@
                 @endif
 
                 <div class="relative mt-3 md:mt-0">
-                    <input type="text" class="text-sm rounded-full w-64 px-4 pl-8 py-1 focus:outline-none 
+                    <input type="text" class="text-sm rounded-full w-64 px-4 pl-8 py-1 focus:outline-none
                     focus:shadow-outline" placeholder="Search">
                     <div class="absolute top-0">
                         <svg class="fill-current w-4 text-gray-500 mt-2 ml-2" viewBox="0 0 24 24">
@@ -131,6 +131,8 @@
             @yield('content')
         </main>
     </div>
+
+    @yield('script')
 </body>
 
 </html>
