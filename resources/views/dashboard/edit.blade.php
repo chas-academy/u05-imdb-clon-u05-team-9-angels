@@ -13,41 +13,88 @@
                 Change Image
             </button>
         </div>
-        <div class="w-full md:w-3/5 p-8 bg-white lg:ml-4 shadow-md">
-            <div class="rounded  shadow p-6">
-                <form method="" action="/dashboard/users/edit/{{$user->id}}">
+
+        <div class="rounded  shadow p-6">
+            <form method="POST" action="/dashboard/users/edit/{{$user->id}}/update">
+                @csrf
+                <div class="pb-6">
+                    <label for="name" class="font-semibold text-gray-700 block pb-1">Name</label>
+                    <div class="flex">
+                        <input id="name" name="name" class="border-1  rounded-r px-4 py-2 w-full" type="text"
+                            value="{{$user->name}}" />
+                        <input type="hidden" id="name" name="id" value="{{$user->id}}">
+                    </div>
+                </div>
+                <div class="pb-4">
+                    <label for="about" class="font-semibold text-gray-700 block pb-1">Email</label>
+                    <input id="email" name="email" class="border-1  rounded-r px-4 py-2 w-full" type="email"
+                        value="{{$user['email']}}" />
+                    <input type="hidden" id="name" name="id" value="{{$user->id}}">
+                </div>
+                <div class="pb-4">
+                    <label for="about" class="font-semibold text-gray-700 block pb-1">Role</label>
+                    <select name="type" id="type" value="1">
+                        <option {{ $user['type'] == 0 ? 'selected' : '' }} value="0">Regular User</option>
+                        <option {{ $user['type'] == 1 ? 'selected' : '' }} value="1">Moderator</option>
+                        <option {{ $user['type'] == 2 ? 'selected' : '' }} value="2">Super User</option>
+                    </select>
+                </div>
+                <button type="submit"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Apply
+                    Changes</button>
+                <a
+                    class="modal-open bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded cursor-pointer">Delete
+                    User</a>
+            </form>
+        </div>
+
+        {{-- Profile info ends --}}
+    </div>
+    {{-- Modal Section--}}
+    <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+
+        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+
+            <div
+                class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+                <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                    viewBox="0 0 18 18">
+                    <path
+                        d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                    </path>
+                </svg>
+                <span class="text-sm">(Esc)</span>
+            </div>
+
+            <div class="modal-content py-4 text-left px-6">
+                <!--Title-->
+                <div class="flex justify-between items-center pb-3">
+                    <h3 class="text-2xl font-bold">Are you sure?</h3>
+                    <div class="modal-close cursor-pointer z-50">
+                        <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                            viewBox="0 0 18 18">
+                            <path
+                                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                <form action="/dashboard/users/edit/{{$user->id}}/delete" method="POST">
+                    @method('DELETE')
                     @csrf
-                    <div class="pb-6">
-                        <label for="name" class="font-semibold text-gray-700 block pb-1">Name</label>
-                        <div class="flex">
-                            <input id="name" name="name" class="border-1  rounded-r px-4 py-2 w-full" type="text"
-                                value="{{$user['name']}}" />
-                            <input type="hidden" id="name" name="id" value="{{$user->id}}">
-                        </div>
-                    </div>
-                    <div class="pb-4">
-                        <label for="about" class="font-semibold text-gray-700 block pb-1">Email</label>
-                        <input id="email" class="border-1  rounded-r px-4 py-2 w-full" type="email"
-                            value="{{$user['email']}}" />
-                    </div>
-                    <div class="pb-4">
-                        <label for="about" class="font-semibold text-gray-700 block pb-1">Role</label>
-                        <select name="" id="" value="1">
-                            <option {{ $user['type'] == 0 ? 'selected' : '' }} value="0">Regular User</option>
-                            <option {{ $user['type'] == 1 ? 'selected' : '' }} value="1">Moderator</option>
-                            <option {{ $user['type'] == 2 ? 'selected' : '' }} value="2">Super User</option>
-                        </select>
-                    </div>
-                    <button type="submit"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Apply
-                        Changes</button>
+                    <button
+                        class="uppercase bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded"
+                        type="submit">Delete</button>
+                    <a
+                        class="modal-close bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded cursor-pointer">Close</a>
                 </form>
             </div>
         </div>
-        {{-- Profile info ends --}}
     </div>
+    {{-- Modal Section Ends--}}
     {{-- your reviews section--}}
-    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-40">
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-40 mt-6">
         <div class="border p-10 border-gray-800 rounded-lg mb-10">
             <h3 class="text-lg font-bold mb-6">Your recent reviews</h3>
             <h4 class="font-bold">Batman</h4>
@@ -113,4 +160,5 @@
         </div>
     </section>
 </div>
+<script src="{{ asset('js/modal.js') }}"></script>
 @endsection
