@@ -18,14 +18,14 @@ class MovieSeeder extends Seeder
     public function run()
     {
 
-      $numberOfMovies = 10; //Input amount of Movies to be imported from API to DB.
+      $numberOfMovies = 5; //Input amount of Movies to be imported from API to DB.
       $ActorsPerMovie = 5;  //Imput amount of Actors per movie.
 
 
 
       $movieCount = 0;
       $movieRetriveTries = 0;
-      $actorsIDs = array();
+      $actorsIDArray = array();
      
       
 
@@ -36,6 +36,7 @@ class MovieSeeder extends Seeder
 
             $Movies = Http::get("https://api.themoviedb.org/3/movie/{$movieRetriveTries}?api_key=df7b9ec54824bdaded1b2ad9585f13a4")->json();
             $Casts = Http::get("https://api.themoviedb.org/3/movie/{$movieRetriveTries}/credits?api_key=df7b9ec54824bdaded1b2ad9585f13a4")->json();
+            
 
             if (isset($Movies['id']) && isset($Movies['title']) && isset($Movies['overview']) && isset($Movies['release_date']) && isset($Movies['poster_path']) && isset($Casts['cast'][$ActorsPerMovie])) {
 
@@ -68,21 +69,33 @@ class MovieSeeder extends Seeder
                         ]);
                         
 
+                        $actorID = $Casts['cast'][$inc]['id'];
+
+                        $Actors = Http::get("https://api.themoviedb.org/3/person/{$actorID}?api_key=df7b9ec54824bdaded1b2ad9585f13a4")->json();
+
+                        print_r($Actors);
                         //Retriving the Actors for the current Movie and checking for duplicates.
-                        if(!in_array($Casts['cast'][$inc]['id'], $actorsIDs)){
+                        if(!in_array($actorID, $actorsIDArray)){
                             
                              Actor::factory()
                               ->count(1)
                               ->create([
-                               'id' => $Casts['cast'][$inc]['id'],
-                               'name' => $Casts['cast'][$inc]['name'],
+                               'id' => $actorID,
+                               'name' => $Actors['name'],
+                               'birthday' => $Actors['birthday'],
+                               'deathday' => $Actors['deathday'],
+                               'description' => $Actors['biography'],
+                               'popularity' => $Actors['popularity'],
+                               'poster' => $Actors['profile_path'],
+
+
 
                                
                         ]);
 
 
                         }
-                          array_push($actorsIDs, $Casts['cast'][$inc]['id']);
+                          array_push($actorsIDArray, $actorID);
                         
 
                     };
