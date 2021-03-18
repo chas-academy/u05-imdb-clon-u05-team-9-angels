@@ -18,7 +18,7 @@ class MovieSeeder extends Seeder
     public function run()
     {
 
-      $numberOfMovies = 5; //Input amount of Movies to be imported from API to DB.
+      $numberOfMovies = 10; //Input amount of Movies to be imported from API to DB.
       $ActorsPerMovie = 5;  //Imput amount of Actors per movie.
 
 
@@ -73,7 +73,6 @@ class MovieSeeder extends Seeder
 
                         $Actors = Http::get("https://api.themoviedb.org/3/person/{$actorID}?api_key=df7b9ec54824bdaded1b2ad9585f13a4")->json();
 
-                        print_r($Actors);
                         //Retriving the Actors for the current Movie and checking for duplicates.
                         if(!in_array($actorID, $actorsIDArray)){
                             
