@@ -18,7 +18,7 @@ class MovieSeeder extends Seeder
     public function run()
     {
 
-      $numberOfMovies = 10; //Input amount of Movies to be imported from API to DB.
+      $numberOfMovies = 20; //Input amount of Movies to be imported from API to DB.
       $ActorsPerMovie = 5;  //Imput amount of Actors per movie.
 
 
@@ -40,7 +40,7 @@ class MovieSeeder extends Seeder
             $Casts = Http::get("https://api.themoviedb.org/3/movie/{$movieRetriveTries}/credits?api_key={$APIkey}")->json();
             
 
-            if (isset($Movies['id']) && isset($Movies['title']) && isset($Movies['overview']) && isset($Movies['release_date']) && isset($Movies['poster_path']) && isset($Movies['backdrop_path']) && isset($Casts['cast'][$ActorsPerMovie])) {
+            if (isset($Movies['id']) && isset($Movies['title']) && isset($Movies['overview']) && isset($Movies['release_date']) && isset($Movies['poster_path']) && isset($Movies['backdrop_path']) && isset($Casts['cast'][5])) {
 
               //Importing Movies
                 Movie::factory()
@@ -69,8 +69,18 @@ class MovieSeeder extends Seeder
                         ->create([
                            'actors_id' => $Casts['cast'][$inc]['id'],
                            'movies_id' => $movieRetriveTries,
+                           'department' => $Casts['cast'][$inc]['known_for_department'],
+                           'name' => $Casts['cast'][$inc]['name'],
                            'character' => $Casts['cast'][$inc]['character'],
                         ]);
+
+
+
+                    
+                        
+
+
+
                         
 
                         $actorID = $Casts['cast'][$inc]['id'];
@@ -102,6 +112,35 @@ class MovieSeeder extends Seeder
                         
 
                     };
+
+                    for($inc=1; $inc<count($Casts['crew']); $inc++){
+
+                        
+
+                        if($Casts['crew'][$inc]['job'] == "Writer" || $Casts['crew'][$inc]['job'] == "Producer"|| $Casts['crew'][$inc]['job'] == "Director"){
+
+
+                            Cast::factory()
+                            ->count(1)
+                            ->create([
+                               'actors_id' => $Casts['crew'][$inc]['id'],
+                               'movies_id' => $movieRetriveTries,
+                               'department' => $Casts['crew'][$inc]['job'],
+                               'name' => $Casts['crew'][$inc]['name'],
+                               
+                            ]);
+
+
+
+                        }
+
+
+
+
+
+
+
+                    }
 
 
                       $movieCount++;
