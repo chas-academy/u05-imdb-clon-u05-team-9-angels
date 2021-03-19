@@ -84,15 +84,6 @@ class MovieSeeder extends Seeder
                     ]);
 
                    
-
-                  
-
-                    
-
-                    
-                      
-                  
-                    
                     //Imorting Actors and updating Casts table 
                 for($inc=1; $inc<$ActorsPerMovie; $inc++){
 
@@ -138,27 +129,6 @@ class MovieSeeder extends Seeder
 
                     };
 
-                    //Retriving Writers, Producers and Directors into cast table for current movie
-                    // for($inc=1; $inc<count($Casts['crew']); $inc++){
-
-                    //     if($Casts['crew'][$inc]['job'] == "Writer"){
-                    //         Movie::factory()
-                    //         ->count(1)
-                    //         ->create([
-                    //            'writer' => $Casts['crew'][$inc]['name'],
-                               
-                    //         ]);
-                            
-                    //     }elseif($Casts['crew'][$inc]['job'] == "Director"){
-                    //         Movie::factory()
-                    //         ->count(1)
-                    //         ->create([
-                    //            'director' => $Casts['crew'][$inc]['name'],
-                               
-                    //         ]);
-                    //     }
-
-                    // }
 
 
                       $movieCount++;
