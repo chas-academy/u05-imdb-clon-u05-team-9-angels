@@ -18,7 +18,7 @@ class MovieSeeder extends Seeder
     public function run()
     {
 
-      $numberOfMovies = 2; //Input amount of Movies to be imported from API to DB.
+      $numberOfMovies = 10; //Input amount of Movies to be imported from API to DB.
       $ActorsPerMovie = 5;  //Imput amount of Actors per movie.
 
 
@@ -51,6 +51,7 @@ class MovieSeeder extends Seeder
                         'description' => $Movies['overview'],
                         'year' => $Movies['release_date'],
                         'runtime' => $Movies['runtime'],
+                        'genre' =>  implode("|",array_column($Movies['genres'],'name')),
                         'rating' => $Movies['vote_average'],
                         'poster' => $Movies['poster_path'],
                         'backdrop' => $Movies['backdrop_path'],
