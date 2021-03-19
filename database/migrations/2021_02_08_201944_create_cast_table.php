@@ -17,6 +17,7 @@ class CreateCastTable extends Migration
             $table->id();
             $table->integer('movies_id');
             $table->integer('actors_id');
+            $table->text('character');
             $table->timestamps();
         });
     }
