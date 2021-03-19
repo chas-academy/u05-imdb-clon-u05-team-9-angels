@@ -18,7 +18,7 @@ class MovieSeeder extends Seeder
     public function run()
     {
 
-      $numberOfMovies = 20; //Input amount of Movies to be imported from API to DB.
+      $numberOfMovies = 10; //Input amount of Movies to be imported from API to DB.
       $ActorsPerMovie = 5;  //Imput amount of Actors per movie.
 
 
@@ -42,6 +42,26 @@ class MovieSeeder extends Seeder
 
             if (isset($Movies['id']) && isset($Movies['title']) && isset($Movies['overview']) && isset($Movies['release_date']) && isset($Movies['poster_path']) && isset($Movies['backdrop_path']) && isset($Casts['cast'][5])) {
 
+                $director='';
+                $producer='';
+                $writer='';
+
+
+                //Find Director, Writer, and Producer 
+                    foreach ($Casts['crew'] as $value) {
+                        if($value['job'] == "Director"){
+                            $director = $value['name'];
+
+                        }elseif($value['job'] == "Producer"){
+                            $producer = $value['name'];
+
+                        }elseif($value['job'] == "Writer"){
+                            $writer = $value['name'];
+                        };
+                    };
+
+
+
               //Importing Movies
                 Movie::factory()
                     ->count(1)
@@ -55,8 +75,22 @@ class MovieSeeder extends Seeder
                         'rating' => $Movies['vote_average'],
                         'poster' => $Movies['poster_path'],
                         'backdrop' => $Movies['backdrop_path'],
+                        'director' => $director,
+                        'producer' => $producer,
+                        'writer' => $writer,
+
+                      
 
                     ]);
+
+                   
+
+                  
+
+                    
+
+                    
+                      
                   
                     
                     //Imorting Actors and updating Casts table 
@@ -69,8 +103,6 @@ class MovieSeeder extends Seeder
                         ->create([
                            'actors_id' => $Casts['cast'][$inc]['id'],
                            'movies_id' => $movieRetriveTries,
-                           'department' => $Casts['cast'][$inc]['known_for_department'],
-                           'name' => $Casts['cast'][$inc]['name'],
                            'character' => $Casts['cast'][$inc]['character'],
                         ]);
 
@@ -107,26 +139,26 @@ class MovieSeeder extends Seeder
                     };
 
                     //Retriving Writers, Producers and Directors into cast table for current movie
-                    for($inc=1; $inc<count($Casts['crew']); $inc++){
+                    // for($inc=1; $inc<count($Casts['crew']); $inc++){
 
-                        if($Casts['crew'][$inc]['job'] == "Writer" || $Casts['crew'][$inc]['job'] == "Producer"|| $Casts['crew'][$inc]['job'] == "Director"){
-
-
-                            Cast::factory()
-                            ->count(1)
-                            ->create([
-                               'actors_id' => $Casts['crew'][$inc]['id'],
-                               'movies_id' => $movieRetriveTries,
-                               'department' => $Casts['crew'][$inc]['job'],
-                               'name' => $Casts['crew'][$inc]['name'],
+                    //     if($Casts['crew'][$inc]['job'] == "Writer"){
+                    //         Movie::factory()
+                    //         ->count(1)
+                    //         ->create([
+                    //            'writer' => $Casts['crew'][$inc]['name'],
                                
-                            ]);
+                    //         ]);
+                            
+                    //     }elseif($Casts['crew'][$inc]['job'] == "Director"){
+                    //         Movie::factory()
+                    //         ->count(1)
+                    //         ->create([
+                    //            'director' => $Casts['crew'][$inc]['name'],
+                               
+                    //         ]);
+                    //     }
 
-
-
-                        }
-
-                    }
+                    // }
 
 
                       $movieCount++;
