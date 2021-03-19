@@ -18,7 +18,7 @@ class MovieSeeder extends Seeder
     public function run()
     {
 
-      $numberOfMovies = 10; //Input amount of Movies to be imported from API to DB.
+      $numberOfMovies = 50; //Input amount of Movies to be imported from API to DB.
       $ActorsPerMovie = 5;  //Imput amount of Actors per movie.
 
 
