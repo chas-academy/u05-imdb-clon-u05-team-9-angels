@@ -18,7 +18,7 @@ class MovieSeeder extends Seeder
     public function run()
     {
 
-      $numberOfMovies = 10; //Input amount of Movies to be imported from API to DB.
+      $numberOfMovies = 50; //Input amount of Movies to be imported from API to DB.
       $ActorsPerMovie = 5;  //Imput amount of Actors per movie.
 
 
@@ -27,18 +27,40 @@ class MovieSeeder extends Seeder
       $movieRetriveTries = 0;
       $actorsIDArray = array();
      
-      
+      $APIkey=env('TMDB_KEY');
 
       while ($movieCount < $numberOfMovies)
       {
 
         
+        
+        
 
-            $Movies = Http::get("https://api.themoviedb.org/3/movie/{$movieRetriveTries}?api_key=df7b9ec54824bdaded1b2ad9585f13a4")->json();
-            $Casts = Http::get("https://api.themoviedb.org/3/movie/{$movieRetriveTries}/credits?api_key=df7b9ec54824bdaded1b2ad9585f13a4")->json();
+            $Movies = Http::get("https://api.themoviedb.org/3/movie/{$movieRetriveTries}?api_key={$APIkey}")->json();
+            $Casts = Http::get("https://api.themoviedb.org/3/movie/{$movieRetriveTries}/credits?api_key={$APIkey}")->json();
             
 
-            if (isset($Movies['id']) && isset($Movies['title']) && isset($Movies['overview']) && isset($Movies['release_date']) && isset($Movies['poster_path']) && isset($Casts['cast'][$ActorsPerMovie])) {
+            if (isset($Movies['id']) && isset($Movies['title']) && isset($Movies['overview']) && isset($Movies['release_date']) && isset($Movies['poster_path']) && isset($Movies['backdrop_path']) && isset($Casts['cast'][5])) {
+
+                $director='';
+                $producer='';
+                $writer='';
+
+
+                //Find Director, Writer, and Producer 
+                    foreach ($Casts['crew'] as $value) {
+                        if($value['job'] == "Director"){
+                            $director = $value['name'];
+
+                        }elseif($value['job'] == "Producer"){
+                            $producer = $value['name'];
+
+                        }elseif($value['job'] == "Writer"){
+                            $writer = $value['name'];
+                        };
+                    };
+
+
 
               //Importing Movies
                 Movie::factory()
@@ -49,14 +71,21 @@ class MovieSeeder extends Seeder
                         'description' => $Movies['overview'],
                         'year' => $Movies['release_date'],
                         'runtime' => $Movies['runtime'],
+                        'genre' =>  implode("|",array_column($Movies['genres'],'name')),
                         'rating' => $Movies['vote_average'],
                         'poster' => $Movies['poster_path'],
+                        'backdrop' => $Movies['backdrop_path'],
+                        'director' => $director,
+                        'producer' => $producer,
+                        'writer' => $writer,
+
+                      
 
                     ]);
-                  
-                    
+
+                   
                     //Imorting Actors and updating Casts table 
-                    for($inc=1; $inc<$ActorsPerMovie; $inc++){
+                for($inc=1; $inc<$ActorsPerMovie; $inc++){
 
                       
                         //Updating Casts Table for current Movie and Actor.
@@ -67,13 +96,14 @@ class MovieSeeder extends Seeder
                            'movies_id' => $movieRetriveTries,
                            'character' => $Casts['cast'][$inc]['character'],
                         ]);
-                        
 
-                        $actorID = $Casts['cast'][$inc]['id'];
 
-                        $Actors = Http::get("https://api.themoviedb.org/3/person/{$actorID}?api_key=df7b9ec54824bdaded1b2ad9585f13a4")->json();
+
 
                         //Retriving the Actors for the current Movie and checking for duplicates.
+                        $actorID = $Casts['cast'][$inc]['id'];
+                        $Actors = Http::get("https://api.themoviedb.org/3/person/{$actorID}?api_key={$APIkey}")->json();
+
                         if(!in_array($actorID, $actorsIDArray)){
                             
                              Actor::factory()
@@ -100,6 +130,7 @@ class MovieSeeder extends Seeder
                     };
 
 
+
                       $movieCount++;
 
             }
@@ -107,10 +138,7 @@ class MovieSeeder extends Seeder
 
 
         }
-        //For creating DB without external API
-        // Movie::factory()
-        //         ->count(1)
-        //         ->create();
+
 
         
     }
