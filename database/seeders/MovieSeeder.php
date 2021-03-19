@@ -60,7 +60,7 @@ class MovieSeeder extends Seeder
                   
                     
                     //Imorting Actors and updating Casts table 
-                    for($inc=1; $inc<$ActorsPerMovie; $inc++){
+                for($inc=1; $inc<$ActorsPerMovie; $inc++){
 
                       
                         //Updating Casts Table for current Movie and Actor.
@@ -76,18 +76,11 @@ class MovieSeeder extends Seeder
 
 
 
-                    
-                        
-
-
-
-                        
-
-                        $actorID = $Casts['cast'][$inc]['id'];
-
-                        $Actors = Http::get("https://api.themoviedb.org/3/person/{$actorID}?api_key={$APIkey}")->json();
 
                         //Retriving the Actors for the current Movie and checking for duplicates.
+                        $actorID = $Casts['cast'][$inc]['id'];
+                        $Actors = Http::get("https://api.themoviedb.org/3/person/{$actorID}?api_key={$APIkey}")->json();
+
                         if(!in_array($actorID, $actorsIDArray)){
                             
                              Actor::factory()
@@ -113,9 +106,8 @@ class MovieSeeder extends Seeder
 
                     };
 
+                    //Retriving Writers, Producers and Directors into cast table for current movie
                     for($inc=1; $inc<count($Casts['crew']); $inc++){
-
-                        
 
                         if($Casts['crew'][$inc]['job'] == "Writer" || $Casts['crew'][$inc]['job'] == "Producer"|| $Casts['crew'][$inc]['job'] == "Director"){
 
@@ -134,12 +126,6 @@ class MovieSeeder extends Seeder
 
                         }
 
-
-
-
-
-
-
                     }
 
 
@@ -150,10 +136,7 @@ class MovieSeeder extends Seeder
 
 
         }
-        //For creating DB without external API
-        // Movie::factory()
-        //         ->count(1)
-        //         ->create();
+
 
         
     }
