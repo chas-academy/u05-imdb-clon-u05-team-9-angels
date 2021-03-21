@@ -45,6 +45,7 @@ class MovieController extends Controller
 
         foreach ($cast as $actor => $value)
             $actor_list[] = Actor::where('id', $value->actors_id)->get();
+        // dd($actor_list);
         $movies = Movie::where('id', $id)->first();
 
 
