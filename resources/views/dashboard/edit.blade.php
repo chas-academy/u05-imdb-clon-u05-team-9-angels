@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', $user->name)
 @section('content')
 <div class="container mx-auto px-4 pt-16">
     <h1 class="tracking-wider text-2xl font-semibold">{{$user['name']}}</h1>

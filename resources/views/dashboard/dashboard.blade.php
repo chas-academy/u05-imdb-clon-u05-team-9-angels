@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Dashboard')
 @section('content')
 <div class="container mx-auto px-4 pt-16">
     <h1 class="text-lg font-bold">Welcome back {{ Auth::user()->name }}!</h1>

@@ -31,10 +31,13 @@ Route::get('/', function () {
 });
 
 //Auth stuff
+//profile
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+//SuperUser stuff
+// handle users
 Route::get('/dashboard/users', [UserController::class, 'getUsersForAdmin'])->middleware(['auth'])->name('users');
 Route::get('/dashboard/users/edit/{id}', [UserController::class, 'editUser'])->middleware(['auth']);
 Route::post('/dashboard/users/edit/{id}/update', [UserController::class, 'store'])->middleware(['auth']);
@@ -42,6 +45,11 @@ Route::delete('/dashboard/users/edit/{id}/delete', [UserController::class, 'dest
 Route::post('/dashboard/users/edit/create', [UserController::class, 'create'])->middleware(['auth']);
 
 
+
 Route::post('/movies/comment/create/{id}', [CommentController::class, 'create'])->middleware(['auth']);
+
+//create movie
+Route::get('/dashboard/movie', [MovieController::class, 'createMoviePage'])->middleware(['auth'])->name('movie');
+
 
 require __DIR__ . '/auth.php';
