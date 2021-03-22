@@ -17,44 +17,29 @@ class MovieController extends Controller
     public function index()
     {
         $movies = Movie::all();
-        // dd($movies);
-        // $cast = 'SELECT DISTINCT actors.name, movies.title from actors, cast, movies WHERE actors.id = 1 AND cast.actors_id = actors.id AND movies.id = movies.id';
         $cast = 'SELECT * FROM movies';
         $newVar = DB::SELECT($cast);
         dd($newVar);
         return view('movie', $movies);
     }
 
-    // public function getAll()
-    // {
-    //     $movies = Movie::all();
-    //     return view('movie', ['movies' => $movies]);
-    // }
-
     public function getAll() // new get all movies
     {
         $movies = Movie::all();
-
         return view('movies-all', ['movies' => $movies]);
     }
 
     public function getMovie($id)
     {
         $cast = Cast::where('movies_id', $id)->get();
-
         $comments = Comment::where('movies_id', $id)->get();
-
         $actor_list = null;
 
         foreach ($cast as $actor => $value)
             $actor_list[] = Actor::where('id', $value->actors_id)->get();
-        // dd($actor_list);
         $movies = Movie::where('id', $id)->first();
 
-
-
-        $canComment=0;
-
+        $canComment = 0;
         $user = auth()->user();
 
         //Get the user type
@@ -67,43 +52,16 @@ class MovieController extends Controller
         }
 
         //If the user type is above signed in user (1) -> User has edit privelages.
-
-        
-
-
-
-    
-
-        if($canComment) {
-            return view(
-                'movie',
-                [
-                    'canComment'=> $canComment,
-                    'movies' => $movies,
-                    'actor_list' => $actor_list,
-                    'can_edit' => $edit_privelages,
-                    'comments' => $comments[0],
-                    'user' => $user->id
-                    
-                ]
-            );
-        } else {
-
-        
-        // return view('movie', ['movies' => $movies]);
-        // return view('movie', ['movies' => $movies, 'result' => $result, 'actor' => $actor]);
         return view(
             'movie',
             [
-                'canComment'=> $canComment,
+                'canComment' => $canComment,
                 'movies' => $movies,
                 'actor_list' => $actor_list,
                 'can_edit' => $edit_privelages,
-                'comments' => $comments[0],
-                
+                'comments' => $comments,
             ]
         );
-      }
     }
 
     public function store(Request $request)  // take request data from form in blade
@@ -123,8 +81,6 @@ class MovieController extends Controller
             $movie->genre = $request->all('genre')['genre']; // gets  parameter from request
             $movie->save();
         }
-
         return redirect()->back(); // returns us to same page that post was made from, no new page
-
     }
 }
