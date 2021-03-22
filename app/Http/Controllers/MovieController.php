@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Models\Cast;
 use App\Models\Actor;
+use App\Models\Comment;
 use App\Http\Controllers\CastController;
 use Illuminate\Support\Facades\DB;
 
@@ -41,6 +42,8 @@ class MovieController extends Controller
     {
         $cast = Cast::where('movies_id', $id)->get();
 
+        $comments = Comment::where('movies_id', $id)->get();
+
         $actor_list = null;
 
         foreach ($cast as $actor => $value)
@@ -48,6 +51,9 @@ class MovieController extends Controller
         // dd($actor_list);
         $movies = Movie::where('id', $id)->first();
 
+
+
+        $canComment=0;
 
         $user = auth()->user();
 
@@ -57,22 +63,47 @@ class MovieController extends Controller
         if ($user != null) {
             $userType = $user->type;
             $edit_privelages = intval($userType) > 1 ? true : false;
+            $canComment = intval($userType) >= 0 ? true : false;
         }
 
         //If the user type is above signed in user (1) -> User has edit privelages.
 
+        
 
 
+
+    
+
+        if($canComment) {
+            return view(
+                'movie',
+                [
+                    'canComment'=> $canComment,
+                    'movies' => $movies,
+                    'actor_list' => $actor_list,
+                    'can_edit' => $edit_privelages,
+                    'comments' => $comments[0],
+                    'user' => $user->id
+                    
+                ]
+            );
+        } else {
+
+        
         // return view('movie', ['movies' => $movies]);
         // return view('movie', ['movies' => $movies, 'result' => $result, 'actor' => $actor]);
         return view(
             'movie',
             [
+                'canComment'=> $canComment,
                 'movies' => $movies,
                 'actor_list' => $actor_list,
-                'can_edit' => $edit_privelages
+                'can_edit' => $edit_privelages,
+                'comments' => $comments[0],
+                
             ]
         );
+      }
     }
 
     public function store(Request $request)  // take request data from form in blade

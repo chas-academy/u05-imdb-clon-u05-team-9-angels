@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ActorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +40,8 @@ Route::get('/dashboard/users/edit/{id}', [UserController::class, 'editUser'])->m
 Route::post('/dashboard/users/edit/{id}/update', [UserController::class, 'store'])->middleware(['auth']);
 Route::delete('/dashboard/users/edit/{id}/delete', [UserController::class, 'destroy'])->middleware(['auth']);
 Route::post('/dashboard/users/edit/create', [UserController::class, 'create'])->middleware(['auth']);
+
+
+Route::post('/movies/comment/create', [CommentController::class, 'create'])->middleware(['auth']);
 
 require __DIR__ . '/auth.php';

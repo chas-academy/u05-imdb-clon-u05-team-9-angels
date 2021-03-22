@@ -53,6 +53,22 @@
                         {{-- end desc card --}}
                     </div>
 
+<div>
+<h1>{{ $comments->comment }}</h1>
+@if ($canComment)
+<form method="POST" action="/movies/comment/create">
+@csrf
+<input type="text" name="comment" id="comment">
+<input type="number" name="star" id="star">
+<button type="submit">Comment</button>
+
+
+
+</form>
+@endif
+</div>
+
+
                     {{-- start cast card --}}
                     <div class="cast-container mx-14">
                         <div class="cast-list">
