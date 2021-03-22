@@ -95,28 +95,29 @@ class MovieController extends Controller
         return redirect()->back(); // returns us to same page that post was made from, no new page
 
     }
-    protected function create() {
+    protected function create()
+    {
         // if (isset($_POST)) { 
-          
+
         //     $title = $_POST['title'];
         //  }   
         //     else {
         //         echo("POSTNOTSET");
         //     } 
         Movie::create([
-            'title' => 'title'
-            // 'description' => request('description'),
-            // 'rating' => request('rating'),
-            // 'director' => request('director'),
-            // 'writer' => request('writer'),
-            // 'year' => request('year'),
-            // 'runtime' => request('runtime'),
-            // 'genre' => request('genre'),
-           
-            
+            'title' => request('title'),
+            'description' => request('description'),
+            'rating' => request('rating'),
+            'director' => request('director'),
+            'writer' => request('writer'),
+            'year' => request('year'),
+            'runtime' => request('runtime'),
+            'genre' => request('genre'),
+            'poster' => '/ojDg0PGvs6R9xYFodRct2kdI6wC.jpg',
+            'backdrop' => '/dFYguAfeVt19qAbzJ5mArn7DEJw.jpg'
         ]);
 
-      return redirect('/');
+        return redirect('/');
     }
     protected function createMoviePage()
     {

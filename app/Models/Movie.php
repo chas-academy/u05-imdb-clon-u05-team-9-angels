@@ -16,7 +16,16 @@ class Movie extends Model
      * @var array
      */
     protected $fillable = [
-        'title'
+        'title',
+        'description',
+        'rating',
+        'director',
+        'writer',
+        'year',
+        'runtime',
+        'genre',
+        'poster',
+        'backdrop'
     ];
 
     public $table = 'movies';
@@ -25,7 +34,4 @@ class Movie extends Model
     {
         return $this->belongsToMany(Actor::class, 'cast', 'movies_id', 'actors_id');
     }
-
-    
 }
-
