@@ -90,6 +90,12 @@
                                 {{ __('Users') }}
                             </x-dropdown-link>
                         </form>
+                        <form method="GET" action="{{ route('movie') }}">
+                            <x-dropdown-link :href="route('movie')" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Add new movie') }}
+                            </x-dropdown-link>
+                        </form>
                         @endif
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

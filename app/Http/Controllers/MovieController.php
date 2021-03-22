@@ -95,4 +95,16 @@ class MovieController extends Controller
         return redirect()->back(); // returns us to same page that post was made from, no new page
 
     }
+
+    protected function createMoviePage()
+    {
+        $userType = auth()->user()->type;
+        $superUser = intval($userType) > 1 ? true : false;
+
+        if ($superUser) {
+            return view('dashboard.movie');
+        } else {
+            return redirect('/');
+        }
+    }
 }
