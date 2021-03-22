@@ -9,6 +9,25 @@ class Movie extends Model
 {
     use HasFactory;
 
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title',
+        'description',
+        'rating',
+        'director',
+        'writer',
+        'year',
+        'runtime',
+        'genre',
+        'poster',
+        'backdrop'
+    ];
+
     public $table = 'movies';
 
     public function actors()

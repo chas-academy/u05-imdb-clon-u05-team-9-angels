@@ -24,8 +24,8 @@ class CreateMoviesTable extends Migration
             $table->integer('runtime');
             $table->string('genre');
             $table->integer('rating');
-            $table->string('poster');
-            $table->string('backdrop');
+            $table->string('poster')->nullable();
+            $table->string('backdrop')->nullable();
             $table->timestamps();
         });
     }
