@@ -95,7 +95,29 @@ class MovieController extends Controller
         return redirect()->back(); // returns us to same page that post was made from, no new page
 
     }
+    protected function create() {
+        // if (isset($_POST)) { 
+          
+        //     $title = $_POST['title'];
+        //  }   
+        //     else {
+        //         echo("POSTNOTSET");
+        //     } 
+        Movie::create([
+            'title' => 'title'
+            // 'description' => request('description'),
+            // 'rating' => request('rating'),
+            // 'director' => request('director'),
+            // 'writer' => request('writer'),
+            // 'year' => request('year'),
+            // 'runtime' => request('runtime'),
+            // 'genre' => request('genre'),
+           
+            
+        ]);
 
+      return redirect('/');
+    }
     protected function createMoviePage()
     {
         $userType = auth()->user()->type;

@@ -3,13 +3,13 @@
 @section('content')
     <h1>Add new movie</h1>
 
-    div class="form-container mx-14">
+    <div class="form-container mx-14">
     <!-- EDIT MODAL -->
 
     <body class="bg-gray-200 flex items-center justify-center h-screen">
 
         <button
-            class="modal-open mb-5 border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 mt-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Edit
+            class="modal-open mb-5 border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 mt-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Add
             movie</button>
 
         <!--Modal-->
@@ -32,7 +32,7 @@
                 <div class="modal-content py-4 text-left px-6">
                     <!--Title-->
                     <div class="flex justify-between items-center pb-3">
-                        <p class="text-2xl font-bold">Edit movie</p>
+                        <p class="text-2xl font-bold">Add a movie</p>
                         <div class="modal-close cursor-pointer z-50">
                             <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                 viewBox="0 0 18 18">
@@ -44,49 +44,48 @@
                     </div>
 
                     <!--Body-->
-                    <form method="POST" action="/movies/create/">
+                    <form method="POST" action="/dashboard/movies/create">
                         @csrf
                         <h3 class="font-bold">Enter movie details:</h3>
 
                         <label for="title">Title:</label><br>
-                        <input type="text" id="title" name="title" value="{{ $movies->title }}" required><br>
-                        <input type="hidden" id="title" name="id" value="{{ $movies->id }}">
+                        <input type="text" id="title" name="title" required><br>
+                        {{-- <input type="hidden" id="title" name="id" value=""> --}}
                         <br>
 
-                        <label for="description">Description:</label><br>
-                        <input type="text" id="description" name="description" value="{{ $movies->description }}"
+                        {{-- <label for="description">Description:</label><br>
+                        <input type="text" id="description" name="description" value=""
                             required><br>
-                        <input type="hidden" id="description" name="id" value="{{ $movies->id }}">
+                        <input type="hidden" id="description" name="id" value="">
                         <br>
 
                         <label for="rating">Rating:</label><br>
-                        <input type="number" id="rating" name="rating" value="{{ $movies->rating }}" required><br>
-                        <input type="hidden" id="rating" name="id" value="{{ $movies->id }}">
-                        <br>
+                        <input type="number" id="rating" name="rating" value="" required><br>
+                        <input type="hidden" id="rating" name="id" value="">
 
                         <label for="director">Director:</label><br>
-                        <input type="text" id="director" name="director" value="{{ $movies->director }}" required><br>
-                        <input type="hidden" id="director" name="id" value="{{ $movies->id }}">
+                        <input type="text" id="director" name="director" value="" required><br>
+                        <input type="hidden" id="director" name="id" value="">
                         <br>
 
                         <label for="writer">Writer:</label><br>
-                        <input type="text" id="writer" name="writer" value="{{ $movies->writer }}" required><br>
-                        <input type="hidden" id="writer" name="id" value="{{ $movies->id }}">
+                        <input type="text" id="writer" name="writer" value="" required><br>
+                        <input type="hidden" id="writer" name="id" value="">
                         <br>
 
                         <label for="year">Released:</label><br>
-                        <input type="date" id="year" name="year" value="{{ $movies->year }}" required><br>
-                        <input type="hidden" id="year" name="id" value="{{ $movies->id }}">
+                        <input type="date" id="year" name="year" value="" required><br>
+                        <input type="hidden" id="year" name="id" value="">
                         <br>
 
                         <label for="genre">Genre:</label><br>
-                        <input type="text" id="genre" name="genre" value="{{ $movies->genre }}" required><br>
-                        <input type="hidden" id="genre" name="id" value="{{ $movies->id }}">
+                        <input type="text" id="genre" name="genre" value="" required><br>
+                        <input type="hidden" id="genre" name="id" value="">
                         <br>
 
                         <label for="runtime">Runtime (minutes):</label><br>
-                        <input type="number" id="runtime" name="runtime" value="{{ $movies->runtime }}" required><br>
-                        <input type="hidden" id="runtime" name="id" value="{{ $movies->id }}">
+                        <input type="number" id="runtime" name="runtime" value="" required><br>
+                        <input type="hidden" id="runtime" name="id" value=""> --}}
                         <br>
                         <div class="flex justify-end pt-2">
 

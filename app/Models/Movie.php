@@ -9,10 +9,23 @@ class Movie extends Model
 {
     use HasFactory;
 
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title'
+    ];
+
     public $table = 'movies';
 
     public function actors()
     {
         return $this->belongsToMany(Actor::class, 'cast', 'movies_id', 'actors_id');
     }
+
+    
 }
+
