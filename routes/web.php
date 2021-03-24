@@ -43,14 +43,18 @@ Route::get('/dashboard/users/edit/{id}', [UserController::class, 'editUser'])->m
 Route::post('/dashboard/users/edit/{id}/update', [UserController::class, 'store'])->middleware(['auth']);
 Route::delete('/dashboard/users/edit/{id}/delete', [UserController::class, 'destroy'])->middleware(['auth']);
 Route::post('/dashboard/users/edit/create', [UserController::class, 'create'])->middleware(['auth']);
-Route::post('/dashboard/movies/create', [MovieController::class, 'create'])->middleware(['auth']);
 
 //comments
 Route::post('/movies/comment/create/{id}', [CommentController::class, 'create'])->middleware(['auth']);
 Route::delete('/movies/comment/delete/{id}', [CommentController::class, 'destroy'])->middleware(['auth']);
 
+//watchlist
+Route::get('/movies/add-to-watchlist/{id}', [WatchlistController::class, 'create'])->middleware(['auth']);
+// Route::delete('/movies/comment/delete/{id}', [CommentController::class, 'destroy'])->middleware(['auth']);
+
 //create movie
 Route::get('/dashboard/movie', [MovieController::class, 'createMoviePage'])->middleware(['auth'])->name('movie');
+Route::post('/dashboard/movies/create', [MovieController::class, 'create'])->middleware(['auth']);
 
 
 require __DIR__ . '/auth.php';

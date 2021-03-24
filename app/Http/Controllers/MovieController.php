@@ -7,6 +7,7 @@ use App\Models\Movie;
 use App\Models\Cast;
 use App\Models\Actor;
 use App\Models\Comment;
+use App\Models\Watchlist;
 use App\Http\Controllers\CastController;
 use Illuminate\Support\Facades\DB;
 
@@ -33,6 +34,8 @@ class MovieController extends Controller
     {
         $cast = Cast::where('movies_id', $id)->get();
         $comments = Comment::where('movies_id', $id)->get();
+        // $watchlist = Watchlist::where('movies_id', $id)->get();
+        // add true false for watchlist button
         $actor_list = null;
 
         foreach ($cast as $actor => $value)
@@ -40,6 +43,7 @@ class MovieController extends Controller
         $movies = Movie::where('id', $id)->first();
 
         $canComment = 0;
+        $canWatchlist = 0;
         $user = auth()->user();
 
         //Get the user type
@@ -49,7 +53,11 @@ class MovieController extends Controller
             $userType = $user->type;
             $edit_privelages = intval($userType) > 1 ? true : false;
             $canComment = intval($userType) >= 0 ? true : false;
+            $canWatchlist = intval($userType) >= 0 ? true : false;
         }
+
+        //Can add to watchlist
+        
 
         //If the user type is above signed in user (1) -> User has edit privelages.
         return view(
@@ -60,6 +68,9 @@ class MovieController extends Controller
                 'actor_list' => $actor_list,
                 'can_edit' => $edit_privelages,
                 'comments' => $comments,
+                'canWatchlist' => $canWatchlist
+                //  'watchlists' => $watchlist,
+
             ]
         );
     }
