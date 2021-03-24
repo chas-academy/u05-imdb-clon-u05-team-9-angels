@@ -21,8 +21,6 @@ Route::get('/movie', [MovieController::class, 'index']);
 Route::get('/movies/all', [MovieController::class, 'getAll']);
 Route::post('/movies/edit/{id}', [MovieController::class, 'store']); // creates post route, sending request to moviecontroller class and runs store fx
 
-// Route::post('/movies/create', [MovieController::class, 'create']); // creates post route, sending request to moviecontroller class and runs store fx
-
 // get specific
 Route::get('/movies/{id}', [MovieController::class, 'getMovie']);
 
@@ -47,9 +45,9 @@ Route::delete('/dashboard/users/edit/{id}/delete', [UserController::class, 'dest
 Route::post('/dashboard/users/edit/create', [UserController::class, 'create'])->middleware(['auth']);
 Route::post('/dashboard/movies/create', [MovieController::class, 'create'])->middleware(['auth']);
 
-
-
+//comments
 Route::post('/movies/comment/create/{id}', [CommentController::class, 'create'])->middleware(['auth']);
+Route::delete('/movies/comment/delete/{id}', [CommentController::class, 'destroy'])->middleware(['auth']);
 
 //create movie
 Route::get('/dashboard/movie', [MovieController::class, 'createMoviePage'])->middleware(['auth'])->name('movie');
