@@ -34,17 +34,19 @@ class MovieController extends Controller
     {
         $cast = Cast::where('movies_id', $id)->get();
         $comments = Comment::where('movies_id', $id)->get();
-        // $watchlist = Watchlist::where('movies_id', $id)->get();
+        $watchlists = Watchlist::where('movies_id', $id)->get();
         // add true false for watchlist button
         $actor_list = null;
-
+        dd($watchlists);
+        
         foreach ($cast as $actor => $value)
-            $actor_list[] = Actor::where('id', $value->actors_id)->get();
+        $actor_list[] = Actor::where('id', $value->actors_id)->get();
         $movies = Movie::where('id', $id)->first();
-
+        
         $canComment = 0;
         $canWatchlist = 0;
         $user = auth()->user();
+                
 
         //Get the user type
         $userType = -1;
