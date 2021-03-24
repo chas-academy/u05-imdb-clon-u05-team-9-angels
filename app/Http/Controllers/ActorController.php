@@ -49,7 +49,7 @@ class ActorController extends Controller
         $validated = $request->validate([
             'name' => 'bail|required|string|max:255',
             'age' => 'bail|required|numeric|between:0,150',
-            'description' => 'bail|required|string|max:255'
+            'description' => 'bail|required|string'
         ]);
 
         $actor = Actor::create([
@@ -93,19 +93,15 @@ class ActorController extends Controller
      */
     public function update(Request $request, Actor $actor)
     {
-        if ($request->user()->cannot('update', $actor)) {
-            abort(403);
-        }
+        $this->authorize('update', $actor);
 
         $validated = $request->validate([
             'name' => 'bail|required|string|max:255',
-            'age' => 'bail|required|numeric|between:0,150',
-            'description' => 'bail|required|string|max:255'
+            'description' => 'bail|required|string'
         ]);
 
         $isUpdated = $actor->update([
             'name' => $request->input('name'),
-            'age' => $request->input('age'),
             'description' => $request->input('description'),
         ]);
 

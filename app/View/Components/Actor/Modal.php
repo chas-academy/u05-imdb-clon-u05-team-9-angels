@@ -9,7 +9,6 @@ class Modal extends Component
     public $id;
     public $title;
     public $name;
-    public $age;
     public $description;
 
     /**
@@ -17,12 +16,11 @@ class Modal extends Component
      *
      * @return void
      */
-    public function __construct($id, $title, $name, $age, $description)
+    public function __construct($id, $title, $name, $description)
     {
         $this->id = $id;
         $this->title = $title;
         $this->name = $name;
-        $this->age = $age;
         $this->description = $description;
     }
 

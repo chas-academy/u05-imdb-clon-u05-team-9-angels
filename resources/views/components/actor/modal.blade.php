@@ -1,8 +1,8 @@
-<div class="form-container mx-14">
+<div class="form-container">
     <!-- EDIT MODAL -->
 
     <button
-        class="modal-open mb-5 border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 mt-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
+        class="modal-open border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
         Edit {{ $title }}
     </button>
 
@@ -44,9 +44,6 @@
 
                     <label for="name">Name:</label><br />
                     <input type="text" id="name" name="name" value="{{ old('name') ?? $name }}" required><br />
-
-                    <label for="age">Age:</label><br>
-                    <input type="number" id="age" name="age" value="{{ old('age') ?? $age }}" required><br />
 
                     <label for="description">Description:</label><br />
                     <textarea id="description" name="description" cols="30" rows="5"
