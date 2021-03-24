@@ -85,13 +85,6 @@ class MovieController extends Controller
     }
     protected function create()
     {
-        // if (isset($_POST)) { 
-
-        //     $title = $_POST['title'];
-        //  }   
-        //     else {
-        //         echo("POSTNOTSET");
-        //     } 
         Movie::create([
             'title' => request('title'),
             'description' => request('description'),
