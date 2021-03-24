@@ -51,11 +51,7 @@ Route::delete('/movies/comment/delete/{id}', [CommentController::class, 'destroy
 
 //watchlist
 Route::get('/movies/add-to-watchlist/{id}', [WatchlistController::class, 'create'])->middleware(['auth']);
-// Route::delete('/movies/comment/delete/{id}', [CommentController::class, 'destroy'])->middleware(['auth']);
-// Route::get('/movies/add-to-watchlist/{id}', array('as' => '$movies->id', function()
-// {
-//     createWatchlist();
-// }));
+Route::delete('/movies/delete/{id}', [CommentController::class, 'destroy'])->middleware(['auth']);
 
 //create movie
 Route::get('/dashboard/movie', [MovieController::class, 'createMoviePage'])->middleware(['auth'])->name('movie');

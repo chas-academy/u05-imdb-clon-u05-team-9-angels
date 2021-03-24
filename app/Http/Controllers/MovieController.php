@@ -34,8 +34,15 @@ class MovieController extends Controller
     {
         $cast = Cast::where('movies_id', $id)->get();
         $comments = Comment::where('movies_id', $id)->get();
-        // $watchlist = Watchlist::where('movies_id', $id)->get();
+        $watchlists = Watchlist::where('movies_id', $id)->get();
+
+        $watchlists_arr = null;
+        foreach ($watchlists as $watchlist_item) {
+            $watchlists_arr[] = Watchlist::where('user_id', $watchlist_item->user_id);
+            // dd($watchlists_arr);
+        }
         // add true false for watchlist button
+
         $actor_list = null;
 
         foreach ($cast as $actor => $value)
@@ -45,6 +52,11 @@ class MovieController extends Controller
         $canComment = 0;
         $canWatchlist = 0;
         $user = auth()->user();
+        // dd('User id: ' . $user->id, 'Watchlist user_id: ' . $watchlists[0]->user_id);
+
+        if ($user->id == $watchlists[0]->user_id) {
+            echo 'match';
+        }
 
         //Get the user type
         $userType = -1;
@@ -57,7 +69,7 @@ class MovieController extends Controller
         }
 
         //Can add to watchlist
-        
+
 
         //If the user type is above signed in user (1) -> User has edit privelages.
         return view(
@@ -68,8 +80,8 @@ class MovieController extends Controller
                 'actor_list' => $actor_list,
                 'can_edit' => $edit_privelages,
                 'comments' => $comments,
-                'canWatchlist' => $canWatchlist
-                //  'watchlists' => $watchlist,
+                'canWatchlist' => $canWatchlist,
+                'watchlists' => $watchlists,
 
             ]
         );
