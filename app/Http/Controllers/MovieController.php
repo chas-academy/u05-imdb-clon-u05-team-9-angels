@@ -55,7 +55,7 @@ class MovieController extends Controller
         // dd('User id: ' . $user->id, 'Watchlist user_id: ' . $watchlists[0]->user_id);
 
         if ($user->id == $watchlists[0]->user_id) {
-            echo 'match';
+            echo $watchlists[0]->id;
         }
 
         //Get the user type
