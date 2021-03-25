@@ -5,7 +5,7 @@
             alt="{{ $title }}">
     </a>
     <div class="mt-auto">
-        <a href="{{ url('movies/' . $id) }}" class="hover:text-pink-600 transition ease-in-out duration-150">
+        <a href="{{ url('movies/' . $id) }}" class="hover:text-gray-300 transition ease-in-out duration-150">
             <p class="leading-4 overflow-ellipsis overflow-hidden">{{ $title }}</p>
             <p>{{ $year }}</p>
         </a>

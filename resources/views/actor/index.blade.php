@@ -3,7 +3,7 @@
 @section('title', 'Actors')
 
 @section('content')
-    <div class="container mx-auto px-4 pt-16">
+    <div class="container mx-auto px-4 pt-16 bg-imdb-black text-white">
         <h2 class="tracking-wider text-2xl font-semibold">Actors page</h2>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-5">
             @foreach ($actors as $actor)

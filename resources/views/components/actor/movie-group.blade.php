@@ -1,4 +1,4 @@
-<div class="bg-gray-200 pt-2 rounded-lg shadow-md w-full">
+<div class="bg-imdb-card pt-2 rounded-lg shadow-md w-full">
     <p class="pl-4 text-2xl font-semibold">{{ $title }}</p>
     @if ($isCarousel)
         <div class="flex flex-nowrap overflow-x-auto gap-x-4">
