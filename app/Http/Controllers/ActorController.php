@@ -35,6 +35,7 @@ class ActorController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Actor::class);
         return view('actor.create');
     }
 
@@ -46,6 +47,8 @@ class ActorController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Actor::class);
+
         $validated = $request->validate([
             'name' => 'bail|required|string|max:255',
             'age' => 'bail|required|numeric|between:0,150',
@@ -81,6 +84,7 @@ class ActorController extends Controller
      */
     public function edit(Actor $actor)
     {
+        $this->authorize('update', $actor);
         return view('actor.edit')->with('actor', $actor);
     }
 
@@ -120,6 +124,7 @@ class ActorController extends Controller
      */
     public function destroy(Actor $actor)
     {
+        $this->authorize('delete', $actor);
         return $actor->delete();
     }
 }
