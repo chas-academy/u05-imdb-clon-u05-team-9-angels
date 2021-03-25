@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\comment;
+use App\Models\Comment;
 
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class CommentController extends Controller
 {
     protected function create($movieId)
     {
-        comment::create([
+        Comment::create([
             'users_id' => auth()->user()->id,
             'movies_id' => $movieId,
             'comment' => request('comment'),
@@ -21,7 +21,7 @@ class CommentController extends Controller
 
     protected function destroy($commentId)
     {
-        $commentId = comment::where('id', $commentId)->first();
+        $commentId = Comment::where('id', $commentId)->first();
         $commentId->delete();
         return redirect()->back();
     }
