@@ -115,6 +115,46 @@
                     </div>
                     @endforeach
                 </div>
+                @if ($can_edit)
+                @foreach ($pendingComments as $pendingComment)
+                <div class="mb-4">
+                    <div class="overflow-hidden shadow-md text-gray-100">
+                        <div class="px-6 py-4 bg-gray-800 border-b border-gray-600 font-bold uppercase">
+                            User Name
+                        </div>
+                        <div class="p-6 bg-gray-800 border-b border-gray-600">
+                            Comment: {{ $pendingComment->comment }}
+                        </div>
+                        <div class="p-6 bg-gray-800 border-gray-200 flex items-center text-gray-400 text-sm">
+                            <span> Rating: {{ $pendingComment->star }}</span>
+                            <svg class="fill-current text-yellow-500 w-4" viewBox="0 0 24 24">
+                                <g data-name="Layer 2">
+                                    <path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
+                                1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
+                                01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                        data-name="star"></path>
+                                </g>
+                            </svg>
+                            @if($can_edit)
+                            <form method="POST" action="/movies/comment/delete/{{$pendingComment->id}}">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit"
+                                    class=" bg-red-500 ml-4 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded cursor-pointer">Delete
+                                    Comment</button>
+                            </form>
+                            <form method="POST" action="/movies/comment/update/{{$pendingComment->id}}">
+                                @csrf
+                                <button type="submit"
+                                    class=" bg-green-500 ml-4 hover:bg-green-700 text-white font-bold py-2 px-4 border border-red-700 rounded cursor-pointer">Approve
+                                    Comment</button>
+                            </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
             </section>
             {{-- Comment Section ends --}}
             {{-- start cast card --}}

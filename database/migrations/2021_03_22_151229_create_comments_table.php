@@ -19,6 +19,7 @@ class CreateCommentsTable extends Migration
             $table->integer('movies_id');
             $table->text('comment');
             $table->integer('star')->nullable();
+            $table->string('type')->default(0);
             $table->id();
             $table->timestamps();
         });

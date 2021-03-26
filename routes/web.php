@@ -47,6 +47,7 @@ Route::post('/dashboard/movies/create', [MovieController::class, 'create'])->mid
 
 //comments
 Route::post('/movies/comment/create/{id}', [CommentController::class, 'create'])->middleware(['auth']);
+Route::post('/movies/comment/update/{id}', [CommentController::class, 'update'])->middleware(['auth']);
 Route::delete('/movies/comment/delete/{id}', [CommentController::class, 'destroy'])->middleware(['auth']);
 
 //create movie

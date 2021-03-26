@@ -6,6 +6,7 @@ use App\Models\Comment;
 
 use Illuminate\Http\Request;
 
+
 class CommentController extends Controller
 {
     protected function create($movieId)
@@ -23,6 +24,14 @@ class CommentController extends Controller
     {
         $commentId = Comment::where('id', $commentId)->first();
         $commentId->delete();
+        return redirect()->back();
+    }
+
+    protected function update($id)
+    {
+        $comment = comment::where('id', $id)->first();
+        $comment->type = '1';
+        $comment->save();
         return redirect()->back();
     }
 }

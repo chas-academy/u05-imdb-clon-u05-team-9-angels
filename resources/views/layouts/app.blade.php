@@ -47,9 +47,6 @@
                     <a href="/movies/all" class="text-lg hover:text-gray-400">Movies</a>
                 </li>
                 <li class="md:ml-6">
-                    <a href="#" class="text-lg hover:text-gray-400">TV Shows</a>
-                </li>
-                <li class="md:ml-6">
                     <a href="/actors" class="text-lg hover:text-gray-400">Actors</a>
                 </li>
             </ul>
