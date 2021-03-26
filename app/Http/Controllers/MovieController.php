@@ -32,7 +32,8 @@ class MovieController extends Controller
     public function getMovie($id)
     {
         $cast = Cast::where('movies_id', $id)->get();
-        $comments = Comment::where('movies_id', $id)->get();
+        $comments = Comment::where('movies_id', $id)->where('type', '1')->get();
+        $pendingComments = Comment::where('movies_id', $id)->where('type', '0')->get();
         $actor_list = null;
 
         foreach ($cast as $actor => $value)
@@ -60,6 +61,7 @@ class MovieController extends Controller
                 'actor_list' => $actor_list,
                 'can_edit' => $edit_privelages,
                 'comments' => $comments,
+                'pendingComments' => $pendingComments,
             ]
         );
     }
