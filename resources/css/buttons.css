@@ -1,0 +1,46 @@
+@layer utilities {
+    .btn-purpure {
+        @apply bg-imdb-purpure text-white font-bold rounded-2xl px-4 py-2 transition duration-500 ease-out select-none hover:bg-imdb-purpure-dark focus:outline-none focus:ring;
+    }
+
+    .btn-green {
+        @apply bg-imdb-green text-white font-bold rounded-2xl px-4 py-2 transition duration-500 ease-out select-none hover:bg-imdb-green-dark focus:outline-none focus:ring;
+    }
+
+    .btn-red {
+        @apply bg-imdb-red text-white font-bold rounded-2xl px-4 py-2 transition duration-500 ease-out select-none hover:bg-imdb-red-dark focus:outline-none focus:ring;
+    }
+
+    .btn-blue {
+        @apply bg-imdb-blue text-white font-bold rounded-2xl px-4 py-2 transition duration-500 ease-out select-none hover:bg-imdb-blue-dark focus:outline-none focus:ring;
+    }
+
+    .btn-gray {
+        @apply bg-imdb-gray text-white font-bold rounded-2xl px-4 py-2 transition duration-500 ease-out select-none hover:bg-imdb-gray-dark focus:outline-none focus:ring;
+    }
+
+    .btn-gradient {
+        @apply text-white font-bold rounded-2xl px-4 py-2 select-none focus:outline-none focus:ring;
+        border: 2px double transparent;
+        background-image: linear-gradient(
+                theme("colors.imdb.black"),
+                theme("colors.imdb.black")
+            ),
+            radial-gradient(
+                circle at top left,
+                theme("colors.imdb.purpure"),
+                theme("colors.imdb.blue")
+            );
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+    }
+
+    .btn-gradient:hover {
+        background-image: linear-gradient(black, black),
+            radial-gradient(
+                circle at top left,
+                theme("colors.imdb.purpure-dark"),
+                theme("colors.imdb.blue-dark")
+            );
+    }
+}

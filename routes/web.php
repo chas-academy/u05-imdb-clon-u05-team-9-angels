@@ -52,5 +52,4 @@ Route::delete('/movies/comment/delete/{id}', [CommentController::class, 'destroy
 //create movie
 Route::get('/dashboard/movie', [MovieController::class, 'createMoviePage'])->middleware(['auth'])->name('movie');
 
-
 require __DIR__ . '/auth.php';
