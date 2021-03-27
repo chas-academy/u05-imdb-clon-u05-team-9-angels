@@ -60,7 +60,14 @@ class MovieController extends Controller
         }
 
         //Can add to watchlist
-if($user->id == )
+        if (!$user) {
+            echo 'No user';
+        } else {
+            echo 'user' . $user;
+        }
+        // if ($user->id == $watchlists->user_id) {
+        //     echo $watchlists;
+        // }
 
         //If the user type is above signed in user (1) -> User has edit privelages.
         return view(

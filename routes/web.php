@@ -51,7 +51,7 @@ Route::delete('/movies/comment/delete/{id}', [CommentController::class, 'destroy
 
 //watchlist
 Route::get('/movies/add-to-watchlist/{id}', [WatchlistController::class, 'create'])->middleware(['auth']);
-Route::delete('/movies/remove-from-watchlist/{id}', [WatchlistController::class, 'destroy'])->middleware(['auth']);
+Route::get('/movies/remove-from-watchlist/{id}', [WatchlistController::class, 'destroy'])->middleware(['auth']); // possible to use DELETE method?
 
 
 //create movie
