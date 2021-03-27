@@ -19,10 +19,10 @@ class WatchlistController extends Controller
         return redirect()->back();
     }
 
-    // protected function destroy($commentId)
-    // {
-    //     $commentId = watchlist::where('id', $commentId)->first();
-    //     $commentId->delete();
-    //     return redirect()->back();
-    // }
+    protected function destroy($watchlistId)
+    {
+        $watchlistId = Watchlist::where('id', $watchlistId)->first();
+        $watchlistId->delete();
+        return redirect()->back();
+    }
 }
