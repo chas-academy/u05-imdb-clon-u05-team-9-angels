@@ -5,19 +5,13 @@
         {{-- <div class="hero-img bg-gray-400" style="height:510px"> --}}
         {{-- insert backdrop --}}
         {{-- </div> --}}
-        <main class="container mx-auto px-4 pt-16 bg-imdb-black text-white">
+        <main class="container mx-auto pt-2 px-4 bg-imdb-black text-white">
             {{-- movie holder --}}
             <div class="movie-wrapper flex flex-col sm:flex-row gap-x-4 gap-y-2">
-                {{-- <div class="movie-wrapper flex gap-y-2 flex-shrink-0 items-center md:items-start sm:w-52 md:w-72"> --}}
-                <img class="block rounded-lg w-3/4 sm:w-full" src="https://image.tmdb.org/t/p/w500/{{ $movies->poster }}"
-                    alt="Poster">
-                <div class="description-container">
-                    <h1 class="font-bold text-4xl">
-                        {{ $movies->title }}
-                    </h1>
-                    <h2 class="">
-                        {{ $movies->description }}
-                    </h2>
+                <div class="flex flex-col gap-y-2 flex-shrink-0 items-center md:items-start sm:w-52 md:w-72">
+                    <img class="block rounded-lg w-3/4 sm:w-full"
+                        src="https://image.tmdb.org/t/p/w500/{{ $movies->poster }}" alt="Poster">
+                    {{-- movie info --}}
                     <div class="flex pt-2 pb-2">
                         <p class="">{{ $movies->rating }}/10</p>
 
@@ -25,12 +19,11 @@
                             <g data-name="Layer 2">
                                 <path
                                     d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
                                     data-name="star"></path>
                             </g>
                         </svg>
-
                     </div>
                     <div class="pt-2 pb-2">
                         <a
@@ -42,18 +35,33 @@
                     <p><span class="font-bold">Released:</span> {{ $movies->year }}</p>
                     <p><span class="font-bold">Runtime:</span> {{ $movies->runtime }} min</p>
                     <p class="pb-2"><span class="font-bold">Genre:</span> {{ $movies->genre }}</p>
-                    <div class="cast-container bg-imdb-card pt-2 rounded-lg shadow-md w-full">
+                    <button
+                        class="modal-open mb-5 border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 mt-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Edit
+                        movie</button>
+                </div>
+                {{-- end movie info --}}
+
+                {{-- movie desc and cast --}}
+                <div class="description-container max-w-auto">
+                    <h1 class="font-bold text-4xl">
+                        {{ $movies->title }}
+                    </h1>
+                    <h2 class="">
+                        {{ $movies->description }}
+                    </h2>
+
+                    {{-- cast container --}}
+                    <div class="cast-container bg-imdb-card mt-2 pt-2 pb-1 pl-2 pr-2 rounded-lg shadow-md w-full">
                         <div class="cast-list">
-                            {{-- <h3 class="text-2xl font-semibold pb-2">Cast: </h3> --}}
-                            <h3 class="flex flex-col gap-y-8">Cast: </h3>
-                            <div class="grid grid-cols-6 grid-rows-1 gap-5 mb-5">
+                            <h3 class="semi-bold pb-2">Cast: </h3>
+                            <div class="grid grid-cols-2 grid-rows-1 gap-5 mb-5 sm:grid-cols-2 md:grid-cols-5">
                                 @if (isset($actor_list))
                                     @foreach ($actor_list as $actor_var)
                                         @foreach ($actor_var as $print)
                                             {{-- start cast card --}}
-                                            <div class="bg-gray-300 p-2 sm:rounded-lg">
+                                            <div class="bg-gray-300 p-2 rounded-lg">
                                                 <a href="{{ url('actors/' . $print->id) }}">
-                                                    <img class="sm:rounded-lg w-full"
+                                                    <img class="rounded-lg w-full"
                                                         src="https://m.media-amazon.com/images/M/MV5BMTU4NjY3NzgyM15BMl5BanBnXkFtZTcwODI4OTEzNA@@._V1_UY317_CR18,0,214,317_AL_.jpg"
                                                         alt="Poster">
                                                 </a>
@@ -64,7 +72,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{-- </div> --}}
                                         @endforeach
                                     @endforeach
                             </div>
@@ -74,51 +81,14 @@
                 @else
                     <h4>Cast not available</h4>
     @endif
-    </div>
-    </div>
-
-
-
-    {{-- end movie holder --}}
-
-    {{-- <div class="movie-wrapper flex flex-col sm:flex-row gap-x-4 gap-y-2">
-                <div class="flex flex-col gap-y-2 flex-shrink-0 items-center md:items-start sm:w-52 md:w-72">
-                    <div class="">
-                        <div> --}}
-
-
-    {{-- <div class="rating-container">
-                <a
-                    class="border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Add
-                    to list</a>
-                <p class="">{{ $movies->rating }}/10</p>
-                <svg class="fill-current text-yellow-500 w-4 mr-2" viewBox="0 0 24 24">
-                    <g data-name="Layer 2">
-                        <path
-                            d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
-                            data-name="star"></path>
-                    </g>
-                </svg>
-
-            </div>
-            <p><span class="font-bold">Director:</span> {{ $movies->director }}</p>
-            <p><span class="font-bold">Writer:</span> {{ $movies->writer }}</p>
-            <p><span class="font-bold">Released:</span> {{ $movies->year }}</p>
-            <p><span class="font-bold">Runtime:</span> {{ $movies->runtime }} min</p>
-            <p><span class="font-bold">Genre:</span> {{ $movies->genre }}</p>
-            </div>
-
-            </div> --}}
     {{-- Comment Section --}}
-    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-40">
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-20">
         <div>
-            <form class="w-full max-w-xl bg-white rounded-lg px-4 pt-2" method="POST"
+            <form class="text-white w-full max-w-xl bg-imdb-card rounded-lg px-4 pt-2 mt-5" method="POST"
                 action="/movies/comment/create/{{ $movies->id }}">
                 @csrf
                 <div class="flex flex-wrap -mx-3 mb-6">
-                    <h2 class="px-4 pt-3 pb-2 text-gray-800 text-lg">Add a new comment</h2>
+                    <h2 class=" px-4 pt-3 pb-2 text-white text-lg">Add a new comment</h2>
                     <div class="w-full md:w-full px-3 mb-2 mt-2">
                         @if (!$canComment)
                             <h4 class="mb-2">You have to be logged in to comment</h4>
@@ -144,20 +114,20 @@
             @foreach ($comments as $comment)
                 <div class="mb-4">
                     <div class="overflow-hidden shadow-md text-gray-100">
-                        <div class="px-6 py-4 bg-gray-800 border-b border-gray-600 font-bold uppercase">
-                            User Name
+                        <div class="px-6 py-4 bg-imdb-card border-b border-gray-600 font-bold uppercase rounded-t-lg">
+                            User Name MAKE DYNAMIC
                         </div>
-                        <div class="p-6 bg-gray-800 border-b border-gray-600">
+                        <div class="p-6 bg-imdb-card border-b border-gray-600">
                             Comment: {{ $comment->comment }}
                         </div>
-                        <div class="p-6 bg-gray-800 border-gray-200 flex items-center text-gray-400 text-sm">
+                        <div class="p-6 bg-imdb-card border-gray-200 flex items-center text-gray-400 text-sm rounded-b-lg">
                             <span> Rating: {{ $comment->star }}</span>
                             <svg class="fill-current text-yellow-500 w-4" viewBox="0 0 24 24">
                                 <g data-name="Layer 2">
                                     <path
                                         d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                                                                                                                                                                                                                                                                                                    1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                                                                                                                                                                                                                                                                                                    01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
                                         data-name="star"></path>
                                 </g>
                             </svg>
@@ -191,8 +161,8 @@
                                 <g data-name="Layer 2">
                                     <path
                                         d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                                                                                                                                                                                                                                                                                                    1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                                                                                                                                                                                                                                                                                                    01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
                                         data-name="star"></path>
                                 </g>
                             </svg>
@@ -218,18 +188,20 @@
         @endif
     </section>
     {{-- Comment Section ends --}}
-    {{-- start cast card --}}
+    </div>
+    </div>
+    {{-- end movie holder --}}
 
-
+    {{-- Edit movie section --}}
     @if ($can_edit)
-        <div class="form-container mx-14">
+        <div class="form-container mx-14 text-gray-700">
             <!-- EDIT MODAL -->
 
             <body class="bg-gray-200 flex items-center justify-center h-screen">
 
-                <button
+                {{-- <button
                     class="modal-open mb-5 border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 mt-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Edit
-                    movie</button>
+                    movie</button> --}}
 
                 <!--Modal-->
                 <div
