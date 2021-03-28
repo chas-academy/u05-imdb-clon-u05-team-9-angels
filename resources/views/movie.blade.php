@@ -16,8 +16,8 @@
                             <g data-name="Layer 2">
                                 <path
                                     d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
                                     data-name="star"></path>
                             </g>
                         </svg>
@@ -40,17 +40,17 @@
 
                 {{-- movie desc and cast --}}
                 <div class="description-container max-w-auto">
-                    <h1 class="font-bold text-4xl">
+                    <h1 class="font-bold text-6xl mb-2">
                         {{ $movies->title }}
                     </h1>
-                    <h2 class="">
+                    <h2 class="pb-2">
                         {{ $movies->description }}
                     </h2>
                     {{-- cast container --}}
-                    <div class="cast-container bg-imdb-card mt-2 pt-2 pb-1 pl-2 pr-2 rounded-lg shadow-md w-full">
+                    <div class="cast-container bg-imdb-card mb-0 mt-2 pt-2 pb-2 pl-2 pr-2 rounded-lg shadow-md w-full">
                         <div class="cast-list">
-                            <h3 class="semi-bold pb-2">Cast: </h3>
-                            <div class="grid grid-cols-2 grid-rows-1 gap-5 mb-5 sm:grid-cols-2 md:grid-cols-5">
+                            <h3 class="text-2xl semi-bold pb-2">Cast: </h3>
+                            <div class="grid grid-cols-2 grid-rows-1 gap-4 mb-2 sm:grid-cols-2 md:grid-cols-5">
                                 @if (isset($actor_list))
                                     @foreach ($actor_list as $actor_var)
                                         @foreach ($actor_var as $print)
@@ -83,8 +83,8 @@
             <form class="text-white w-full max-w-xl bg-imdb-card rounded-lg px-4 pt-2 mt-5" method="POST"
                 action="/movies/comment/create/{{ $movies->id }}">
                 @csrf
-                <div class="flex flex-wrap -mx-3 mb-6">
-                    <h2 class=" px-4 pt-3 pb-2 text-white text-lg">Add a new comment</h2>
+                <div class="flex flex-wrap -mx-3 mb-2">
+                    <h2 class="px-4 pt-3 pb-2 text-white text-lg">Add a new comment</h2>
                     <div class="w-full md:w-full px-3 mb-2 mt-2">
                         @if (!$canComment)
                             <h4 class="mb-2">You have to be logged in to comment</h4>
@@ -94,7 +94,7 @@
                             class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
                             type="number" placeholder="Rate 1-10" name="star" id="star" min="0" max="10" required>
                         <textarea {{ !$canComment ? 'disabled' : '' }}
-                            class="bg-gray-100 rounded border border-gray-400 mt-2 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+                            class=" text-gray-700 bg-gray-100 rounded border border-gray-400 mt-2 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
                             placeholder='Type Your Comment' type="text" name="comment" id="comment" required></textarea>
                     </div>
                     <div class="w-full md:w-full flex items-start px-3">
@@ -106,10 +106,12 @@
                     </div>
             </form>
         </div>
-        <div>
+        <div class="bg-imdb-card overflow-hidden shadow-md text-white rounded-lg">
+            <h2 class="overflow-hidden shadow-md text-white px-4 pt-3 pb-2 text-white text-lg">Comments</h2>
             @foreach ($comments as $comment)
                 <div class="mb-4">
                     <div class="overflow-hidden shadow-md text-gray-100">
+
                         <div class="px-6 py-4 bg-imdb-card border-b border-gray-600 font-bold uppercase rounded-t-lg">
                             User Name MAKE DYNAMIC
                         </div>
@@ -122,8 +124,8 @@
                                 <g data-name="Layer 2">
                                     <path
                                         d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
                                         data-name="star"></path>
                                 </g>
                             </svg>
@@ -143,22 +145,22 @@
         </div>
         @if ($can_edit)
             @foreach ($pendingComments as $pendingComment)
-                <div class="mb-4">
-                    <div class="overflow-hidden shadow-md text-gray-100">
-                        <div class="px-6 py-4 bg-gray-800 border-b border-gray-600 font-bold uppercase">
+                <div class="mb-4 p-6 bg-red-300 rounded-lg mt-2 mb-2">
+                    <div class="overflow-hidden shadow-md text-gray-700">
+                        <div class="px-6 py-4 border-b border-gray-400 font-bold uppercase">
                             User Name
                         </div>
-                        <div class="p-6 bg-gray-800 border-b border-gray-600">
+                        <div class="p-6 border-b border-gray-400">
                             Comment: {{ $pendingComment->comment }}
                         </div>
-                        <div class="p-6 bg-gray-800 border-gray-200 flex items-center text-gray-400 text-sm">
+                        <div class="border-gray-400 flex items-center text-gray-700 text-sm">
                             <span> Rating: {{ $pendingComment->star }}</span>
                             <svg class="fill-current text-yellow-500 w-4" viewBox="0 0 24 24">
                                 <g data-name="Layer 2">
                                     <path
                                         d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
                                         data-name="star"></path>
                                 </g>
                             </svg>
