@@ -2,7 +2,8 @@
 @section('title', $movies->title)
 @section('content')
 @if ($movies)
-<div class="hero-img bg-gray-400" style="height:510px">
+<div class="hero-img bg-gray-400" style="height:510px; flexbox">
+<img class="mb-3" src="https://image.tmdb.org/t/p/w1280/{{ $movies-> backdrop}}" alt="Poster" style="width: 100%; margin:0 auto;">>
 </div>
 <main class="container mx-auto px-4 pt-16">
 
