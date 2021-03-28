@@ -12,6 +12,11 @@ module.exports = {
                 sans: ["Poppins", ...defaultTheme.fontFamily.sans],
             },
             tableLayout: ["hover", "focus"],
+            minWidth: {
+                "1/4": "25%",
+                "1/2": "50%",
+                "3/4": "75%",
+            },
             colors: {
                 imdb: {
                     black: "#0f0e1b",
