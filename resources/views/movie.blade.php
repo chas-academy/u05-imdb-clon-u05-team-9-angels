@@ -18,7 +18,6 @@
                                 @if ($can_edit)
 
                                     @if ($userHasWatchlist)
-                                
                                         <button><a href="{{ url('/movies/remove-from-watchlist/' . $watchlistId) }}"
                                                 class="border btn border-indigo-500 bg-red-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline">X</a>
                                         </button>
@@ -29,9 +28,8 @@
                                                 Add to list
                                             </a>
                                         </button>
-
                                     @endif
-                                @else
+                                        
 
                                 @endif
 

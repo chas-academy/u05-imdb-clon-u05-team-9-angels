@@ -34,22 +34,23 @@ class MovieController extends Controller
     {
         $cast = Cast::where('movies_id', $id)->get();
         $comments = Comment::where('movies_id', $id)->get();
-        $watchlists = Watchlist::where('movies_id', $id)->get()->first();
+        $watchlists = Watchlist::where('movies_id', $id)->get();
+        // $watchlists = Watchlist::where('movies_id', $id)->get();
         // dd($watchlists);
         // add true false for watchlist button
 
         $actor_list = null;
-        // dd($watchlists);
 
         foreach ($cast as $actor => $value)
             $actor_list[] = Actor::where('id', $value->actors_id)->get();
         $movies = Movie::where('id', $id)->first();
 
+
         $canComment = 0;
+        $user = auth()->user();
         $canWatchlist = 0;
         $userHasWatchlist = false;
-        $user = auth()->user();
-
+        $watchlistId = 0;
 
         //Get the user type
         $userType = -1;
@@ -62,24 +63,75 @@ class MovieController extends Controller
         }
 
         //Can add to watchlist
+
         if (!$user) {
-            echo 'No user';
+            echo 'No user<br>';
         } else {
-            echo 'user' . $user;
-            if ($user->id == $watchlists->user_id) {
-                $watchlistId = $watchlists->id;
-                $userHasWatchlist = true;
-                // return view(
-                //     'movie',
-                //     [
-                //         'watchlistId' => $watchlistsId,
-                //         'userHasWatchlist' => $userHasWatchlist,
-                //     ]
-                // );
-            } else {
-                $watchlistId = null;
+
+            if ($user->id) {
+                foreach($watchlists as $key => $watchlist) {
+                    echo 'LOOP ' . $key . ':<hr>';
+                    // dd($watchlists[$key]);
+                    $watchlistId = $watchlists[$key]->id;
+                    echo 'watchlistId: '.$watchlist->id.'<hr>';
+                    echo 'watchlistId: '.$watchlistId.'<hr>';
+
+                    echo 'userId: ' . $watchlist-> user_id . '<hr>';
+                }
             }
+            // echo 'user' . $user;
+
+            // foreach ($watchlists as $key => $value) {
+            //     echo '79: '.$value->user_id . '<hr>';
+            //     echo '80: ' . $user->id     . '<hr>';
+            //     echo $key.' is key<hr>';
+
+            //     if ($user->id == $value->user_id) {
+            //         echo '84 value->user_id: '.$value->user_id. '<hr>';
+            //         echo '85 user->id: '.$user->id. '<hr>';
+            //         $watchlistId = $value->id;
+            //         echo '86 watchlistId: '.$watchlistId. '<hr>';
+            //         $userHasWatchlist = true;
+            //         echo 'isTrue: ' . $userHasWatchlist     . '<hr>';
+            //         // return $userHasWatchlist.'asda'. $watchlistId;
+            //         return view(
+            //             'movie',
+            //             [
+            //                 'canComment' => $canComment,
+            //                 'movies' => $movies,
+            //                 'actor_list' => $actor_list,
+            //                 'can_edit' => $edit_privelages,
+            //                 'comments' => $comments,
+            //                 'canWatchlist' => $canWatchlist,
+            //                 'watchlists' => $watchlists,
+            //                 'watchlistId' => $value->id,
+            //                 'userHasWatchlist' => $userHasWatchlist,
+            //             ]
+            //         );
+            //     } else {
+            //         $userHasWatchlist = false;
+            //         // if (!$userHasWatchlist) {
+            //         //     echo 'No watchlist for user ' . $value->user_id. '<hr>';
+            //         // }
+            //         return view(
+            //             'movie',
+            //             [
+            //                 'canComment' => $canComment,
+            //                 'movies' => $movies,
+            //                 'actor_list' => $actor_list,
+            //                 'can_edit' => $edit_privelages,
+            //                 'comments' => $comments,
+            //                 'canWatchlist' => $canWatchlist,
+            //                 'watchlists' => $watchlists,
+            //                 'watchlistId' => $value->id,
+            //                 'userHasWatchlist' => false,
+            //             ]
+            //         );
+            //     }
+            //     echo '<hr>ENDFOREACH<hr>';
+            // }
         }
+
 
         //If the user type is above signed in user (1) -> User has edit privelages.
         return view(
@@ -94,7 +146,6 @@ class MovieController extends Controller
                 'watchlists' => $watchlists,
                 'watchlistId' => $watchlistId,
                 'userHasWatchlist' => $userHasWatchlist,
-
             ]
         );
     }
