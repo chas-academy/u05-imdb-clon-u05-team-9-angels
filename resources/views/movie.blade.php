@@ -171,7 +171,7 @@
                         <div class="bg-gray-300 p-2 sm:rounded-lg" style="max-width:250px">
                             <a href="{{ url('actors/' . $print->id) }}">
                                 <img class="sm:rounded-lg w-full"
-                                    src="https://m.media-amazon.com/images/M/MV5BMTU4NjY3NzgyM15BMl5BanBnXkFtZTcwODI4OTEzNA@@._V1_UY317_CR18,0,214,317_AL_.jpg"
+                                    src="https://image.tmdb.org/t/p/w500/{{ $print->poster }}"
                                     alt="Poster">
                             </a>
                             <div class="mt-2">
