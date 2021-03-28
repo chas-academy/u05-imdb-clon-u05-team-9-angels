@@ -14,7 +14,7 @@ class WatchlistController extends Controller
         Watchlist::create([
             'user_id' => auth()->user()->id,
             'movies_id' => $movieId,
-            
+
         ]);
         return redirect()->back();
     }
