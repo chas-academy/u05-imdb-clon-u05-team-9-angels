@@ -5,6 +5,7 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ActorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +33,7 @@ Route::get('/', function () {
 
 //Auth stuff
 //profile
-Route::get('/dashboard', function () {
-    return view('dashboard.dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [UserController::class, 'getUser'])->middleware(['auth'])->name('dashboard');
 
 //SuperUser stuff
 // handle users
