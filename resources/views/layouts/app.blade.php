@@ -21,7 +21,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
-<body class="font-sans antialiased bg-gray-200">
+<body class="font-sans antialiased">
     <nav class="border-b border-gray-200">
         <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-3">
             <ul class="flex flex-col md:flex-row items-center">
@@ -128,7 +128,7 @@
         </div>
     </nav>
 
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-imdb-black">
         <!-- Page Content -->
         <main>
             @yield('content')
