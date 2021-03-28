@@ -21,8 +21,8 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
-<body class="font-sans antialiased">
-    <nav class="border-b border-gray-200">
+<body class="font-sans antialiased bg-imdb-black text-white">
+    <nav class="border-b border-imdb-gray-dark">
         <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-3">
             <ul class="flex flex-col md:flex-row items-center">
                 <li>
@@ -105,8 +105,10 @@
                     </x-dropdown>
 
                 @else
-                    <li class="list-none"><a href="{{ route('login') }}" class="text-lg hover:text-gray-400">Sign
-                            in</a>
+                    <li class="list-none whitespace-nowrap"><a href="{{ route('login') }}"
+                            class="text-lg hover:text-gray-400">
+                            Sign in
+                        </a>
                     </li>
                     <li class="mr-6 list-none"><a href="{{ route('register') }}"
                             class="ml-4 text-lg hover:text-gray-400">Register</a>
