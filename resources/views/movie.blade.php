@@ -2,9 +2,6 @@
 @section('title', $movies->title)
 @section('content')
     @if ($movies)
-        {{-- <div class="hero-img bg-gray-400" style="height:510px"> --}}
-        {{-- insert backdrop --}}
-        {{-- </div> --}}
         <main class="container mx-auto pt-2 px-4 bg-imdb-black text-white">
             {{-- movie holder --}}
             <div class="movie-wrapper flex flex-col sm:flex-row gap-x-4 gap-y-2">
@@ -19,8 +16,8 @@
                             <g data-name="Layer 2">
                                 <path
                                     d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
                                     data-name="star"></path>
                             </g>
                         </svg>
@@ -49,7 +46,6 @@
                     <h2 class="">
                         {{ $movies->description }}
                     </h2>
-
                     {{-- cast container --}}
                     <div class="cast-container bg-imdb-card mt-2 pt-2 pb-1 pl-2 pr-2 rounded-lg shadow-md w-full">
                         <div class="cast-list">
@@ -101,7 +97,7 @@
                             class="bg-gray-100 rounded border border-gray-400 mt-2 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
                             placeholder='Type Your Comment' type="text" name="comment" id="comment" required></textarea>
                     </div>
-                    <div class="w-full md:w-full flex items-start md:w-full px-3">
+                    <div class="w-full md:w-full flex items-start px-3">
                         <div class="-mr-1">
                             <input type='submit' {{ !$canComment ? 'disabled' : '' }}
                                 class="bg-white text-gray-700 mb-4 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100"
@@ -126,8 +122,8 @@
                                 <g data-name="Layer 2">
                                     <path
                                         d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
                                         data-name="star"></path>
                                 </g>
                             </svg>
@@ -161,8 +157,8 @@
                                 <g data-name="Layer 2">
                                     <path
                                         d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
                                         data-name="star"></path>
                                 </g>
                             </svg>
@@ -198,11 +194,6 @@
             <!-- EDIT MODAL -->
 
             <body class="bg-gray-200 flex items-center justify-center h-screen">
-
-                {{-- <button
-                    class="modal-open mb-5 border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 mt-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Edit
-                    movie</button> --}}
-
                 <!--Modal-->
                 <div
                     class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
@@ -221,7 +212,6 @@
                             </svg>
                             <span class="text-sm">(Esc)</span>
                         </div>
-
                         <div class="modal-content py-4 text-left px-6">
                             <!--Title-->
                             <div class="flex justify-between items-center pb-3">
@@ -235,7 +225,6 @@
                                     </svg>
                                 </div>
                             </div>
-
                             <!--Body-->
                             <form method="POST" action="/movies/edit/{{ $movies->id }}">
                                 @csrf
@@ -298,14 +287,12 @@
                     </div>
                 </div>
                 <script src="{{ asset('js/modal.js') }}"></script>
-
                 {{-- END OF EDIT-MODAL --}}
         </div>
     @endif
 @else
     <p>Movie does not exist</p>
     <a href="/">Back to start</a>
-    {{-- end of cast container --}}
     @endif
     </div>
     </div>
