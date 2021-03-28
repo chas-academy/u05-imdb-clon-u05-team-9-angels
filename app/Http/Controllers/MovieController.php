@@ -7,6 +7,7 @@ use App\Models\Movie;
 use App\Models\Cast;
 use App\Models\Actor;
 use App\Models\Comment;
+use App\Models\Watchlist;
 use App\Http\Controllers\CastController;
 use Illuminate\Support\Facades\DB;
 
@@ -31,9 +32,27 @@ class MovieController extends Controller
 
     public function getMovie($id)
     {
+        $user = auth()->user();
         $cast = Cast::where('movies_id', $id)->get();
+        $comments = null;
+        $watchlist = null;
+        $watchlistId = null;
+
+        if ($user) {
+            $watchlist = Watchlist::where('movies_id', $id)->where('user_id', $user->id)->get();
+            // dd($watchlist);
+            if (count($watchlist) === 0) {
+                $watchlist = false;
+            } else {
+                // dd($watchlist);
+                $watchlistId = $watchlist[0]->id;
+                // dd($watchlistId);
+            }
+        }
+
         $comments = Comment::where('movies_id', $id)->where('type', '1')->get();
         $pendingComments = Comment::where('movies_id', $id)->where('type', '0')->get();
+
         $actor_list = null;
        
 
@@ -44,7 +63,6 @@ class MovieController extends Controller
         //print_r(count($actor_list));
         $movies = Movie::where('id', $id)->first();
         $canComment = 0;
-        $user = auth()->user();
 
       
 
@@ -55,9 +73,8 @@ class MovieController extends Controller
             $userType = $user->type;
             $edit_privelages = intval($userType) > 1 ? true : false;
             $canComment = intval($userType) >= 0 ? true : false;
+            $canWatchlist = intval($userType) >= 0 ? true : false;
         }
-
-    
 
         //If the user type is above signed in user (1) -> User has edit privelages.
         return view(
@@ -68,8 +85,12 @@ class MovieController extends Controller
                 'actor_list' => $actor_list,
                 'can_edit' => $edit_privelages,
                 'comments' => $comments,
+                'canWatchlist' => $canWatchlist,
+                'watchlist' => $watchlist,
+                'watchlistId' => $watchlistId
                 'pendingComments' => $pendingComments,
                 'cast' => $cast
+
             ]
         );
     }
