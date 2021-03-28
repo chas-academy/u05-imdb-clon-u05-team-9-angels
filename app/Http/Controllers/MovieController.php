@@ -35,13 +35,18 @@ class MovieController extends Controller
         $comments = Comment::where('movies_id', $id)->where('type', '1')->get();
         $pendingComments = Comment::where('movies_id', $id)->where('type', '0')->get();
         $actor_list = null;
+       
 
         foreach ($cast as $actor => $value)
-            $actor_list[] = Actor::where('id', $value->actors_id)->get();
+        $actor_list[] = Actor::where('id', $value->actors_id)->get();
+        
+        
+        //print_r(count($actor_list));
         $movies = Movie::where('id', $id)->first();
-
         $canComment = 0;
         $user = auth()->user();
+
+      
 
         //Get the user type
         $userType = -1;
@@ -51,6 +56,8 @@ class MovieController extends Controller
             $edit_privelages = intval($userType) > 1 ? true : false;
             $canComment = intval($userType) >= 0 ? true : false;
         }
+
+    
 
         //If the user type is above signed in user (1) -> User has edit privelages.
         return view(
@@ -62,6 +69,7 @@ class MovieController extends Controller
                 'can_edit' => $edit_privelages,
                 'comments' => $comments,
                 'pendingComments' => $pendingComments,
+                'cast' => $cast
             ]
         );
     }

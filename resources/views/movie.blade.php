@@ -2,7 +2,8 @@
 @section('title', $movies->title)
 @section('content')
 @if ($movies)
-<div class="hero-img bg-gray-400" style="height:510px">
+<div class="hero-img bg-gray-400" style="height:510px; flexbox">
+<img class="mb-3" src="https://image.tmdb.org/t/p/w1280/{{ $movies-> backdrop}}" alt="Poster" style="width: 100%; margin:0 auto;">>
 </div>
 <main class="container mx-auto px-4 pt-16">
 
@@ -163,25 +164,40 @@
                     <h3 class="text-2xl  font-bold mb-5">Cast: </h3>
                     <div class="grid grid-cols-6 grid-rows-1 gap-5 mb-5">
                         @if (isset($actor_list))
+
+                        
                         @foreach ($actor_list as $actor_var)
                         @foreach ($actor_var as $print)
                         {{-- start cast card --}}
                         <div class="bg-gray-300 p-2 sm:rounded-lg" style="max-width:250px">
                             <a href="{{ url('actors/' . $print->id) }}">
                                 <img class="sm:rounded-lg w-full"
-                                    src="https://m.media-amazon.com/images/M/MV5BMTU4NjY3NzgyM15BMl5BanBnXkFtZTcwODI4OTEzNA@@._V1_UY317_CR18,0,214,317_AL_.jpg"
+                                    src="https://image.tmdb.org/t/p/w500/{{ $print->poster }}"
                                     alt="Poster">
                             </a>
                             <div class="mt-2">
                                 <a href="#" class="text-lg mt-2 text-black">{{ $print->name }}</a>
+                                
+
+                               @foreach ($cast as $character)
+                               @if ($character->actors_id == $print->id)
                                 <div class="text-gray-800">
-                                    <p>Character name</p>
+                                    <p>{{ $character->character   }} </p>
                                 </div>
+                                @endif
+
+
+                                @endforeach
+                            
+            
+                               
+                                
                             </div>
                         </div>
                         {{-- </div> --}}
                         @endforeach
                         @endforeach
+                       
                     </div>
                 </div>
             </div>
