@@ -1,10 +1,12 @@
 @extends('layouts.app')
 @section('title', $movies->title)
 @section('content')
-    @if ($movies)
-        <div class="hero-img bg-gray-400" style="height:510px">
-        </div>
-        <main class="container mx-auto px-4 pt-16">
+
+@if ($movies)
+<div class="hero-img bg-gray-400" style="height:510px; flexbox">
+<img class="mb-3" src="https://image.tmdb.org/t/p/w1280/{{ $movies-> backdrop}}" alt="Poster" style="width: 100%; margin:0 auto;">>
+</div>
+<main class="container mx-auto px-4 pt-16">
 
             {{-- start movie card --}}
             {{-- <div class="grid grid-cols-3 gap-8 bg-red-200"> --}}
@@ -64,102 +66,90 @@
                         </div>
                         {{-- end desc card --}}
                     </div>
-                    {{-- Comment Section --}}
-                    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-40">
-                        <div>
-                            <form class="w-full max-w-xl bg-white rounded-lg px-4 pt-2" method="POST"
-                                action="/movies/comment/create/{{ $movies->id }}">
+                    @endforeach
+                </div>
+                @if ($can_edit)
+                @foreach ($pendingComments as $pendingComment)
+                <div class="mb-4">
+                    <div class="overflow-hidden shadow-md text-gray-100">
+                        <div class="px-6 py-4 bg-gray-800 border-b border-gray-600 font-bold uppercase">
+                            User Name
+                        </div>
+                        <div class="p-6 bg-gray-800 border-b border-gray-600">
+                            Comment: {{ $pendingComment->comment }}
+                        </div>
+                        <div class="p-6 bg-gray-800 border-gray-200 flex items-center text-gray-400 text-sm">
+                            <span> Rating: {{ $pendingComment->star }}</span>
+                            <svg class="fill-current text-yellow-500 w-4" viewBox="0 0 24 24">
+                                <g data-name="Layer 2">
+                                    <path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
+                                1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
+                                01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                        data-name="star"></path>
+                                </g>
+                            </svg>
+                            @if($can_edit)
+                            <form method="POST" action="/movies/comment/delete/{{$pendingComment->id}}">
+                                @method('DELETE')
                                 @csrf
-                                <div class="flex flex-wrap -mx-3 mb-6">
-                                    <h2 class="px-4 pt-3 pb-2 text-gray-800 text-lg">Add a new comment</h2>
-                                    <div class="w-full md:w-full px-3 mb-2 mt-2">
-                                        @if (!$canComment)
-                                            <h4 class="mb-2">You have to be logged in to comment</h4>
-                                        @endif
-                                        <label for="star">Rate the movie</label>
-                                        <input {{ !$canComment ? 'disabled' : '' }}
-                                            class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-                                            type="number" placeholder="Rate 1-10" name="star" id="star" min="0" max="10"
-                                            required>
-                                        <textarea {{ !$canComment ? 'disabled' : '' }}
-                                            class="bg-gray-100 rounded border border-gray-400 mt-2 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-                                            placeholder='Type Your Comment' type="text" name="comment" id="comment"
-                                            required></textarea>
-                                    </div>
-                                    <div class="w-full md:w-full flex items-start md:w-full px-3">
-                                        <div class="-mr-1">
-                                            <input type='submit' {{ !$canComment ? 'disabled' : '' }}
-                                                class="bg-white text-gray-700 mb-4 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100"
-                                                value='Post Comment'>
-                                        </div>
-                                    </div>
+                                <button type="submit"
+                                    class=" bg-red-500 ml-4 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded cursor-pointer">Delete
+                                    Comment</button>
                             </form>
+                            <form method="POST" action="/movies/comment/update/{{$pendingComment->id}}">
+                                @csrf
+                                <button type="submit"
+                                    class=" bg-green-500 ml-4 hover:bg-green-700 text-white font-bold py-2 px-4 border border-red-700 rounded cursor-pointer">Approve
+                                    Comment</button>
+                            </form>
+                            @endif
                         </div>
-                        <div>
-                            @foreach ($comments as $comment)
-                                <div class="mb-4">
-                                    <div class="overflow-hidden shadow-md text-gray-100">
-                                        <div class="px-6 py-4 bg-gray-800 border-b border-gray-600 font-bold uppercase">
-                                            User Name
-                                        </div>
-                                        <div class="p-6 bg-gray-800 border-b border-gray-600">
-                                            Comment: {{ $comment->comment }}
-                                        </div>
-                                        <div
-                                            class="p-6 bg-gray-800 border-gray-200 flex items-center text-gray-400 text-sm">
-                                            <span> Rating: {{ $comment->star }}</span>
-                                            <svg class="fill-current text-yellow-500 w-4" viewBox="0 0 24 24">
-                                                <g data-name="Layer 2">
-                                                    <path
-                                                        d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
-                                                        data-name="star"></path>
-                                                </g>
-                                            </svg>
-                                            @if ($can_edit)
-                                                <form method="POST" action="/movies/comment/delete/{{ $comment->id }}">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button type="submit"
-                                                        class=" bg-red-500 ml-4 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded cursor-pointer">Delete
-                                                        Comment</button>
-                                                </form>
-                                            @endif
-                                        </div>
-                                    </div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
+            </section>
+            {{-- Comment Section ends --}}
+            {{-- start cast card --}}
+            <div class="cast-container mx-14">
+                <div class="cast-list">
+                    <h3 class="text-2xl  font-bold mb-5">Cast: </h3>
+                    <div class="grid grid-cols-6 grid-rows-1 gap-5 mb-5">
+                        @if (isset($actor_list))
+
+                        
+                        @foreach ($actor_list as $actor_var)
+                        @foreach ($actor_var as $print)
+                        {{-- start cast card --}}
+                        <div class="bg-gray-300 p-2 sm:rounded-lg" style="max-width:250px">
+                            <a href="{{ url('actors/' . $print->id) }}">
+                                <img class="sm:rounded-lg w-full"
+                                    src="https://image.tmdb.org/t/p/w500/{{ $print->poster }}"
+                                    alt="Poster">
+                            </a>
+                            <div class="mt-2">
+                                <a href="#" class="text-lg mt-2 text-black">{{ $print->name }}</a>
+                                
+
+                               @foreach ($cast as $character)
+                               @if ($character->actors_id == $print->id)
+                                <div class="text-gray-800">
+                                    <p>{{ $character->character   }} </p>
                                 </div>
-                            @endforeach
-                        </div>
-                    </section>
-                    {{-- Comment Section ends --}}
-                    {{-- start cast card --}}
-                    <div class="cast-container mx-14">
-                        <div class="cast-list">
-                            <h3 class="text-2xl  font-bold mb-5">Cast: </h3>
-                            <div class="grid grid-cols-6 grid-rows-1 gap-5 mb-5">
-                                @if (isset($actor_list))
-                                    @foreach ($actor_list as $actor_var)
-                                        @foreach ($actor_var as $print)
-                                            {{-- start cast card --}}
-                                            <div class="bg-gray-300 p-2 sm:rounded-lg" style="max-width:250px">
-                                                <a href="{{ url('actors/' . $print->id) }}">
-                                                    <img class="sm:rounded-lg w-full"
-                                                        src="https://m.media-amazon.com/images/M/MV5BMTU4NjY3NzgyM15BMl5BanBnXkFtZTcwODI4OTEzNA@@._V1_UY317_CR18,0,214,317_AL_.jpg"
-                                                        alt="Poster">
-                                                </a>
-                                                <div class="mt-2">
-                                                    <a href="#" class="text-lg mt-2 text-black">{{ $print->name }}</a>
-                                                    <div class="text-gray-800">
-                                                        <p>Character name</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {{-- </div> --}}
-                                        @endforeach
-                                    @endforeach
+                                @endif
+
+
+                                @endforeach
+                            
+            
+                               
+                                
                             </div>
                         </div>
+                        {{-- </div> --}}
+                        @endforeach
+                        @endforeach
+                       
                     </div>
                     {{-- end movie card --}}
                 @else

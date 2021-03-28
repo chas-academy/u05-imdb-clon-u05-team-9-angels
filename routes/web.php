@@ -6,6 +6,8 @@ use App\Http\Controllers\ActorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\WatchlistController;
+use App\Models\User;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +35,7 @@ Route::get('/', function () {
 
 //Auth stuff
 //profile
-Route::get('/dashboard', function () {
-    return view('dashboard.dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [UserController::class, 'getUser'])->middleware(['auth'])->name('dashboard');
 
 //SuperUser stuff
 // handle users
@@ -47,6 +47,7 @@ Route::post('/dashboard/users/edit/create', [UserController::class, 'create'])->
 
 //comments
 Route::post('/movies/comment/create/{id}', [CommentController::class, 'create'])->middleware(['auth']);
+Route::post('/movies/comment/update/{id}', [CommentController::class, 'update'])->middleware(['auth']);
 Route::delete('/movies/comment/delete/{id}', [CommentController::class, 'destroy'])->middleware(['auth']);
 
 //watchlist
@@ -57,6 +58,5 @@ Route::get('/movies/remove-from-watchlist/{id}', [WatchlistController::class, 'd
 //create movie
 Route::get('/dashboard/movie', [MovieController::class, 'createMoviePage'])->middleware(['auth'])->name('movie');
 Route::post('/dashboard/movies/create', [MovieController::class, 'create'])->middleware(['auth']);
-
 
 require __DIR__ . '/auth.php';

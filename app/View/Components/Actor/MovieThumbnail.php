@@ -9,17 +9,19 @@ class MovieThumbnail extends Component
     public $imageUrl;
     public $title;
     public $year;
+    public $id;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($imageUrl, $title, $year)
+    public function __construct($imageUrl, $title, $year, $id)
     {
         $this->imageUrl = $imageUrl;
         $this->title = $title;
         $this->year = $year;
+        $this->id = $id;
     }
 
     /**

@@ -9,7 +9,7 @@
     <title>@yield('title', 'Page Title') - {{ config('app.name', 'IMDb') }}</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -21,7 +21,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
-<body class="font-sans antialiased bg-gray-200">
+<body class="font-sans antialiased">
     <nav class="border-b border-gray-200">
         <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-3">
             <ul class="flex flex-col md:flex-row items-center">
@@ -47,73 +47,70 @@
                     <a href="/movies/all" class="text-lg hover:text-gray-400">Movies</a>
                 </li>
                 <li class="md:ml-6">
-                    <a href="#" class="text-lg hover:text-gray-400">TV Shows</a>
-                </li>
-                <li class="md:ml-6">
                     <a href="/actors" class="text-lg hover:text-gray-400">Actors</a>
                 </li>
             </ul>
             <div class="flex flex-col items-center md:flex-row">
                 @if (Auth::check())
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <li class="md:mr-6 list-none">
-                            <button
-                                class="flex items-center hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <li class="md:mr-6 list-none">
+                                <button
+                                    class="flex items-center hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
 
-                                <div class="text-lg hover:text-gray-400">{{ Auth::user()->name }}</div>
+                                    <div class="text-lg hover:text-gray-400">{{ Auth::user()->name }}</div>
 
-                                <div class="ml-1">
-                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                            </button>
-                        </li>
-                    </x-slot>
+                                    <div class="ml-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </li>
+                        </x-slot>
 
-                    <x-slot name="content">
-                        <!-- Authentication -->
-                        <form method="GET" action="{{ route('dashboard') }}">
-                            <x-dropdown-link :href="route('dashboard')" onclick="event.preventDefault();
+                        <x-slot name="content">
+                            <!-- Authentication -->
+                            <form method="GET" action="{{ route('dashboard') }}">
+                                <x-dropdown-link :href="route('dashboard')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Profile') }}
-                            </x-dropdown-link>
-                        </form>
-                        @if(auth()->user()->type == 2)
-                        <form method="GET" action="{{ route('users') }}">
-                            <x-dropdown-link :href="route('users')" onclick="event.preventDefault();
+                                    {{ __('Profile') }}
+                                </x-dropdown-link>
+                            </form>
+                            @if (auth()->user()->type == 2)
+                                <form method="GET" action="{{ route('users') }}">
+                                    <x-dropdown-link :href="route('users')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Users') }}
-                            </x-dropdown-link>
-                        </form>
-                        <form method="GET" action="{{ route('movie') }}">
-                            <x-dropdown-link :href="route('movie')" onclick="event.preventDefault();
+                                        {{ __('Users') }}
+                                    </x-dropdown-link>
+                                </form>
+                                <form method="GET" action="{{ route('movie') }}">
+                                    <x-dropdown-link :href="route('movie')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Add new movie') }}
-                            </x-dropdown-link>
-                        </form>
-                        @endif
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+                                        {{ __('Add new movie') }}
+                                    </x-dropdown-link>
+                                </form>
+                            @endif
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Logout') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
+                                    {{ __('Logout') }}
+                                </x-dropdown-link>
+                            </form>
+                        </x-slot>
+                    </x-dropdown>
 
                 @else
-                <li class="list-none"><a href="{{ route('login') }}" class="text-lg hover:text-gray-400">Sign
-                        in</a>
-                </li>
-                <li class="mr-6 list-none"><a href="{{ route('register') }}"
-                        class="ml-4 text-lg hover:text-gray-400">Register</a>
-                </li>
+                    <li class="list-none"><a href="{{ route('login') }}" class="text-lg hover:text-gray-400">Sign
+                            in</a>
+                    </li>
+                    <li class="mr-6 list-none"><a href="{{ route('register') }}"
+                            class="ml-4 text-lg hover:text-gray-400">Register</a>
+                    </li>
                 @endif
 
                 <div class="relative mt-3 md:mt-0">
@@ -131,12 +128,16 @@
         </div>
     </nav>
 
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-imdb-black">
         <!-- Page Content -->
         <main>
             @yield('content')
         </main>
     </div>
+
+    <footer class="bg-imdb-black text-white">
+        <x-footer></x-footer>
+    </footer>
 
     @yield('script')
 </body>
