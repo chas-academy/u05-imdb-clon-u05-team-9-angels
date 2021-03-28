@@ -2,7 +2,7 @@
 @section('title', 'Movies')
 
 @section('content')
-<div class="container mx-auto px-4 pt-16">
+<div class="container mx-auto text-white px-4 pt-16">
     <h2 class="tracking-wider text-2xl font-semibold">Movie page</h2>
     {{-- Movie section --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-5">
