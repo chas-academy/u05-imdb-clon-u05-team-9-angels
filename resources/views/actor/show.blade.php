@@ -28,10 +28,10 @@
                 <x-actor.sidebar />
             </div>
             <div class="flex flex-col overflow-x-auto gap-y-4 w-full">
-                <div class="flex flex-col">
+                <div class="flex flex-col bg-imdb-card py-2 px-4 rounded-lg">
                     <h1 class="font-bold text-4xl">{{ $actor->name }}</h1>
-                    <div>
-                        <h3 class="font-bold">Biography</h3>
+                    <div class="mt-4">
+                        <h3 class="font-bold text-xl">Biography</h3>
                         <div>
                             <p>{{ $actor->description ?: 'No description available.' }}</p>
                         </div>

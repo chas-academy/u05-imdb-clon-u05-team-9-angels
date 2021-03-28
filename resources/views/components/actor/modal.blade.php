@@ -37,7 +37,7 @@
                 </div>
 
                 <!--Body-->
-                <form method="POST" action="/actors/{{ $id }}">
+                <form method="POST" action="{{ url('actors/' . $id) }}">
                     @method('PUT')
                     @csrf
 
@@ -46,7 +46,7 @@
                         required><br />
 
                     <label for="description">Description:</label><br />
-                    <textarea class="bg-imdb-card" id="description" name="description" cols="30" rows="5"
+                    <textarea class="bg-imdb-card" id="description" name="description" cols="20" rows="5"
                         required>{{ old('description') ?? $description }}</textarea>
 
                     <div class="flex gap-x-3 justify-end pt-2">
