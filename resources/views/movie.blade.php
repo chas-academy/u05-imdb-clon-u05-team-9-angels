@@ -163,6 +163,8 @@
                     <h3 class="text-2xl  font-bold mb-5">Cast: </h3>
                     <div class="grid grid-cols-6 grid-rows-1 gap-5 mb-5">
                         @if (isset($actor_list))
+
+                        
                         @foreach ($actor_list as $actor_var)
                         @foreach ($actor_var as $print)
                         {{-- start cast card --}}
@@ -174,14 +176,27 @@
                             </a>
                             <div class="mt-2">
                                 <a href="#" class="text-lg mt-2 text-black">{{ $print->name }}</a>
+                                
+
+                               @foreach ($cast as $character)
+                               @if ($character->actors_id == $print->id)
                                 <div class="text-gray-800">
-                                    <p>Character name</p>
+                                    <p>{{ $character->character   }} </p>
                                 </div>
+                                @endif
+
+
+                                @endforeach
+                            
+            
+                               
+                                
                             </div>
                         </div>
                         {{-- </div> --}}
                         @endforeach
                         @endforeach
+                       
                     </div>
                 </div>
             </div>
