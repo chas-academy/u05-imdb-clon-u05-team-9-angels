@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Movie;
+use App\Models\Watchlist;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -12,6 +14,14 @@ class UserController extends Controller
     protected function getUser()
     {
         $movies = Movie::inRandomOrder()->limit(5)->get();
+        // $userWatchlist = Watchlist::where('user_id', auth()->user()->id)->get();
+        // // dd($userWatchlist[0]);
+        // $watchlistMovies = [];
+        // foreach($userWatchlist[0] as $key => $movie) {
+        //     dd($movie);
+        //     $theMovie = Movie::where('id', $movie->id)->get();
+        //     // $watchlistMovies[] = 
+        // }
         return view('dashboard.dashboard', ['movies' => $movies]);
     }
 

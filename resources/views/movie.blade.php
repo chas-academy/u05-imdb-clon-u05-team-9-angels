@@ -3,17 +3,17 @@
 @section('content')
 
 @if ($movies)
-<div class="hero-img bg-gray-400" style="height:510px; flexbox">
-<img class="mb-3" src="https://image.tmdb.org/t/p/w1280/{{ $movies-> backdrop}}" alt="Poster" style="width: 100%; margin:0 auto;">>
-</div>
-<main class="container mx-auto px-4 pt-16">
+{{-- <div class="hero-img bg-gray-400" style="height:300px; flexbox"> --}}
+{{-- <img class="mb-3 opacity-0" src="https://image.tmdb.org/t/p/w1280/{{ $movies-> backdrop}}" alt="Poster" style="width: 100%; margin:0 auto;"/> --}}
+{{-- </div> --}}
+<main class="container mx-auto px-4 pt-16 text-white">
 
             {{-- start movie card --}}
             {{-- <div class="grid grid-cols-3 gap-8 bg-red-200"> --}}
             <div class="movie-card-wrapper flex">
                 <div>
                     {{-- card for movie --}}
-                    <div class="container w-max-50 pl-16 pt-16 mb-10 flex" style="margin-top:-300px">
+                    <div class="container w-max-50 pl-16 pt-16 mb-10 flex">
                         <div>
                             <img class="mb-3" src="https://image.tmdb.org/t/p/w500/{{ $movies->poster }}" alt="Poster">
                             <div class="rating-container justify-left flex mb-2">
@@ -66,7 +66,7 @@
                         </div>
                         {{-- end desc card --}}
                     </div>
-                    @endforeach
+                    {{-- @endforeach --}}
                 </div>
                 @if ($can_edit)
                 @foreach ($pendingComments as $pendingComment)

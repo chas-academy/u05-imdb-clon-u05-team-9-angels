@@ -87,7 +87,7 @@ class MovieController extends Controller
                 'comments' => $comments,
                 'canWatchlist' => $canWatchlist,
                 'watchlist' => $watchlist,
-                'watchlistId' => $watchlistId
+                'watchlistId' => $watchlistId,
                 'pendingComments' => $pendingComments,
                 'cast' => $cast
 
