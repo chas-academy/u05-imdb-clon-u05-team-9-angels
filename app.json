@@ -1,0 +1,24 @@
+{
+    "addons": ["heroku-postgresql"],
+    "buildpacks": [
+        {
+            "url": "heroku/php"
+        },
+        {
+            "url": "heroku/nodejs"
+        }
+    ],
+    "scripts": {
+        "postdeploy": ["php artisan db:seed"]
+    },
+    "env": {
+        "APP_NAME": "IMDb",
+        "APP_ENV": "production",
+        "APP_KEY": {
+            "generator": "secret"
+        },
+        "APP_DEBUG": "false",
+        "LOG_CHANNEL": "errorlog",
+        "DB_CONNECTION": "pgsql"
+    }
+}

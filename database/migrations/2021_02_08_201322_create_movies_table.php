@@ -23,7 +23,7 @@ class CreateMoviesTable extends Migration
             $table->string('writer')->nullable();
             $table->integer('runtime');
             $table->string('genre');
-            $table->integer('rating');
+            $table->double('rating');
             $table->string('poster')->nullable();
             $table->string('backdrop')->nullable();
             $table->timestamps();
