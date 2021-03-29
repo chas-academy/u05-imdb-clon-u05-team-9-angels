@@ -54,17 +54,17 @@ class MovieController extends Controller
         $pendingComments = Comment::where('movies_id', $id)->where('type', '0')->get();
 
         $actor_list = null;
-       
+
 
         foreach ($cast as $actor => $value)
-        $actor_list[] = Actor::where('id', $value->actors_id)->get();
-        
-        
+            $actor_list[] = Actor::where('id', $value->actors_id)->get();
+
+
         //print_r(count($actor_list));
         $movies = Movie::where('id', $id)->first();
         $canComment = 0;
 
-      
+
 
         //Get the user type
         $userType = -1;
@@ -85,7 +85,6 @@ class MovieController extends Controller
                 'actor_list' => $actor_list,
                 'can_edit' => $edit_privelages,
                 'comments' => $comments,
-                'canWatchlist' => $canWatchlist,
                 'watchlist' => $watchlist,
                 'watchlistId' => $watchlistId,
                 'pendingComments' => $pendingComments,
