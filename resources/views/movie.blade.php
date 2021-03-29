@@ -43,9 +43,14 @@
             <p><span class="font-bold">Released:</span> {{ $movies->year }}</p>
             <p><span class="font-bold">Runtime:</span> {{ $movies->runtime }} min</p>
             <p class="pb-2"><span class="font-bold">Genre:</span> {{ $movies->genre }}</p>
-            <button
-                class="modal-open mb-5 border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 mt-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Edit
-                movie</button>
+            @if ($can_edit)
+            <button class="modal-open mb-5 border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 mt-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none      focus:shadow-outline">
+                Edit movie
+            </button>
+                
+            
+                
+            @endif
         </div>
         {{-- end movie info --}}
         {{-- movie desc and cast --}}
@@ -255,8 +260,8 @@
                             <br>
 
                             <label for="description">Description:</label><br>
-                            <input type="text" id="description" name="description" value="{{ $movies->description }}"
-                                required><br>
+                            <textarea type="text" id="description" name="description" value="{{ $movies->description }}"
+                                required></textarea><br>
                             <input type="hidden" id="description" name="id" value="{{ $movies->id }}">
                             <br>
 
