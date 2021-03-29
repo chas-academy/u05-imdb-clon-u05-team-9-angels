@@ -9,6 +9,7 @@ use App\Models\Actor;
 use App\Models\Comment;
 use App\Models\Watchlist;
 use App\Http\Controllers\CastController;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 use function PHPUnit\Framework\isEmpty;
@@ -52,19 +53,15 @@ class MovieController extends Controller
 
         $comments = Comment::where('movies_id', $id)->where('type', '1')->get();
         $pendingComments = Comment::where('movies_id', $id)->where('type', '0')->get();
+        $commenter = User::where('id', $comments[0]->users_id)->get()[0]->name;
 
         $actor_list = null;
-
 
         foreach ($cast as $actor => $value)
             $actor_list[] = Actor::where('id', $value->actors_id)->get();
 
-
-        //print_r(count($actor_list));
         $movies = Movie::where('id', $id)->first();
         $canComment = 0;
-
-
 
         //Get the user type
         $userType = -1;
@@ -73,7 +70,7 @@ class MovieController extends Controller
             $userType = $user->type;
             $edit_privelages = intval($userType) > 1 ? true : false;
             $canComment = intval($userType) >= 0 ? true : false;
-            $canWatchlist = intval($userType) >= 0 ? true : false;
+            // $canWatchlist = intval($userType) >= 0 ? true : false;
         }
 
         //If the user type is above signed in user (1) -> User has edit privelages.
@@ -88,8 +85,8 @@ class MovieController extends Controller
                 'watchlist' => $watchlist,
                 'watchlistId' => $watchlistId,
                 'pendingComments' => $pendingComments,
-                'cast' => $cast
-
+                'cast' => $cast,
+                'commenter' => $commenter
             ]
         );
     }
