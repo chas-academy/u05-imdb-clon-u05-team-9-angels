@@ -15,16 +15,16 @@ use function PHPUnit\Framework\isEmpty;
 
 class MovieController extends Controller
 {
-    public function index()
-    {
-        $movies = Movie::all();
-        $cast = 'SELECT * FROM movies';
-        $newVar = DB::SELECT($cast);
-        dd($newVar);
-        return view('movie', $movies);
-    }
+    // public function index()
+    // {
+    //     $movies = Movie::all();
+    //     $cast = 'SELECT * FROM movies';
+    //     $newVar = DB::SELECT($cast);
+    //     dd($newVar);
+    //     return view('movie', $movies);
+    // }
 
-    public function getAll() // new get all movies
+    public function index() // new get all movies
     {
         $movies = Movie::all();
         return view('movies-all', ['movies' => $movies]);
@@ -40,13 +40,11 @@ class MovieController extends Controller
 
         if ($user) {
             $watchlist = Watchlist::where('movies_id', $id)->where('user_id', $user->id)->get();
-            // dd($watchlist);
+            
             if (count($watchlist) === 0) {
                 $watchlist = false;
             } else {
-                // dd($watchlist);
                 $watchlistId = $watchlist[0]->id;
-                // dd($watchlistId);
             }
         }
 
@@ -55,16 +53,12 @@ class MovieController extends Controller
 
         $actor_list = null;
 
-
         foreach ($cast as $actor => $value)
             $actor_list[] = Actor::where('id', $value->actors_id)->get();
 
 
-        //print_r(count($actor_list));
         $movies = Movie::where('id', $id)->first();
         $canComment = 0;
-
-
 
         //Get the user type
         $userType = -1;
@@ -73,7 +67,7 @@ class MovieController extends Controller
             $userType = $user->type;
             $edit_privelages = intval($userType) > 1 ? true : false;
             $canComment = intval($userType) >= 0 ? true : false;
-            $canWatchlist = intval($userType) >= 0 ? true : false;
+            // $canWatchlist = intval($userType) >= 0 ? true : false;
         }
 
         //If the user type is above signed in user (1) -> User has edit privelages.
@@ -89,7 +83,6 @@ class MovieController extends Controller
                 'watchlistId' => $watchlistId,
                 'pendingComments' => $pendingComments,
                 'cast' => $cast
-
             ]
         );
     }
