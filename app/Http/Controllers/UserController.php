@@ -14,15 +14,20 @@ class UserController extends Controller
     protected function getUser()
     {
         $movies = Movie::inRandomOrder()->limit(5)->get();
-        // $userWatchlist = Watchlist::where('user_id', auth()->user()->id)->get();
-        // // dd($userWatchlist[0]);
-        // $watchlistMovies = [];
-        // foreach($userWatchlist[0] as $key => $movie) {
-        //     dd($movie);
-        //     $theMovie = Movie::where('id', $movie->id)->get();
-        //     // $watchlistMovies[] = 
-        // }
-        return view('dashboard.dashboard', ['movies' => $movies]);
+        $userWatchlist = Watchlist::where('user_id', auth()->user()->id)->get();
+        // dd($userWatchlist);
+        $watchlistMovies = [];
+        foreach ($userWatchlist as $watchlistData) {
+            // dd($watchlistData);
+            $movieInWatchlist = Movie::where('id', $watchlistData->movies_id)->get()[0];
+            // echo $movieInWatchlist->title . '<hr>';
+            $watchlistMovies[] = array_push($watchlistMovies, $movieInWatchlist);
+            var_dump($watchlistMovies);
+            // var_dump($movieInWatchlist[0]['title']) . '<hr>';
+        }
+
+        // echo 'outside: ' . $movieInWatchlist->title . '<br>';
+        return view('dashboard.dashboard', ['movies' => $movies, 'movieInWatchlist' => $movieInWatchlist]);
     }
 
     protected function getUsersForAdmin()
