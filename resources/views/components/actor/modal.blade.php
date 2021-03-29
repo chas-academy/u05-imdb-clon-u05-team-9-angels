@@ -1,7 +1,7 @@
 <div class="form-container">
     <!-- EDIT MODAL -->
 
-    <button class="modal-open btn-purpure">
+    <button class="modal-open btn-blue">
         Edit {{ $title }}
     </button>
 
