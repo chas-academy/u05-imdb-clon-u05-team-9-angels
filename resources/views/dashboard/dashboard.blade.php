@@ -10,9 +10,11 @@
             <div class="border p-10 border-gray-800 rounded-lg mb-10">
                 <h3 class="text-lg font-bold mb-6">Your Watchlist</h3>
                 {{-- {{ $moviesInWatchlist }} --}}
-                {{-- @foreach ($moviesInWatchlist as $key => $value)
-                    Key: {{ $key }} - Value:{{ $value->title }}<br />
-                @endforeach --}}
+                <ul>
+                    @foreach ($watchlistMovies as $key => $watchlistMovie)
+                        {{ $watchlistMovie->title }}<br />
+                    @endforeach
+                </ul>
                 {{-- <h4 class="font-bold">Interstellar</h4>
             <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,

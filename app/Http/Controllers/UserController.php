@@ -17,17 +17,18 @@ class UserController extends Controller
         $userWatchlist = Watchlist::where('user_id', auth()->user()->id)->get();
         // dd($userWatchlist);
         $watchlistMovies = [];
-        foreach ($userWatchlist as $watchlistData) {
+        foreach ($userWatchlist as $key => $watchlistData) {
             // dd($watchlistData);
             $movieInWatchlist = Movie::where('id', $watchlistData->movies_id)->get()[0];
             // echo $movieInWatchlist->title . '<hr>';
-            $watchlistMovies[] = array_push($watchlistMovies, $movieInWatchlist);
-            var_dump($watchlistMovies);
+            array_push($watchlistMovies, $movieInWatchlist);
+            // var_dump($movieInWatchlist->title);
+            // echo count($watchlistMovies);
             // var_dump($movieInWatchlist[0]['title']) . '<hr>';
         }
 
-        // echo 'outside: ' . $movieInWatchlist->title . '<br>';
-        return view('dashboard.dashboard', ['movies' => $movies, 'movieInWatchlist' => $movieInWatchlist]);
+        // dd($watchlistMovies);
+        return view('dashboard.dashboard', ['movies' => $movies, 'watchlistMovies' => $watchlistMovies]);
     }
 
     protected function getUsersForAdmin()
