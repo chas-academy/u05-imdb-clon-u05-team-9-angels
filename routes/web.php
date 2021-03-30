@@ -5,6 +5,7 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ActorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\WatchlistController;
 use App\Models\User;
 
@@ -34,9 +35,7 @@ Route::post('/dashboard/movies/create', [MovieController::class, 'create'])->mid
 // ACTORS
 Route::resource('actors', ActorController::class);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index']);
 
 
 //AUTH STUFF
