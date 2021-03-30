@@ -18,10 +18,7 @@
                                 <h4 class="font-bold text-lg">{{ $watchlistMovie->title }}</h4>
                             </a>
                     
-                            {{-- <div class="flex">
-                                <img class="rounded-lg w-10" src="https://image.tmdb.org/t/p/w500/{{ $watchlistMovie->poster }}" alt="Poster"/>
-                                <p>{{ $watchlistMovie->description }}</p>
-                            </div> --}}
+                            <img class="rounded-lg w-20 m-4 float-left" src="https://image.tmdb.org/t/p/w500/{{$watchlistMovie->poster}}" alt="Poster"/>
                             <p>{{ $watchlistMovie->description }}</p>
                     <button class="mt-4 mb-3">
                         <a class="btn-purpure" href="{{ url('movies/' . $watchlistMovie->id) }}">Go to movie ></a>
