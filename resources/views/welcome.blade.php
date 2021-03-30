@@ -191,7 +191,7 @@
       </div>
     </section>
 
-    <div class="bg-gray-300 my-15 md:my-32">
+    <div class=" bg-gradient-to-b from-imdb-purpure to-imdb-blue my-15 md:my-32">
       <section
         class="py-20 px-12 md:px-0 mx-auto flex flex-col md:flex-row max-w-3xl"
       >
@@ -216,7 +216,7 @@
             class="border border-black px-4 py-2 rounded-full pr-20"
           />
           <button
-            class="rounded-full font-bold bg-gray-600 px-3 py-2 mt-3 text-white w-1/2"
+            class="inline-block font-bold border border-black rounded-full px-10 py-2 mt-16 mb-16 hover:bg-black hover:text-white"
           >
             Skicka
           </button>
