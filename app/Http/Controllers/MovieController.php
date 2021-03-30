@@ -41,7 +41,7 @@ class MovieController extends Controller
 
         if ($user) {
             $watchlist = Watchlist::where('movies_id', $id)->where('user_id', $user->id)->get();
-            
+
             if (count($watchlist) === 0) {
                 $watchlist = false;
             } else {
@@ -52,14 +52,15 @@ class MovieController extends Controller
         $comments = Comment::where('movies_id', $id)->where('type', '1')->get();
         $pendingComments = Comment::where('movies_id', $id)->where('type', '0')->get();
         $commenter = null;
-        if (!isEmpty($comments)) {
+        if (empty($comments)) {
             $commenter = User::where('id', $comments[0]->users_id)->get()[0]->name;
         }
 
         $actor_list = null;
 
-        foreach ($cast as $actor => $value)
+        foreach ($cast as $actor => $value) {
             $actor_list[] = Actor::where('id', $value->actors_id)->get();
+        }
 
         $movies = Movie::where('id', $id)->first();
         $canComment = 0;
