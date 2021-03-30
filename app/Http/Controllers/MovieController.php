@@ -16,16 +16,16 @@ use function PHPUnit\Framework\isEmpty;
 
 class MovieController extends Controller
 {
-    public function index()
-    {
-        $movies = Movie::all();
-        $cast = 'SELECT * FROM movies';
-        $newVar = DB::SELECT($cast);
-        dd($newVar);
-        return view('movie', $movies);
-    }
+    // public function index()
+    // {
+    //     $movies = Movie::all();
+    //     $cast = 'SELECT * FROM movies';
+    //     $newVar = DB::SELECT($cast);
+    //     dd($newVar);
+    //     return view('movie', $movies);
+    // }
 
-    public function getAll() // new get all movies
+    public function index() // new get all movies
     {
         $movies = Movie::all();
         return view('movies-all', ['movies' => $movies]);
@@ -41,13 +41,11 @@ class MovieController extends Controller
 
         if ($user) {
             $watchlist = Watchlist::where('movies_id', $id)->where('user_id', $user->id)->get();
-            // dd($watchlist);
+            
             if (count($watchlist) === 0) {
                 $watchlist = false;
             } else {
-                // dd($watchlist);
                 $watchlistId = $watchlist[0]->id;
-                // dd($watchlistId);
             }
         }
 
