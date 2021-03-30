@@ -43,7 +43,7 @@
       <img class="lg:pl-10" style="height: 525px" src="https://image.tmdb.org/t/p/w500/{{$actors[0]->poster}}" />
     </section>
 
-    <section>
+    <!-- <section>
       <p class="font-bold text-center text-3xl text-white my-6 md:my-0">
         Vilken är din favoritkategori?
       </p>
@@ -100,7 +100,7 @@
           </p>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <script>
       //Scroll element to center
