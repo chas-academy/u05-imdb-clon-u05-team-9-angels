@@ -14,9 +14,10 @@
 
                         <svg class="fill-current text-yellow-500 w-4" viewBox="0 0 24 24">
                             <g data-name="Layer 2">
-                                <path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                        1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                        01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                <path
+                                    d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1
+                                                                                                        1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0
+                                                                                                        01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
                                     data-name="star"></path>
                             </g>
                         </svg>
@@ -70,7 +71,7 @@
                                             <div class="bg-gray-300 p-2 rounded-lg">
                                                 <a href="{{ url('actors/' . $print->id) }}">
                                                     <img class="rounded-lg w-full"
-                                                        src="https://image.tmdb.org/t/p/w500/{{ $print->poster }}"
+                                                        src="{{ $print->poster ? 'https://image.tmdb.org/t/p/w500/' . $print->poster : 'https://m.media-amazon.com/images/M/MV5BMTU4NjY3NzgyM15BMl5BanBnXkFtZTcwODI4OTEzNA@@._V1_UY317_CR18,0,214,317_AL_.jpg' }}"
                                                         alt="Poster">
 
                                                     <div class="mt-2">
@@ -123,7 +124,7 @@
             </form>
         </div>
         <div class="bg-imdb-card overflow-hidden shadow-md text-white rounded-lg">
-            <h2 class="overflow-hidden shadow-md text-white px-4 pt-3 pb-2 text-white text-lg">Comments</h2>
+            <h2 class="overflow-hidden shadow-md text-white px-4 pt-3 pb-2 text-lg">Comments</h2>
             @foreach ($comments as $comment)
                 <div class="mb-4">
                     <div class="overflow-hidden shadow-md text-gray-100">
@@ -140,9 +141,10 @@
                             <span class="mr-1"> Rating: {{ $comment->star }}</span>
                             <svg class="fill-current text-yellow-500 w-4" viewBox="0 0 24 24">
                                 <g data-name="Layer 2">
-                                    <path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                    <path
+                                        d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1
+                                                                                                                1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0
+                                                                                                                01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
                                         data-name="star"></path>
                                 </g>
                             </svg>
@@ -162,7 +164,7 @@
         </div>
         @if ($can_edit)
             @foreach ($pendingComments as $pendingComment)
-                <div class="mb-4 p-6 bg-red-300 rounded-lg mt-2 mb-2">
+                <div class="p-6 bg-red-300 rounded-lg my-2">
                     <div class="overflow-hidden shadow-md text-gray-700">
                         <div class="px-6 py-4 border-b border-gray-400 font-bold uppercase">
                             User Name
@@ -174,9 +176,11 @@
                             <span> Rating: {{ $pendingComment->star }}</span>
                             <svg class="fill-current text-yellow-500 w-4" viewBox="0 0 24 24">
                                 <g data-name="Layer 2">
-                                    <path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-
-                                                        data-name=" star"></path>
+                                    <path
+                                        d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1
+                                                                                                                1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0
+                                                                                                                01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                        data-name="star"></path>
                                 </g>
                             </svg>
                             @if ($can_edit)
