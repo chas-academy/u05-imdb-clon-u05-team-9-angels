@@ -22,7 +22,7 @@
     <section class="lg:flex px-5 lg:px-0 max-w-6xl mx-auto mt-32">
       <article>
   
-        <h2 class="text-6xl leading-smooth text-white">
+        <h2 class="text-5xl leading-smooth text-white">
           Möt veckans nominerade artist {{$actors[0]->name}}!
         </h2>
         <p class="my-5 mt-20 text-white">
