@@ -1,5 +1,3 @@
 <div class="bg-imdb-card p-2 rounded-lg shadow-md w-full">
-    <h1 class="font-bold text-lg">Sidebar content</h1>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum ex nisi quod nulla alias neque iste debitis
-        repudiandae ipsum voluptatum, suscipit quae odio itaque eos?</p>
+    {{ $slot }}
 </div>
