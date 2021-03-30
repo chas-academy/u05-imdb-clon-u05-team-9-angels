@@ -13,13 +13,13 @@
                         <p class="mr-1">{{ $movies->rating }}/10</p>
 
                         <svg class="fill-current text-yellow-500 w-4" viewBox="0 0 24 24">
-                        <g data-name="Layer 2">
-                            <path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
-                                data-name="star"></path>
-                        </g>
-                    </svg>
+                            <g data-name="Layer 2">
+                                <path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
+                                        1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
+                                        01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                    data-name="star"></path>
+                            </g>
+                        </svg>
                     </div>
                     <div class="pt-2 pb-2">
                         @if (Auth::check())
@@ -42,9 +42,12 @@
                     <p><span class="font-bold">Released:</span> {{ $movies->year }}</p>
                     <p><span class="font-bold">Runtime:</span> {{ $movies->runtime }} min</p>
                     <p class="pb-2"><span class="font-bold">Genre:</span> {{ $movies->genre }}</p>
-                    <button
-                        class="modal-open mb-5 border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 mt-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Edit
-                        movie</button>
+                    @if ($can_edit)
+                        <button
+                            class="modal-open mb-5 border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 mt-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none      focus:shadow-outline">
+                            Edit movie
+                        </button>
+                    @endif
                 </div>
                 {{-- end movie info --}}
                 {{-- movie desc and cast --}}
@@ -138,8 +141,8 @@
                             <svg class="fill-current text-yellow-500 w-4" viewBox="0 0 24 24">
                                 <g data-name="Layer 2">
                                     <path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                        1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                        01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+                                                1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
+                                                01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
                                         data-name="star"></path>
                                 </g>
                             </svg>
@@ -173,7 +176,7 @@
                                 <g data-name="Layer 2">
                                     <path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
 
-                                                data-name=" star"></path>
+                                                        data-name=" star"></path>
                                 </g>
                             </svg>
                             @if ($can_edit)
