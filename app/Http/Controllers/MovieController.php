@@ -52,7 +52,7 @@ class MovieController extends Controller
         $comments = Comment::where('movies_id', $id)->where('type', '1')->get();
         $pendingComments = Comment::where('movies_id', $id)->where('type', '0')->get();
         $commenter = null;
-        if (empty($comments)) {
+        if (count($comments)) {
             $commenter = User::where('id', $comments[0]->users_id)->get()[0]->name;
         }
 
