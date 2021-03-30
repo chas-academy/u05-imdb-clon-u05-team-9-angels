@@ -54,5 +54,8 @@ module.exports = {
         },
     },
 
-    plugins: [require("@tailwindcss/forms"), require("tailwindcss-textshadow")],
+    plugins: [
+        require("@tailwindcss/forms"),
+        require("@tailwindcss/textshadow"),
+    ],
 };
