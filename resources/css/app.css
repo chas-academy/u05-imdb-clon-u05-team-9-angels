@@ -2,3 +2,15 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "./buttons.css";
+
+.scroll-snap-x {
+    scroll-snap-type: x mandatory;
+}
+
+.scroll-snap-center {
+    scroll-snap-align: center;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
