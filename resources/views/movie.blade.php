@@ -10,14 +10,13 @@
                         src="https://image.tmdb.org/t/p/w500/{{ $movies->poster }}" alt="Poster">
                     {{-- movie info --}}
                     <div class="flex pt-2 pb-2">
-                        <p class="">{{ $movies->rating }}/10</p>
+                        <p class="mr-1">{{ $movies->rating }}/10</p>
 
                         <svg class="fill-current text-yellow-500 w-4 mr-2" viewBox="0 0 24 24">
                             <g data-name="Layer 2">
                                 <path
                                     d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+
                                     data-name="star"></path>
                             </g>
                         </svg>
@@ -70,6 +69,7 @@
                                                     <img class="rounded-lg w-full"
                                                         src="https://image.tmdb.org/t/p/w500/{{ $print->poster }}"
                                                         alt="Poster">
+
                                                     <div class="mt-2">
                                                         {{-- <a href="#" class="text-lg mt-2 text-black">{{ $print->name }}</a> --}}
                                                         <p class="text-lg mt-2 text-black">{{ $print->name }}</p>
@@ -125,20 +125,21 @@
                 <div class="mb-4">
                     <div class="overflow-hidden shadow-md text-gray-100">
 
-                        <div class="px-6 py-4 bg-imdb-card border-b border-gray-600 font-bold uppercase rounded-t-lg">
-                            User Name MAKE DYNAMIC
+                        <div {{-- class="px-6 py-4 bg-imdb-card border-b border-gray-600 font-bold uppercase rounded-t-lg"> --}}
+                            class="px-6 py-4 bg-imdb-card border-gray-600 font-bold uppercase rounded-t-lg">
+                            {{ $commenter }}
                         </div>
-                        <div class="p-6 bg-imdb-card border-b border-gray-600">
-                            Comment: {{ $comment->comment }}
+                        {{-- <div class="p-6 bg-imdb-card border-b border-gray-600"> --}}
+                        <div class="p-6 bg-imdb-gray rounded mx-2 border-b border-gray-600">
+                            {{ $comment->comment }}
                         </div>
                         <div class="p-6 bg-imdb-card border-gray-200 flex items-center text-gray-400 text-sm rounded-b-lg">
-                            <span> Rating: {{ $comment->star }}</span>
+                            <span class="mr-1"> Rating: {{ $comment->star }}</span>
                             <svg class="fill-current text-yellow-500 w-4" viewBox="0 0 24 24">
                                 <g data-name="Layer 2">
                                     <path
                                         d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+
                                         data-name="star"></path>
                                 </g>
                             </svg>
@@ -172,8 +173,7 @@
                                 <g data-name="Layer 2">
                                     <path
                                         d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z"
+
                                         data-name="star"></path>
                                 </g>
                             </svg>
