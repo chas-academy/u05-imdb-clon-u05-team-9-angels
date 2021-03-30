@@ -12,7 +12,7 @@
       <h1 class="text-7xl text-center mt-10 text-shadow-xl">Dagens toppval!</h1>
       <a
       href='/movies/{{$movies[0]->id}}'
-        class="bg-gray-800 text-white px-10 py-3 font-bold rounded-full mx-auto block my-32 md:my-40 hover:bg-gray-900"
+        class="bg-gray-800 text-white px-10 py-3 font-bold  btn-gradient rounded-full mx-auto block my-32 md:my-40 hover:bg-gray-900"
       >
         LÄS MER
       
@@ -35,7 +35,7 @@
         </p>
         <a
          href='/actors/{{$actors[0]->id}}'
-          class="inline-block bg-gray-800 text-white px-10 py-3 font-bold rounded-full my-10 md:my-40 hover:bg-gray-900"
+          class="inline-block btn-gradient text-white px-10 py-3 font-bold rounded-full my-10 md:my-40 hover:bg-gray-900"
         >
           LÄS MER
         </a>
@@ -132,7 +132,7 @@
           </p>
           <a
           href='/movies/{{$movies[1]->id}}'
-            class="inline-block font-bold border border-black rounded-full px-10 py-2 mt-16 mb-16 hover:bg-black hover:text-white"
+            class="inline-block font-bold border btn-gradient rounded-full px-10 py-2 mt-16 mb-16 hover:bg-black hover:text-white"
           >
             LÄS MER
           </a>
@@ -156,7 +156,7 @@
           </p>
           <a
           href='/movies/{{$movies[2]->id}}'
-            class="inline-block font-bold border border-black rounded-full px-10 py-2 mt-16 mb-16 hover:bg-black hover:text-white"
+            class="inline-block font-bold border  btn-gradient rounded-full px-10 py-2 mt-16 mb-16 hover:bg-black hover:text-white"
           >
             LÄS MER
           </a>
@@ -183,7 +183,7 @@
           </p>
           <a
           href='/movies/{{$movies[3]->id}}'
-            class="inline-block font-bold border border-black rounded-full px-10 py-2 mt-16 mb-16 hover:bg-black hover:text-white"
+            class="inline-block font-bold border  btn-gradient rounded-full px-10 py-2 mt-16 mb-16 hover:bg-black hover:text-white"
           >
             LÄS MER
           </a>
@@ -216,7 +216,7 @@
             class="border border-black px-4 py-2 rounded-full pr-20"
           />
           <button
-            class="inline-block font-bold border border-black rounded-full px-10 py-2 mt-16 mb-16 hover:bg-black hover:text-white"
+            class="inline-block font-bold border  btn-gradient rounded-full px-10 py-2 mt-16 mb-16 hover:bg-black hover:text-white"
           >
             Skicka
           </button>
