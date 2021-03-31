@@ -3,7 +3,6 @@ for (var i = 0; i < openmodal.length; i++) {
     openmodal[i].addEventListener("click", function (event) {
         event.preventDefault();
         toggleModal();
-        console.log("click");
     });
 }
 
