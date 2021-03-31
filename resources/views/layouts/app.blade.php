@@ -16,6 +16,7 @@
 
     <!-- Modal -->
     <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/delete-modal.css') }}">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

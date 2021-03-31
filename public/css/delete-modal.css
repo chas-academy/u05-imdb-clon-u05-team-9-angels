@@ -1,0 +1,8 @@
+.delete-modal {
+    transition: opacity 0.25s ease;
+}
+
+body.delete-modal-active {
+    overflow-x: hidden;
+    overflow-y: visible !important;
+}

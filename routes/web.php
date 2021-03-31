@@ -26,6 +26,8 @@ use App\Models\User;
 Route::get('/movies', [MovieController::class, 'index']);
 // edit movie
 Route::post('/movies/edit/{id}', [MovieController::class, 'store']); // creates post route, sending request to moviecontroller class and runs store fx
+// delete movie
+Route::delete('/movies/delete/{id}', [MovieController::class, 'destroy']); 
 // get specific movie
 Route::get('/movies/{id}', [MovieController::class, 'getMovie']);
 // create movie
