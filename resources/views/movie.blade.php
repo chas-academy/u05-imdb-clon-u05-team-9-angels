@@ -24,14 +24,12 @@
             <div class="pt-2 pb-2">
                 @if (Auth::check())
                 @if ($watchlist)
-                <button><a href="{{ url('/movies/remove-from-watchlist/' . $watchlistId) }}"
-                        class="border btn border-indigo-500 bg-red-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline">Remove
+                <button><a href="{{ url('/movies/remove-from-watchlist/' . $watchlistId) }}" class="btn-red">Remove
                         from list</a>
                 </button>
                 @else
                 <button>
-                    <a href="{{ url('/movies/add-to-watchlist/' . $movies->id) }}"
-                        class="border border-indigo-500 bg-green-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">
+                    <a href="{{ url('/movies/add-to-watchlist/' . $movies->id) }}" class="btn-green">
                         Add to list
                     </a>
                 </button>
@@ -44,9 +42,11 @@
             <p><span class="font-bold">Runtime:</span> {{ $movies->runtime }} min</p>
             <p class="pb-2"><span class="font-bold">Genre:</span> {{ $movies->genre }}</p>
             @if ($can_edit)
-            <button
-                class="modal-open mb-5 border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 mt-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none      focus:shadow-outline">
+            <button class="modal-open mb-5 btn-blue">
                 Edit movie
+            </button>
+            <button class="delete-modal-open btn-red">
+                Delete Movie
             </button>
             @endif
         </div>
@@ -301,7 +301,49 @@
                 </div>
             </div>
         </div>
+        {{-- delete modal --}}
+        <div
+            class="delete-modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+            <div class="delete-modal-open absolute w-full h-full bg-gray-900 opacity-50"></div>
+            <div
+                class="modal-container bg-imdb-black w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+
+                <div
+                    class="delete-modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+                    <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                        viewBox="0 0 18 18">
+                        <path
+                            d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                        </path>
+                    </svg>
+                    <span class="text-sm">(Esc)</span>
+                </div>
+
+                <div class="modal-content py-4 text-left px-6">
+                    <!--Title-->
+                    <div class="flex justify-between items-center pb-3">
+                        <h3 class="text-2xl font-bold text-white">Are you sure you want to delete {{ $movies->title }}?</h3>
+                        <div class="delete-modal-close cursor-pointer z-50">
+                            <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18"
+                                height="18" viewBox="0 0 18 18">
+                                <path
+                                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <form method="POST" action="/movies/delete/{{ $movies->id }}">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn-red" type="submit">Delete</button>
+                        <button class="delete-modal-close btn-green">Close</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{-- delete model ends--}}
         <script src="{{ asset('js/modal.js') }}"></script>
+        <script src="{{ asset('js/delete-modal.js') }}"></script>
         {{-- END OF EDIT-MODAL --}}
     </div>
     @endif
