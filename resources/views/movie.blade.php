@@ -172,7 +172,7 @@
                                 <div class="p-6 bg-red-300 rounded-lg my-2">
                                     <div class="overflow-hidden shadow-md text-gray-700">
                                         <div class="px-6 py-4 border-b border-gray-400 font-bold uppercase">
-                                            User Name
+                                            {{ $pendingComment->user->name }}
                                         </div>
                                         <div class="p-6 border-b border-gray-400">
                                             Comment: {{ $pendingComment->comment }}
