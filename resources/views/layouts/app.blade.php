@@ -112,9 +112,7 @@
 
     <div class="min-h-screen bg-imdb-black">
         <!-- Page Content -->
-        <main>
-            @yield('content')
-        </main>
+        @yield('content')
     </div>
 
     <footer class="bg-imdb-black text-white">
