@@ -79,20 +79,23 @@
         {{-- your reviews section ends--}}
         {{-- your whatchlist section--}}
         <div class="border p-10 border-gray-800 rounded-lg mb-10">
-            <h3 class="text-lg font-bold mb-6">Your Watchlist</h3>
-            <h4 class="font-bold">Interstellar</h4>
-            <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                when an unknown printer took a galley of type and scrambled it to make a type
-                specimen book. It has survived not only five centuries,</p>
-            <h4 class="font-bold">Some Movie</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                when an unknown printer took a galley of type and scrambled it to make a type
-                specimen book. It has survived not only five centuries,</p>
-            <button type="button" class="btn-purpure mt-5">
-                See more...
-            </button>
+            <h3 class="text-xl font-bold mb-6">{{ $user['name'] }}s Watchlist</h3>
+            <ul>
+                @foreach ($watchlistMovies as $watchlistMovie)
+                <li class="bg-imdb-card p-2 mb-3 rounded-lg shadow-md w-full">
+                    <a href="{{ url('movies/' . $watchlistMovie->id) }}">
+                        <h4 class="font-bold text-lg">{{ $watchlistMovie->title }}</h4>
+                    </a>
+
+                    <img class="rounded-lg w-20 m-4 float-left"
+                        src="https://image.tmdb.org/t/p/w500/{{$watchlistMovie->poster}}" alt="Poster" />
+                    <p>{{ $watchlistMovie->description }}</p>
+                    <button class="mt-4 mb-3">
+                        <a class="btn-purpure" href="{{ url('movies/' . $watchlistMovie->id) }}">Go to movie ></a>
+                    </button>
+                </li>
+                @endforeach
+            </ul>
         </div>
     </section>
     {{-- your whatchlist section ends--}}
