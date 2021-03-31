@@ -248,45 +248,37 @@
 
                         <label for="title">Title:</label><br>
                         <input type="text" id="title" name="title" value="{{ $movies->title }}" required><br>
-                        <input type="hidden" id="title" name="id" value="{{ $movies->id }}">
                         <br>
 
                         <label for="description">Description:</label><br>
                         <input type="text" id="description" name="description" value="{{ $movies->description }}"
                             required><br>
-                        <input type="hidden" id="description" name="id" value="{{ $movies->id }}">
                         <br>
 
                         <label for="rating">Rating:</label><br>
                         <input type="number" id="rating" name="rating" value="{{ $movies->rating }}" min="0"
                             required><br>
-                        <input type="hidden" id="rating" name="id" value="{{ $movies->id }}">
                         <br>
 
                         <label for="director">Director:</label><br>
                         <input type="text" id="director" name="director" value="{{ $movies->director }}" required><br>
-                        <input type="hidden" id="director" name="id" value="{{ $movies->id }}">
                         <br>
 
                         <label for="writer">Writer:</label><br>
                         <input type="text" id="writer" name="writer" value="{{ $movies->writer }}" required><br>
-                        <input type="hidden" id="writer" name="id" value="{{ $movies->id }}">
                         <br>
 
                         <label for="year">Released:</label><br>
                         <input type="date" id="year" name="year" value="{{ $movies->year }}" required><br>
-                        <input type="hidden" id="year" name="id" value="{{ $movies->id }}">
                         <br>
 
                         <label for="genre">Genre:</label><br>
                         <input type="text" id="genre" name="genre" value="{{ $movies->genre }}" required><br>
-                        <input type="hidden" id="genre" name="id" value="{{ $movies->id }}">
                         <br>
 
                         <label for="runtime">Runtime (minutes):</label><br>
                         <input type="number" id="runtime" name="runtime" value="{{ $movies->runtime }}" min="0"
-                            required><br>
-                        <input type="hidden" id="runtime" name="id" value="{{ $movies->id }}">
+                            required>
                         <br>
                         <div class="flex justify-end pt-2">
 
