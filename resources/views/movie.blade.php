@@ -319,10 +319,10 @@
                     <span class="text-sm">(Esc)</span>
                 </div>
 
-                <div class="modal-content bg-red-500 py-4 text-left px-6">
+                <div class="modal-content py-4 text-left px-6">
                     <!--Title-->
                     <div class="flex justify-between items-center pb-3">
-                        <h3 class="text-2xl font-bold">Are you sure?</h3>
+                        <h3 class="text-2xl font-bold text-white">Are you sure you want to delete {{ $movies->title }}?</h3>
                         <div class="delete-modal-close cursor-pointer z-50">
                             <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18"
                                 height="18" viewBox="0 0 18 18">
@@ -332,7 +332,7 @@
                             </svg>
                         </div>
                     </div>
-                    <form method="POST">
+                    <form method="POST" action="/movies/delete/{{ $movies->id }}">
                         @method('DELETE')
                         @csrf
                         <button class="btn-red" type="submit">Delete</button>

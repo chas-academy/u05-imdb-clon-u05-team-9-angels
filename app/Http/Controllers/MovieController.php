@@ -129,6 +129,15 @@ class MovieController extends Controller
 
         return redirect('/');
     }
+
+    protected function destroy($id)
+    {
+        $movie = Movie::where('id', $id)->first();
+        $movie->delete();
+
+        return redirect('/movies');
+    }
+
     protected function createMoviePage()
     {
         $userType = auth()->user()->type;
