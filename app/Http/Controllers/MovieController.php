@@ -1,5 +1,5 @@
 <?php
-// test to see if github push works
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,23 +8,9 @@ use App\Models\Cast;
 use App\Models\Actor;
 use App\Models\Comment;
 use App\Models\Watchlist;
-use App\Http\Controllers\CastController;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
-
-use function PHPUnit\Framework\isEmpty;
 
 class MovieController extends Controller
 {
-    // public function index()
-    // {
-    //     $movies = Movie::all();
-    //     $cast = 'SELECT * FROM movies';
-    //     $newVar = DB::SELECT($cast);
-    //     dd($newVar);
-    //     return view('movie', $movies);
-    // }
-
     public function index() // new get all movies
     {
         $movies = Movie::all();
@@ -51,10 +37,6 @@ class MovieController extends Controller
 
         $comments = Comment::where('movies_id', $id)->where('type', '1')->get();
         $pendingComments = Comment::where('movies_id', $id)->where('type', '0')->get();
-        $commenter = null;
-        if (count($comments)) {
-            $commenter = User::where('id', $comments[0]->users_id)->get()[0]->name;
-        }
 
         $actor_list = null;
 
@@ -72,7 +54,6 @@ class MovieController extends Controller
             $userType = $user->type;
             $edit_privelages = intval($userType) > 1 ? true : false;
             $canComment = intval($userType) >= 0 ? true : false;
-            // $canWatchlist = intval($userType) >= 0 ? true : false;
         }
 
         //If the user type is above signed in user (1) -> User has edit privelages.
@@ -87,8 +68,7 @@ class MovieController extends Controller
                 'watchlist' => $watchlist,
                 'watchlistId' => $watchlistId,
                 'pendingComments' => $pendingComments,
-                'cast' => $cast,
-                'commenter' => $commenter
+                'cast' => $cast
             ]
         );
     }
