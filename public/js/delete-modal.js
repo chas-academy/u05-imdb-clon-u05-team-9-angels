@@ -1,25 +1,22 @@
-var openDeleteModal = document.querySelectorAll(".delete-modal-open");
-for (var i = 0; i < openDeleteModal.length; i++) {
-    openDeleteModal[i].addEventListener("click", function (event) {
+const openDeleteModal = document.querySelectorAll(".delete-modal-open");
+openDeleteModal.forEach((element) => {
+    element.addEventListener("click", function (event) {
         event.preventDefault();
         toggleDeleteModal();
     });
-}
+});
 
-const deleteOverlay = document.querySelector(".delete-modal-open");
-deleteOverlay.addEventListener("click", toggleDeleteModal);
-
-var closeDeleteModal = document.querySelectorAll(".delete-modal-close");
-for (var i = 0; i < closeDeleteModal.length; i++) {
-    closeDeleteModal[i].addEventListener("click", function (event) {
+const closeDeleteModal = document.querySelectorAll(".delete-modal-close");
+closeDeleteModal.forEach((element) => {
+    element.addEventListener("click", function (event) {
         event.preventDefault();
         toggleDeleteModal();
     });
-}
+});
 
 document.onkeydown = function (evt) {
     evt = evt || window.event;
-    var isEscape = false;
+    let isEscape = false;
     if ("key" in evt) {
         isEscape = evt.key === "Escape" || evt.key === "Esc";
     } else {
