@@ -13,42 +13,34 @@
 
                         <label for="title">Title:</label><br>
                         <input class="text-gray-700" type="text" id="title" name="title" required><br>
-                        {{-- <input type="hidden" id="title" name="id" value=""> --}}
                         <br>
 
                         <label for="description">Description:</label><br>
                         <input class="text-gray-700" type="text" id="description" name="description" required><br>
-                        <input type="hidden" id="description" name="id" value="">
                         <br>
 
                         <label for="rating">Rating:</label><br>
                         <input class="text-gray-700" type="number" id="rating" name="rating" min="0" max="10" required><br>
-                        <input type="hidden" id="rating" name="id" value="">
 
                         <label for="director">Director:</label><br>
                         <input class="text-gray-700" type="text" id="director" name="director" required><br>
-                        <input type="hidden" id="director" name="id" value="">
                         <br>
 
                         <label for="writer">Writer:</label><br>
                         <input class="text-gray-700" type="text" id="writer" name="writer" required><br>
-                        <input type="hidden" id="writer" name="id" value="">
                         <br>
 
                         <label for="year">Released:</label><br>
                         <input class="text-gray-700" type="date" id="year" name="year" required><br>
-                        <input type="hidden" id="year" name="id" value="">
                         <br>
 
                         <label for="genre">Genre:</label><br>
                         <input class="text-gray-700" type="text" id="genre" name="genre" required><br>
-                        <input type="hidden" id="genre" name="id" value="">
                         <br>
 
                         <label for="runtime">Runtime (minutes):</label><br>
                         <input class="text-gray-700" type="number" id="runtime" name="runtime" min="0" max="99000"
                             required><br>
-                        <input type="hidden" id="runtime" name="id" value="">
                         <br>
                         <div class="flex pt-2">
 
