@@ -14,7 +14,7 @@ class UserController extends Controller
     protected function getUser()
     {
         $movies = Movie::inRandomOrder()->limit(5)->get();
-        
+
         $userWatchlist = Watchlist::where('user_id', auth()->user()->id)->get();
         $watchlistMovies = [];
         foreach ($userWatchlist as $key => $watchlistData) {
@@ -44,10 +44,16 @@ class UserController extends Controller
         $superUser = intval($userType) > 1 ? true : false;
 
         $movies = Movie::inRandomOrder()->limit(5)->get();
+        $userWatchlist = Watchlist::where('user_id', $id)->get();
+        $watchlistMovies = [];
+        foreach ($userWatchlist as $key => $watchlistData) {
+            $movieInWatchlist = Movie::where('id', $watchlistData->movies_id)->get()[0];
+            array_push($watchlistMovies, $movieInWatchlist);
+        }
 
         if ($superUser) {
             $user = User::where('id', $id)->get();
-            return view('dashboard.edit', ['user' => $user[0]], ['movies' => $movies]);
+            return view('dashboard.edit', ['user' => $user[0], 'movies' => $movies, 'watchlistMovies' => $watchlistMovies]);
         } else {
             return redirect('/');
         }
@@ -66,7 +72,7 @@ class UserController extends Controller
             $user->type = ($request->all('type')['type']);
             $user->save();
 
-            return view('dashboard.edit', ['user' => $user], ['movies' => $movies]);
+            return redirect()->back();
         } else {
             return redirect('/');
         }
@@ -77,7 +83,7 @@ class UserController extends Controller
         $user = User::where('id', $id)->first();
         $user->delete();
 
-        return $this->getUsersForAdmin();
+        return redirect('/dashboard/users');
     }
 
     protected function create()
@@ -89,6 +95,6 @@ class UserController extends Controller
             'type' => request('type'),
         ]);
 
-        return $this->getUsersForAdmin();
+        return redirect()->back();
     }
 }
