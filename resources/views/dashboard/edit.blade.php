@@ -82,7 +82,7 @@
             <h3 class="text-xl font-bold mb-6">{{ $user['name'] }}s Watchlist</h3>
             <ul>
                 @foreach ($watchlistMovies as $watchlistMovie)
-                <li class="bg-imdb-card p-2 mb-3 rounded-lg shadow-md w-full">
+                <li class="bg-imdb-card flow-root p-2 mb-3 rounded-lg shadow-md w-full">
                     <a href="{{ url('movies/' . $watchlistMovie->id) }}">
                         <h4 class="font-bold text-lg">{{ $watchlistMovie->title }}</h4>
                     </a>
