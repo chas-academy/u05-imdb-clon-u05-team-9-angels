@@ -32,65 +32,6 @@
         <img class="lg:pl-10" style="height: 525px" src="https://image.tmdb.org/t/p/w500/{{ $actors[2]->poster }}" />
     </section>
 
-    <!-- <section>
-                                                  <p class="font-bold text-center text-3xl text-white my-6 md:my-0">
-                                                    Vilken är din favoritkategori?
-                                                  </p>
-                                                  <p class="text-center text-2xl py-2 text-white">
-                                                    Välj nedan och låt dig inspereras
-                                                  </p>
-                                                  <div
-                                                    id="scroll-center"
-                                                    class="flex overflow-x-scroll scroll-snap-x py-6 hide-scrollbar"
-                                                  >
-                                                    <div
-                                                      class="relative lg:min-w-1/5 min-w-e-/14 min-h-1/4 bg-gray-600 mx-2 scroll-snap-center"
-                                                    >
-                                                      <p
-                                                        class="absolute font-bold text-lg inset-x-0 bottom-0 text-center text-white"
-                                                      >
-                                                        Komedi
-                                                      </p>
-                                                    </div>
-                                                    <div
-                                                      class="relative lg:min-w-1/5 min-w-e-/14 min-h-1/4 bg-gray-600 mx-2 scroll-snap-center"
-                                                    >
-                                                      <p
-                                                        class="absolute font-bold text-lg inset-x-0 bottom-0 text-center text-white"
-                                                      >
-                                                        Horror
-                                                      </p>
-                                                    </div>
-                                                    <div
-                                                      class="relative lg:min-w-1/5 min-w-e-/14 min-h-1/4 bg-gray-600 mx-2 scroll-snap-center"
-                                                    >
-                                                      <p
-                                                        class="absolute font-bold text-lg inset-x-0 bottom-0 text-center text-white"
-                                                      >
-                                                        Action
-                                                      </p>
-                                                    </div>
-                                                    <div
-                                                      class="relative lg:min-w-1/5 min-w-e-/14 min-h-1/4 bg-gray-600 mx-2 scroll-snap-center"
-                                                    >
-                                                      <p
-                                                        class="absolute font-bold text-lg inset-x-0 bottom-0 text-center text-white"
-                                                      >
-                                                        Komedi
-                                                      </p>
-                                                    </div>
-                                                    <div
-                                                      class="relative lg:min-w-1/5 min-w-e-/14 min-h-1/4 bg-gray-600 mx-2 scroll-snap-center"
-                                                    >
-                                                      <p
-                                                        class="absolute font-bold text-lg inset-x-0 bottom-0 text-center text-white"
-                                                      >
-                                                        Bromance
-                                                      </p>
-                                                    </div>
-                                                  </div>
-                                                </section> -->
-
     <script>
         //Scroll element to center
         const target = document.getElementById("scroll-center");
