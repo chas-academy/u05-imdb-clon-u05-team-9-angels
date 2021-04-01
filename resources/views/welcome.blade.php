@@ -24,7 +24,7 @@
         <p class="my-5 mt-20 text-white">
             {{ $actors[0]->description }}
         </p>
-        <a href='/actors/{{ $actors[2]->id }}'
+        <a href='/actors/{{ $actors[0]->id }}'
             class="inline-block btn-gradient text-white px-10 py-3 font-bold rounded-full my-10 md:my-40 hover:bg-gray-900">
             READ MORE
         </a>
