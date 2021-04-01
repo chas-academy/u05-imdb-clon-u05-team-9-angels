@@ -118,8 +118,9 @@ target.scrollTo(100, 0);
                 </div>
             </div>
         </div>
-        <div class="flex flex-col justify-center my-6 md:my-0">
-            <input type="text" placeholder="Email" class="border border-black px-4 py-2 rounded-full pr-20" />
+        <div class="flex flex-col justify-center my-6 md:my-0 ml-4">
+            <input type="text" placeholder="Email"
+                class="border text-black border-black px-4 py-2 rounded-full pr-20" />
             <button
                 class="inline-block font-bold border  btn-gradient rounded-full px-10 py-2 mt-16 mb-16 hover:bg-black hover:text-white">
                 Send
