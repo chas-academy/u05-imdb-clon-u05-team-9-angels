@@ -51,13 +51,11 @@ class ActorController extends Controller
 
         $request->validate([
             'name' => 'bail|required|string|max:255',
-            'age' => 'bail|required|numeric|between:0,150',
             'description' => 'bail|required|string'
         ]);
 
         $actor = Actor::create([
             'name' => $request->input('name'),
-            'age' => $request->input('age'),
             'description' => $request->input('description'),
         ]);
 
