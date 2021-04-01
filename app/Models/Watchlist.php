@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Watchlist extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'watchlists';
 
     protected $fillable = [

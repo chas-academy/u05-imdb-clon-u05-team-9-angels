@@ -12,8 +12,11 @@ class Actor extends Model
     protected $table = 'actors';
     protected $fillable = [
         'name',
-        'age',
+        'birthday',
+        'deathday',
         'description',
+        'popularity',
+        'poster'
     ];
 
     public function movies()

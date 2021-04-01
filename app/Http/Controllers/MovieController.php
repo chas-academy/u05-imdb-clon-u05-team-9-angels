@@ -11,7 +11,8 @@ use App\Models\Watchlist;
 
 class MovieController extends Controller
 {
-    public function index() // new get all movies
+    // Get all movies
+    public function index()
     {
         $movies = Movie::all();
         return view('movies-all', ['movies' => $movies]);
@@ -47,23 +48,23 @@ class MovieController extends Controller
         $movies = Movie::where('id', $id)->first();
         $canComment = 0;
 
-        //Get the user type
+        // Get the user type
         $userType = -1;
-        $edit_privelages = false;
+        $edit_privileges = false;
         if ($user != null) {
             $userType = $user->type;
-            $edit_privelages = intval($userType) > 1 ? true : false;
+            $edit_privileges = intval($userType) > 1 ? true : false;
             $canComment = intval($userType) >= 0 ? true : false;
         }
 
-        //If the user type is above signed in user (1) -> User has edit privelages.
+        // If the user type is above signed in user (1) -> User has edit privileges.
         return view(
             'movie',
             [
                 'canComment' => $canComment,
                 'movies' => $movies,
                 'actor_list' => $actor_list,
-                'can_edit' => $edit_privelages,
+                'can_edit' => $edit_privileges,
                 'comments' => $comments,
                 'watchlist' => $watchlist,
                 'watchlistId' => $watchlistId,
@@ -76,9 +77,9 @@ class MovieController extends Controller
     public function store(Request $request)  // take request data from form in blade
     {
         $userType = auth()->user()->type;
-        $edit_privelages = intval($userType) > 1 ? true : false;
+        $edit_privileges = intval($userType) > 1 ? true : false;
 
-        if ($edit_privelages) {
+        if ($edit_privileges) {
             $movie = Movie::find($request->all('id')['id']); // new var saves info from movie db, uses find to locate movie according to id and request
             $movie->title = $request->all('title')['title']; // gets movie parameter from request
             $movie->description = $request->all('description')['description']; // gets  parameter from request
@@ -92,6 +93,7 @@ class MovieController extends Controller
         }
         return redirect()->back(); // returns us to same page that post was made from, no new page
     }
+
     protected function create()
     {
         Movie::create([

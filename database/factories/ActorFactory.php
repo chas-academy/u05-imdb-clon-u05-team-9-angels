@@ -23,7 +23,6 @@ class ActorFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            //'age' => $this->faker->numberBetween(5, 99),
             'description' => $this->faker->text(100),
         ];
     }

@@ -16,8 +16,6 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([
             MovieSeeder::class,
-            ActorSeeder::class,
-            CastSeeder::class,
             UserSeeder::class,
         ]);
     }
