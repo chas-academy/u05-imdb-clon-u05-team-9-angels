@@ -15,11 +15,18 @@ class Comment extends Model
         'users_id',
         'movies_id',
         'comment',
-        'star'
+        'star',
+        'type'
+    ];
+
+    protected $casts = [
+        'type' => 'integer'
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'users_id');
+        return $this->belongsTo(User::class, 'users_id')->withDefault([
+            'name' => 'Deleted user'
+        ]);
     }
 }

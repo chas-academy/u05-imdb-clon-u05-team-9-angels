@@ -49,7 +49,7 @@ class ActorController extends Controller
     {
         $this->authorize('create', Actor::class);
 
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'bail|required|string|max:255',
             'age' => 'bail|required|numeric|between:0,150',
             'description' => 'bail|required|string'
@@ -99,7 +99,7 @@ class ActorController extends Controller
     {
         $this->authorize('update', $actor);
 
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'bail|required|string|max:255',
             'description' => 'bail|required|string'
         ]);
