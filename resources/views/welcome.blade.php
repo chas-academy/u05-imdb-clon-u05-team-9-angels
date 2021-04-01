@@ -7,7 +7,7 @@
         <p class="text-3xl text-center text-white text-shadow-xl">
             Watch The Amazing {{ $movies[0]->title }}
         </p>
-        <h1 class="text-7xl text-center mt-10 text-shadow-xl">Se Todays Top Picks!</h1>
+        <h1 class="text-7xl text-center mt-10 text-shadow-xl">See Todays Top Picks!</h1>
         <a href='/movies/{{ $movies[0]->id }}'
             class="bg-gray-800 text-white px-10 py-3 font-bold  btn-gradient rounded-full mx-auto block my-32 md:my-40 hover:bg-gray-900">
             READ MORE
