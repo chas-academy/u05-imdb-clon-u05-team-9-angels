@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Movie;
 use App\Models\Watchlist;
+use App\Models\Comment;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +23,9 @@ class UserController extends Controller
             array_push($watchlistMovies, $movieInWatchlist);
         }
 
-        return view('dashboard.dashboard', ['movies' => $movies, 'watchlistMovies' => $watchlistMovies]);
+        return view('dashboard.dashboard', [
+            'movies' => $movies, 'watchlistMovies' => $watchlistMovies
+        ]);
     }
 
     protected function getUsersForAdmin()
@@ -63,7 +66,6 @@ class UserController extends Controller
     {
         $userType = auth()->user()->type;
         $superUser = intval($userType) > 1 ? true : false;
-        $movies = Movie::inRandomOrder()->limit(5)->get();
 
         if ($superUser) {
             $user = User::find($request->all('id')['id']);
@@ -80,6 +82,8 @@ class UserController extends Controller
 
     protected function destroy($id)
     {
+        $commentsMade = Comment::where('users_id', $id);
+        $commentsMade->delete();
         $user = User::where('id', $id)->first();
         $user->delete();
 
