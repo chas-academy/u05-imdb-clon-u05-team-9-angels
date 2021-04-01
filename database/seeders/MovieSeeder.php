@@ -37,7 +37,7 @@ class MovieSeeder extends Seeder
                 $producer = '';
                 $writer = '';
 
-                //Find Director, Writer, and Producer
+                // Find Director, Writer, and Producer
                 foreach ($Casts['crew'] as $value) {
                     if ($value['job'] == "Director") {
                         $director = $value['name'];
